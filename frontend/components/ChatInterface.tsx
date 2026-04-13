@@ -8,6 +8,7 @@ import { ChatBubble } from './ChatBubble'
 import { TypingIndicator } from './TypingIndicator'
 import { SuggestedQuestions } from './SuggestedQuestions'
 import { StatusBadge } from './StatusBadge'
+import { ThemeToggle } from './ThemeToggle'
 import { cn } from '@/lib/utils'
 
 interface ChatInterfaceProps {
@@ -51,7 +52,10 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
           <h1 className="font-heading font-[600] text-base text-text-primary">Ask Jorge</h1>
           <p className="font-mono text-[11px] text-text-muted">AI-powered professional profile</p>
         </div>
-        <StatusBadge status={warmupStatus} />
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <StatusBadge status={warmupStatus} />
+        </div>
       </header>
 
       {/* Messages */}
