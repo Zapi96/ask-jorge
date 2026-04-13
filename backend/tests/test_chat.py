@@ -10,7 +10,7 @@ os.environ.update(
         "DATABRICKS_TOKEN": "test-token",
         "DATABRICKS_JOB_ID": "1",
         "ADMIN_PASSWORD_HASH": "$2b$12$AAAAAAAAAAAAAAAAAAAAAA.AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "JWT_SECRET": "test-secret-for-ci",
+        "JWT_SECRET": "test-secret-for-ci-that-is-long-enough",
         "ALLOWED_ORIGINS": "http://localhost:3000",
     }
 )
