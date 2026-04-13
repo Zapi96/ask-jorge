@@ -3,9 +3,10 @@ import { WarmupStatus } from '@/lib/api'
 import { cn } from '@/lib/utils'
 
 const CONFIG: Record<WarmupStatus, { label: string; dotClass: string }> = {
-  warm:  { label: 'Ready',          dotClass: 'bg-accent animate-pulse-gold' },
-  cold:  { label: 'Warming up…',    dotClass: 'bg-warning animate-pulse' },
-  error: { label: 'Starting up…',   dotClass: 'bg-warning animate-pulse' },
+  loading: { label: 'Starting up…',   dotClass: 'bg-warning animate-pulse' },
+  warm:    { label: 'Ready',          dotClass: 'bg-accent animate-pulse-gold' },
+  cold:    { label: 'Warming up…',    dotClass: 'bg-warning animate-pulse' },
+  error:   { label: 'Starting up…',   dotClass: 'bg-warning animate-pulse' },
 }
 
 export function StatusBadge({ status }: { status: WarmupStatus }) {
