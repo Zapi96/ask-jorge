@@ -1,11 +1,14 @@
-from fastapi import APIRouter, UploadFile, File, HTTPException, Depends, Query
+from fastapi import APIRouter, UploadFile, File, HTTPException, Depends, Query, Request
 from typing import List
 from models.schemas import UploadResponse, UploadedFile, LoginRequest, TokenResponse
 from services import databricks
 from core.auth import get_current_admin, verify_password, create_access_token
+from slowapi import Limiter
+from slowapi.util import get_remote_address
 import os
 
 router = APIRouter()
+_limiter = Limiter(key_func=get_remote_address)
 
 _ALLOWED_EXTENSIONS = {".pdf", ".docx"}
 _MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
@@ -15,7 +18,8 @@ _VOLUME_PATH = os.environ.get(
 
 
 @router.post("/admin/login", response_model=TokenResponse)
-async def admin_login(body: LoginRequest):
+@_limiter.limit("5/minute")
+async def admin_login(request: Request, body: LoginRequest):
     if not verify_password(body.password):
         raise HTTPException(status_code=401, detail="Invalid password")
     return TokenResponse(access_token=create_access_token())

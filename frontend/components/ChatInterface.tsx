@@ -17,7 +17,9 @@ interface ChatInterfaceProps {
 export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
   const { messages, isLoading, error, sendMessage } = useChat()
   const [input, setInput] = useState('')
-  const isUnavailable = warmupStatus === 'error'
+  // Only block input while an actual request is in flight — not on warmup error,
+  // since the chat endpoint may still work even if the warmup ping failed.
+  const isUnavailable = false
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const hasMessages = messages.length > 0
