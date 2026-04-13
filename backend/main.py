@@ -12,14 +12,19 @@ app = FastAPI(title="Ask Jorge API", version="1.0.0")
 app.state.limiter = _limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
+# Exact origins from env var (production domain + localhost)
 _origins = [
     o.strip()
     for o in os.environ.get("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
 ]
 
+# Regex covers all Vercel preview deployments: ask-jorge-<hash>-<team>.vercel.app
+_origin_regex = r"https://ask-jorge[a-z0-9-]*\.vercel\.app"
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=_origins,
+    allow_origin_regex=_origin_regex,
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Authorization", "Content-Type"],
