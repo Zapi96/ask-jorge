@@ -7,9 +7,9 @@ or triggers a delta sync of the existing index from the Delta table.
 Run this job after the ingestion_job to keep the search index up to date.
 
 Resources:
-    Delta table : workspace.default.jorge_cv_chunks  (source, CDF-enabled)
+    Delta table : jorge.cv_rag.jorge_cv_chunks  (source, CDF-enabled)
     VS endpoint : jorge_cv_search
-    VS index    : workspace.default.jorge_cv_search_index
+    VS index    : jorge.cv_rag.jorge_cv_search_index
 """
 from databricks.sdk import WorkspaceClient
 from databricks.sdk.service.vectorsearch import (
@@ -20,8 +20,8 @@ from databricks.sdk.service.vectorsearch import (
     VectorIndexType,
 )
 
-CATALOG = "workspace"
-DB = "default"
+CATALOG = "jorge"
+DB = "cv_rag"
 TABLE_NAME = f"{CATALOG}.{DB}.jorge_cv_chunks"
 VS_ENDPOINT_NAME = "jorge_cv_search"
 VS_INDEX_NAME = f"{CATALOG}.{DB}.jorge_cv_search_index"

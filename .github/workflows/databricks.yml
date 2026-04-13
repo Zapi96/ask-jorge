@@ -2,7 +2,7 @@ name: Databricks Bundle CI/CD
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
     paths: ['databricks/**']
   pull_request:
     branches: [main]

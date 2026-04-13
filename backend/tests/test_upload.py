@@ -1,28 +1,34 @@
 import os
 import pytest
-from unittest.mock import patch, AsyncMock
 from fastapi.testclient import TestClient
-import io
 
-os.environ.update({
-    "DATABRICKS_HOST": "https://test.azuredatabricks.net",
-    "DATABRICKS_TOKEN": "test-token",
-    "DATABRICKS_JOB_ID": "1",
-    "ADMIN_PASSWORD_HASH": "$2b$12$AAAAAAAAAAAAAAAAAAAAAA.AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    "JWT_SECRET": "test-secret-for-ci",
-    "ALLOWED_ORIGINS": "http://localhost:3000",
-})
+os.environ.update(
+    {
+        "DATABRICKS_HOST": "https://test.azuredatabricks.net",
+        "DATABRICKS_TOKEN": "test-token",
+        "DATABRICKS_JOB_ID": "1",
+        "ADMIN_PASSWORD_HASH": "$2b$12$AAAAAAAAAAAAAAAAAAAAAA.AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "JWT_SECRET": "test-secret-for-ci",
+        "ALLOWED_ORIGINS": "http://localhost:3000",
+    }
+)
 
 
 @pytest.fixture(scope="module")
 def client():
     from main import app
+
     return TestClient(app)
 
 
 def test_upload_requires_auth(client):
-    resp = client.post("/upload", files={"files": ("test.pdf", b"content", "application/pdf")})
-    assert resp.status_code in (401, 403)  # HTTPBearer returns 401 when no credentials provided
+    resp = client.post(
+        "/upload", files={"files": ("test.pdf", b"content", "application/pdf")}
+    )
+    assert resp.status_code in (
+        401,
+        403,
+    )  # HTTPBearer returns 401 when no credentials provided
 
 
 def test_upload_rejects_invalid_extension(client):

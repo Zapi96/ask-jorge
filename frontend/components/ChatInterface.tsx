@@ -17,6 +17,9 @@ interface ChatInterfaceProps {
 export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
   const { messages, isLoading, error, sendMessage } = useChat()
   const [input, setInput] = useState('')
+  // Only block input while an actual request is in flight — not on warmup error,
+  // since the chat endpoint may still work even if the warmup ping failed.
+  const isUnavailable = false
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const hasMessages = messages.length > 0
@@ -28,7 +31,7 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
   function handleSubmit(e?: React.FormEvent) {
     e?.preventDefault()
     const q = input.trim()
-    if (!q || isLoading) return
+    if (!q || isLoading || isUnavailable) return
     setInput('')
     sendMessage(q)
   }
@@ -99,7 +102,7 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
             onKeyDown={handleKeyDown}
             placeholder="Ask something about Jorge…"
             rows={1}
-            disabled={isLoading}
+            disabled={isLoading || isUnavailable}
             aria-label="Your question"
             className={cn(
               'flex-1 resize-none rounded-xl border border-border-default bg-elevated px-4 py-3',
@@ -112,7 +115,7 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
           />
           <button
             type="submit"
-            disabled={isLoading || !input.trim()}
+            disabled={isLoading || isUnavailable || !input.trim()}
             aria-label="Send message"
             className={cn(
               'flex h-12 w-12 shrink-0 items-center justify-center rounded-xl',
@@ -128,6 +131,11 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
         {warmupStatus === 'cold' && (
           <p className="mt-2 text-center font-mono text-[11px] text-text-muted">
             First response may take a few seconds while the assistant warms up.
+          </p>
+        )}
+        {warmupStatus === 'error' && (
+          <p className="mt-2 text-center font-mono text-[11px] text-text-muted">
+            The assistant is starting up. This may take a few minutes — it will retry automatically.
           </p>
         )}
       </footer>

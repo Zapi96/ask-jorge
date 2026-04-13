@@ -15,7 +15,7 @@ _INJECTION_PATTERNS = [
 ]
 
 _SENSITIVE_OUTPUT_PATTERNS = [
-    r'\+\d[\d\s\-\(\)\.]{7,}',  # phone numbers (international)
+    r"\+\d[\d\s\-\(\)\.]{7,}",  # phone numbers (international)
 ]
 
 _COMPILED_INJECTION = [re.compile(p, re.IGNORECASE) for p in _INJECTION_PATTERNS]

@@ -1,0 +1,20 @@
+resources:
+  jobs:
+    serving_model_job:
+      name: jorge-cv-serving-model
+      environments:
+        - environment_key: serving_env
+          spec:
+            client: "2"
+            dependencies:
+              - "-r ${workspace.file_path}/requirements-serving.txt"
+      tasks:
+        - task_key: build_and_deploy
+          environment_key: serving_env
+          notebook_task:
+            notebook_path: ../notebooks/3_serving_model.ipynb
+          # First run can take 10+ min (endpoint creation + model registration)
+          timeout_seconds: 3600
+      email_notifications:
+        on_failure:
+          - jorgemartinezzapico@gmail.com

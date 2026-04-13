@@ -2,7 +2,10 @@ bundle:
   name: jorge-cv-rag
 
 workspace:
-  host: ${DATABRICKS_HOST}
+  host: https://dbc-ad7d5e59-0280.cloud.databricks.com
+
+include:
+  - resources/*.yml
 
 targets:
   dev:
@@ -15,10 +18,3 @@ targets:
     mode: production
     workspace:
       root_path: /Shared/bundles/${bundle.name}
-
-resources:
-  jobs:
-    ingestion_job:
-      source: resources/ingestion_job.yml
-    vector_index_job:
-      source: resources/vector_index_job.yml

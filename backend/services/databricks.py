@@ -19,7 +19,9 @@ def _endpoint_name() -> str:
 
 
 def _volume_path() -> str:
-    return os.environ.get("DATABRICKS_VOLUME_PATH", "/Volumes/workspace/default/jorge_cv_docs")
+    return os.environ.get(
+        "DATABRICKS_VOLUME_PATH", "/Volumes/jorge/cv_rag/jorge_cv_docs"
+    )
 
 
 def _job_id() -> int:
@@ -36,7 +38,17 @@ async def query_endpoint(question: str) -> str:
             json=payload,
         )
         resp.raise_for_status()
-        return resp.json()["predictions"][0]["content"]
+        data = resp.json()
+        # Databricks returns the chain output directly as a list: ["answer string"]
+        if isinstance(data, list):
+            return str(data[0])
+        # Fallback: {"predictions": ["string"]} or {"predictions": [{"content": ...}]}
+        prediction = data["predictions"][0]
+        if isinstance(prediction, str):
+            return prediction
+        if isinstance(prediction, dict):
+            return prediction.get("content") or prediction.get("output") or str(prediction)
+        return str(prediction)
 
 
 async def ping_endpoint() -> dict:

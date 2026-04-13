@@ -16,6 +16,7 @@ async def test_ping_endpoint_returns_warm_on_200():
         MockClient.return_value.__aexit__ = AsyncMock(return_value=False)
 
         from services.databricks import ping_endpoint
+
         result = await ping_endpoint()
 
     assert result["status"] == "warm"
@@ -32,6 +33,7 @@ async def test_ping_endpoint_returns_error_on_exception():
         MockClient.return_value.__aexit__ = AsyncMock(return_value=False)
 
         from services.databricks import ping_endpoint
+
         result = await ping_endpoint()
 
     assert result["status"] == "error"
@@ -41,7 +43,9 @@ async def test_ping_endpoint_returns_error_on_exception():
 @pytest.mark.asyncio
 async def test_query_endpoint_returns_content():
     mock_response = MagicMock()
-    mock_response.json = MagicMock(return_value={"predictions": [{"content": "Jorge has 5 years exp."}]})
+    mock_response.json = MagicMock(
+        return_value={"predictions": [{"content": "Jorge has 5 years exp."}]}
+    )
     mock_response.raise_for_status = MagicMock()
 
     mock_client = AsyncMock()
@@ -52,6 +56,7 @@ async def test_query_endpoint_returns_content():
         MockClient.return_value.__aexit__ = AsyncMock(return_value=False)
 
         from services.databricks import query_endpoint
+
         result = await query_endpoint("What is Jorge's experience?")
 
     assert result == "Jorge has 5 years exp."
@@ -60,9 +65,11 @@ async def test_query_endpoint_returns_content():
 @pytest.mark.asyncio
 async def test_get_job_run_status_success():
     mock_response = MagicMock()
-    mock_response.json = MagicMock(return_value={
-        "state": {"life_cycle_state": "TERMINATED", "result_state": "SUCCESS"}
-    })
+    mock_response.json = MagicMock(
+        return_value={
+            "state": {"life_cycle_state": "TERMINATED", "result_state": "SUCCESS"}
+        }
+    )
     mock_response.raise_for_status = MagicMock()
 
     mock_client = AsyncMock()
@@ -73,6 +80,7 @@ async def test_get_job_run_status_success():
         MockClient.return_value.__aexit__ = AsyncMock(return_value=False)
 
         from services.databricks import get_job_run_status
+
         status = await get_job_run_status(12345)
 
     assert status == "success"
@@ -81,9 +89,9 @@ async def test_get_job_run_status_success():
 @pytest.mark.asyncio
 async def test_get_job_run_status_running():
     mock_response = MagicMock()
-    mock_response.json = MagicMock(return_value={
-        "state": {"life_cycle_state": "RUNNING", "result_state": ""}
-    })
+    mock_response.json = MagicMock(
+        return_value={"state": {"life_cycle_state": "RUNNING", "result_state": ""}}
+    )
     mock_response.raise_for_status = MagicMock()
 
     mock_client = AsyncMock()
@@ -94,6 +102,7 @@ async def test_get_job_run_status_running():
         MockClient.return_value.__aexit__ = AsyncMock(return_value=False)
 
         from services.databricks import get_job_run_status
+
         status = await get_job_run_status(12345)
 
     assert status == "running"
