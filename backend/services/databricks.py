@@ -38,7 +38,15 @@ async def query_endpoint(question: str) -> str:
             json=payload,
         )
         resp.raise_for_status()
-        return resp.json()["predictions"][0]["content"]
+        data = resp.json()
+        # LangChain chain with StrOutputParser → predictions is a list of strings
+        prediction = data["predictions"][0]
+        if isinstance(prediction, str):
+            return prediction
+        # Fallback: dict with 'content' key (some MLflow model flavors)
+        if isinstance(prediction, dict):
+            return prediction.get("content") or prediction.get("output") or str(prediction)
+        return str(prediction)
 
 
 async def ping_endpoint() -> dict:
