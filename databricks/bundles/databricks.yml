@@ -1,0 +1,22 @@
+bundle:
+  name: jorge-cv-rag
+
+workspace:
+  host: ${DATABRICKS_HOST}
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      root_path: ~/.bundle/${bundle.name}/dev
+
+  prod:
+    mode: production
+    workspace:
+      root_path: /Shared/bundles/${bundle.name}
+
+resources:
+  jobs:
+    ingestion_job:
+      source: resources/ingestion_job.yml
