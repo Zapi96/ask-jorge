@@ -39,11 +39,13 @@ async def query_endpoint(question: str) -> str:
         )
         resp.raise_for_status()
         data = resp.json()
-        # LangChain chain with StrOutputParser → predictions is a list of strings
+        # Databricks returns the chain output directly as a list: ["answer string"]
+        if isinstance(data, list):
+            return str(data[0])
+        # Fallback: {"predictions": ["string"]} or {"predictions": [{"content": ...}]}
         prediction = data["predictions"][0]
         if isinstance(prediction, str):
             return prediction
-        # Fallback: dict with 'content' key (some MLflow model flavors)
         if isinstance(prediction, dict):
             return prediction.get("content") or prediction.get("output") or str(prediction)
         return str(prediction)
