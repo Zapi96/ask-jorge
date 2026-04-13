@@ -47,7 +47,9 @@ async def query_endpoint(question: str) -> str:
         if isinstance(prediction, str):
             return prediction
         if isinstance(prediction, dict):
-            return prediction.get("content") or prediction.get("output") or str(prediction)
+            return (
+                prediction.get("content") or prediction.get("output") or str(prediction)
+            )
         return str(prediction)
 
 
