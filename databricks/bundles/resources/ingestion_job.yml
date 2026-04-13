@@ -5,13 +5,13 @@ resources:
       environments:
         - environment_key: ingestion_env
           spec:
-            client: "1"
+            client: "2"
             dependencies:
               - pypdf
               - transformers
         - environment_key: vector_index_env
           spec:
-            client: "1"
+            client: "2"
       tasks:
         - task_key: ingest_document
           environment_key: ingestion_env

@@ -5,7 +5,7 @@ resources:
       environments:
         - environment_key: serving_env
           spec:
-            client: "1"
+            client: "2"
             dependencies:
               - langchain-community==0.3.27
               - databricks-langchain==0.7.0
