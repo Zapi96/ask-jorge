@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { Syne, Space_Grotesk } from 'next/font/google'
+import { Providers } from '@/components/Providers'
 import './globals.css'
 
 const syne = Syne({
@@ -30,11 +31,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${GeistSans.variable} ${GeistMono.variable} ${syne.variable} ${spaceGrotesk.variable} min-h-dvh bg-bg text-text-primary antialiased font-body`}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

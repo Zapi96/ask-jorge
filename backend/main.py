@@ -5,6 +5,21 @@ from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from routers import chat, upload, warmup
 import os
+import sys
+
+
+def _validate_secrets() -> None:
+    """Fail fast if required secrets are missing or too weak."""
+    jwt_secret = os.environ.get("JWT_SECRET", "")
+    if not jwt_secret:
+        sys.exit("FATAL: JWT_SECRET environment variable is not set.")
+    if len(jwt_secret) < 32:
+        sys.exit("FATAL: JWT_SECRET must be at least 32 characters.")
+    if not os.environ.get("ADMIN_PASSWORD_HASH", ""):
+        sys.exit("FATAL: ADMIN_PASSWORD_HASH environment variable is not set.")
+
+
+_validate_secrets()
 
 _limiter = Limiter(key_func=get_remote_address)
 
@@ -38,6 +53,9 @@ async def security_headers(request: Request, call_next) -> Response:
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
+    response.headers["Strict-Transport-Security"] = (
+        "max-age=31536000; includeSubDomains"
+    )
     return response
 
 

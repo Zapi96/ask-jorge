@@ -1,6 +1,6 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000'
 
-export type WarmupStatus = 'warm' | 'cold' | 'error'
+export type WarmupStatus = 'loading' | 'warm' | 'cold' | 'error'
 
 export interface WarmupResult {
   status: WarmupStatus

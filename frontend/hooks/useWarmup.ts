@@ -5,7 +5,7 @@ import { checkWarmup, WarmupStatus } from '@/lib/api'
 const RETRY_INTERVAL_MS = 30_000
 
 export function useWarmup() {
-  const [status, setStatus] = useState<WarmupStatus>('cold')
+  const [status, setStatus] = useState<WarmupStatus>('loading')
   const [latencyMs, setLatencyMs] = useState<number | null>(null)
   const statusRef = useRef(status)
   statusRef.current = status

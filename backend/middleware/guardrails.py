@@ -2,6 +2,7 @@ import re
 from typing import Optional
 
 _INJECTION_PATTERNS = [
+    # English
     r"ignore\s+(previous|above|all)\s+instructions?",
     r"act\s+as\s+(if\s+you\s+(are|were)|a|an)\s+",
     r"forget\s+(your|the)\s+(role|instructions?|prompt|context|rules)",
@@ -12,10 +13,19 @@ _INJECTION_PATTERNS = [
     r"override\s+(your|the)\s+(instructions?|prompt|system)",
     r"\bjailbreak\b",
     r"\bDAN\b",
+    # Spanish
+    r"ignora?\s+(todas?\s+)?(las?\s+)?instrucciones?",
+    r"olvida\s+(todas?\s+)?(las?\s+)?instrucciones?",
+    r"ahora\s+eres\b",
+    r"act[uú]a\s+como\b",
+    r"finge\s+(que\s+)?(ser|eres)\b",
+    r"nueva\s+personalidad\b",
+    r"nueva\s+persona\b",
 ]
 
 _SENSITIVE_OUTPUT_PATTERNS = [
     r"\+\d[\d\s\-\(\)\.]{7,}",  # phone numbers (international)
+    r"[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}",  # email addresses
 ]
 
 _COMPILED_INJECTION = [re.compile(p, re.IGNORECASE) for p in _INJECTION_PATTERNS]

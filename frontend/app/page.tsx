@@ -13,7 +13,7 @@ export default function HomePage() {
     <>
       <AnimatePresence>
         {!introDone && (
-          <IntroAnimation onComplete={() => setIntroDone(true)} />
+          <IntroAnimation onComplete={() => setIntroDone(true)} warmupStatus={status} />
         )}
       </AnimatePresence>
       {introDone && <ChatInterface warmupStatus={status} />}

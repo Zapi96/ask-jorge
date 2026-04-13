@@ -1,42 +1,40 @@
 'use client'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
+import { WarmupStatus } from '@/lib/api'
 
 const FIRST_NAME = 'JORGE'
 const LAST_NAME = 'MARTÍNEZ ZAPICO'
 const TITLE = 'Senior MLOps & AI Engineer'
-const STATUS_STEPS = ['Initializing…', 'Loading knowledge base…', 'Ready']
 
 interface IntroAnimationProps {
   onComplete: () => void
+  warmupStatus: WarmupStatus
 }
 
-export function IntroAnimation({ onComplete }: IntroAnimationProps) {
+export function IntroAnimation({ onComplete, warmupStatus }: IntroAnimationProps) {
   const [phase, setPhase] = useState<0 | 1 | 2 | 3>(0)
-  const [statusIdx, setStatusIdx] = useState(0)
+  const [animDone, setAnimDone] = useState(false)
   const [exiting, setExiting] = useState(false)
   const onCompleteRef = useRef(onComplete)
   onCompleteRef.current = onComplete
 
+  // Play name/title animation phases
   useEffect(() => {
     const t1 = setTimeout(() => setPhase(1), 300)
     const t2 = setTimeout(() => setPhase(2), 1800)
     const t3 = setTimeout(() => setPhase(3), 2600)
-    const t4 = setTimeout(() => setExiting(true), 3600)
-    const t5 = setTimeout(() => onCompleteRef.current(), 4200)
-    return () => [t1, t2, t3, t4, t5].forEach(clearTimeout)
+    const t4 = setTimeout(() => setAnimDone(true), 3200)
+    return () => [t1, t2, t3, t4].forEach(clearTimeout)
   }, [])
 
+  // Proceed only when animation is done AND warmup has responded
   useEffect(() => {
-    if (phase < 3) return
-    const interval = setInterval(() => {
-      setStatusIdx((i) => {
-        if (i >= STATUS_STEPS.length - 1) { clearInterval(interval); return i }
-        return i + 1
-      })
-    }, 350)
-    return () => clearInterval(interval)
-  }, [phase])
+    if (!animDone || warmupStatus === 'loading') return
+    setExiting(true)
+    const t = setTimeout(() => onCompleteRef.current(), 550)
+    return () => clearTimeout(t)
+  }, [animDone, warmupStatus])
 
   return (
     <AnimatePresence>
@@ -90,25 +88,18 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
             </motion.p>
           </div>
 
-          {/* Status bar */}
+          {/* Loading spinner */}
           <motion.div
             className="absolute bottom-16 flex items-center gap-3"
             initial={{ opacity: 0 }}
             animate={phase >= 3 ? { opacity: 1 } : {}}
             transition={{ duration: 0.4 }}
+            role="status"
+            aria-label="Loading assistant"
           >
-            <div className="flex gap-[5px]" aria-hidden>
-              {[0, 1, 2].map((i) => (
-                <motion.span
-                  key={i}
-                  className="block h-[5px] w-[5px] rounded-full bg-accent"
-                  animate={{ opacity: [0.25, 1, 0.25] }}
-                  transition={{ duration: 1.2, delay: i * 0.2, repeat: Infinity, ease: 'easeInOut' }}
-                />
-              ))}
-            </div>
-            <span className="font-mono text-[11px] text-text-muted" role="status" aria-live="polite">
-              {STATUS_STEPS[statusIdx]}
+            <div className="h-4 w-4 rounded-full border-2 border-accent/20 border-t-accent animate-spin" aria-hidden />
+            <span className="font-mono text-[11px] text-text-muted">
+              {warmupStatus === 'error' ? 'Starting up…' : 'Loading knowledge base…'}
             </span>
           </motion.div>
         </motion.div>
