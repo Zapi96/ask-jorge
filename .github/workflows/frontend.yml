@@ -2,7 +2,7 @@ name: Frontend CI/CD
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
     paths: ['frontend/**']
   pull_request:
     branches: [main]
@@ -10,6 +10,7 @@ on:
 
 jobs:
   ci:
+    name: Lint, typecheck & build
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -29,4 +30,8 @@ jobs:
       - run: npm run typecheck
       - run: npm run build
 
-  # Deploy is handled automatically by Vercel's GitHub integration
+  # Preview deploy is handled automatically by Vercel's GitHub integration
+  # on every PR and push to non-main branches.
+
+  # Production deploy is handled automatically by Vercel's GitHub integration
+  # on every push to main.

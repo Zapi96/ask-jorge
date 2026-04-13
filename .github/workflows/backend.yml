@@ -2,7 +2,7 @@ name: Backend CI/CD
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
     paths: ['backend/**']
   pull_request:
     branches: [main]
@@ -10,6 +10,7 @@ on:
 
 jobs:
   ci:
+    name: Lint & test
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -36,16 +37,16 @@ jobs:
           JWT_SECRET: test-secret-for-ci
 
   deploy:
+    name: Deploy to Render (production)
     needs: ci
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
     steps:
       - name: Trigger Render deploy
-        run: |
-          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
+        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
 
       - name: Wait and health check
         run: |
-          sleep 30
+          sleep 60
           curl --fail https://ask-jorge-api.onrender.com/health
