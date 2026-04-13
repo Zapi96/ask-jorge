@@ -1,24 +1,23 @@
-name: jorge-cv-ingestion
-
-job_clusters:
-  - job_cluster_key: ingestion_cluster
-    new_cluster:
-      spark_version: 15.4.x-scala2.12
-      node_type_id: Standard_DS3_v2
-      num_workers: 1
-      spark_conf:
-        spark.databricks.delta.preview.enabled: "true"
-
-tasks:
-  - task_key: ingest_document
-    job_cluster_key: ingestion_cluster
-    notebook_task:
-      notebook_path: ../src/ingestion
-      base_parameters:
-        file_path: ""
-        full_reindex: "true"
-    timeout_seconds: 1800
-
-email_notifications:
-  on_failure:
-    - jorgemartinezzapico@gmail.com
+resources:
+  jobs:
+    ingestion_job:
+      name: jorge-cv-ingestion
+      environments:
+        - environment_key: ingestion_env
+          spec:
+            client: "1"
+            dependencies:
+              - pypdf
+              - transformers
+      tasks:
+        - task_key: ingest_document
+          environment_key: ingestion_env
+          notebook_task:
+            notebook_path: ../notebooks/1_ingestion.ipynb
+            base_parameters:
+              file_path: ""
+              full_reindex: "true"
+          timeout_seconds: 1800
+      email_notifications:
+        on_failure:
+          - jorgemartinezzapico@gmail.com
