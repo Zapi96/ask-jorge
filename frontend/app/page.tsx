@@ -1,7 +1,22 @@
+'use client'
+import { useState } from 'react'
+import { AnimatePresence } from 'framer-motion'
+import { IntroAnimation } from '@/components/IntroAnimation'
+import { ChatInterface } from '@/components/ChatInterface'
+import { useWarmup } from '@/hooks/useWarmup'
+
 export default function HomePage() {
+  const [introDone, setIntroDone] = useState(false)
+  const { status } = useWarmup()
+
   return (
-    <div className="flex min-h-dvh items-center justify-center">
-      <p className="font-display text-4xl font-[800] text-accent">Ask Jorge</p>
-    </div>
+    <>
+      <AnimatePresence>
+        {!introDone && (
+          <IntroAnimation onComplete={() => setIntroDone(true)} />
+        )}
+      </AnimatePresence>
+      {introDone && <ChatInterface warmupStatus={status} />}
+    </>
   )
 }

@@ -57,7 +57,7 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
           {!hasMessages && (
             <div className="flex flex-1 flex-col items-center justify-center gap-8 pt-16">
               <p className="font-body text-sm text-text-muted text-center max-w-sm">
-                Ask me anything about Jorge's professional experience, skills, or background.
+                Ask me anything about Jorge&apos;s professional experience, skills, or background.
               </p>
               <SuggestedQuestions
                 onSelect={(q) => { setInput(q); sendMessage(q) }}
