@@ -9,6 +9,9 @@ resources:
             dependencies:
               - pypdf
               - transformers
+        - environment_key: vector_index_env
+          spec:
+            client: "1"
       tasks:
         - task_key: ingest_document
           environment_key: ingestion_env
@@ -18,6 +21,15 @@ resources:
               file_path: ""
               full_reindex: "true"
           timeout_seconds: 1800
+
+        - task_key: sync_vector_index
+          depends_on:
+            - task_key: ingest_document
+          environment_key: vector_index_env
+          notebook_task:
+            notebook_path: ../notebooks/2_vector_index.ipynb
+          timeout_seconds: 3600
+
       email_notifications:
         on_failure:
           - jorgemartinezzapico@gmail.com
