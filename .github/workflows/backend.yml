@@ -60,4 +60,4 @@ jobs:
       - name: Wait and health check
         run: |
           sleep 60
-          curl --fail https://ask-jorge-api.onrender.com/health
+          curl --fail https://ask-jorge.onrender.com/health
