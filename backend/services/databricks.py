@@ -19,7 +19,9 @@ def _endpoint_name() -> str:
 
 
 def _volume_path() -> str:
-    return os.environ.get("DATABRICKS_VOLUME_PATH", "/Volumes/workspace/default/jorge_cv_docs")
+    return os.environ.get(
+        "DATABRICKS_VOLUME_PATH", "/Volumes/jorge/cv_rag/jorge_cv_docs"
+    )
 
 
 def _job_id() -> int:

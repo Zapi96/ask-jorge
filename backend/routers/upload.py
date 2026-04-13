@@ -9,7 +9,9 @@ router = APIRouter()
 
 _ALLOWED_EXTENSIONS = {".pdf", ".docx"}
 _MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
-_VOLUME_PATH = os.environ.get("DATABRICKS_VOLUME_PATH", "/Volumes/workspace/default/jorge_cv_docs")
+_VOLUME_PATH = os.environ.get(
+    "DATABRICKS_VOLUME_PATH", "/Volumes/jorge/cv_rag/jorge_cv_docs"
+)
 
 
 @router.post("/admin/login", response_model=TokenResponse)
@@ -29,7 +31,11 @@ async def upload_files(
 
     results: list[UploadedFile] = []
     for i, file in enumerate(files):
-        ext = "." + file.filename.rsplit(".", 1)[-1].lower() if "." in (file.filename or "") else ""
+        ext = (
+            "." + file.filename.rsplit(".", 1)[-1].lower()
+            if "." in (file.filename or "")
+            else ""
+        )
         if ext not in _ALLOWED_EXTENSIONS:
             raise HTTPException(
                 status_code=400,
@@ -45,7 +51,9 @@ async def upload_files(
 
         await databricks.upload_file_to_volume(content, file.filename)
         file_path = f"{_VOLUME_PATH}/{file.filename}"
-        run_id = await databricks.trigger_ingestion_job(file_path, full_reindex=(i == 0))
+        run_id = await databricks.trigger_ingestion_job(
+            file_path, full_reindex=(i == 0)
+        )
         results.append(UploadedFile(name=file.filename, run_id=run_id, status="queued"))
 
     return UploadResponse(files=results)

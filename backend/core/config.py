@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     databricks_token: str
     databricks_job_id: int
     databricks_endpoint_name: str = "jorge_cv_endpoint"
-    databricks_volume_path: str = "/Volumes/workspace/default/jorge_cv_docs"
+    databricks_volume_path: str = "/Volumes/jorge/cv_rag/jorge_cv_docs"
 
     admin_password_hash: str  # bcrypt hash
     jwt_secret: str
