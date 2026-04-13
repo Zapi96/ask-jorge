@@ -1,0 +1,24 @@
+name: jorge-cv-vector-index
+
+# Ephemeral job cluster — spins up on demand, terminates when job completes.
+job_clusters:
+  - job_cluster_key: vector_index_cluster
+    new_cluster:
+      spark_version: 15.4.x-scala2.12
+      node_type_id: Standard_DS3_v2
+      num_workers: 1
+      spark_conf:
+        spark.databricks.delta.preview.enabled: "true"
+
+tasks:
+  - task_key: create_or_sync_index
+    job_cluster_key: vector_index_cluster
+    notebook_task:
+      notebook_path: ../src/vector_index
+    # Creating a VS endpoint can take up to 20 min on first run.
+    # Subsequent syncs are faster (seconds to minutes).
+    timeout_seconds: 3600
+
+email_notifications:
+  on_failure:
+    - jorgemartinezzapico@gmail.com

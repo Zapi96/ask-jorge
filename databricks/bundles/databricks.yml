@@ -20,3 +20,5 @@ resources:
   jobs:
     ingestion_job:
       source: resources/ingestion_job.yml
+    vector_index_job:
+      source: resources/vector_index_job.yml
