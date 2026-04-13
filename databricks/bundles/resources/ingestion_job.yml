@@ -7,8 +7,7 @@ resources:
           spec:
             client: "2"
             dependencies:
-              - pypdf
-              - transformers
+              - "-r ${workspace.file_path}/requirements-ingestion.txt"
         - environment_key: vector_index_env
           spec:
             client: "2"

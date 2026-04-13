@@ -7,10 +7,7 @@ resources:
           spec:
             client: "2"
             dependencies:
-              - langchain-community==0.3.27
-              - databricks-langchain==0.7.0
-              - databricks-agents==1.3.0
-              - mlflow==3.9.0
+              - "-r ${workspace.file_path}/requirements-serving.txt"
       tasks:
         - task_key: build_and_deploy
           environment_key: serving_env
