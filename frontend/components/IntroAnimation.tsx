@@ -28,13 +28,23 @@ export function IntroAnimation({ onComplete, warmupStatus }: IntroAnimationProps
     return () => [t1, t2, t3, t4].forEach(clearTimeout)
   }, [])
 
-  // Proceed only when animation is done AND warmup has responded
+  // Proceed only when animation is done AND endpoint is warm
   useEffect(() => {
-    if (!animDone || warmupStatus === 'loading') return
+    if (!animDone || warmupStatus !== 'warm') return
     setExiting(true)
     const t = setTimeout(() => onCompleteRef.current(), 550)
     return () => clearTimeout(t)
   }, [animDone, warmupStatus])
+
+  // Fallback: proceed after 3 minutes regardless (avoid infinite loading)
+  useEffect(() => {
+    if (!animDone) return
+    const t = setTimeout(() => {
+      setExiting(true)
+      setTimeout(() => onCompleteRef.current(), 550)
+    }, 3 * 60 * 1000)
+    return () => clearTimeout(t)
+  }, [animDone])
 
   return (
     <AnimatePresence>
@@ -99,7 +109,9 @@ export function IntroAnimation({ onComplete, warmupStatus }: IntroAnimationProps
           >
             <div className="h-4 w-4 rounded-full border-2 border-accent/20 border-t-accent animate-spin" aria-hidden />
             <span className="font-mono text-[11px] text-text-muted">
-              {warmupStatus === 'error' ? 'Starting up…' : 'Loading knowledge base…'}
+              {warmupStatus === 'cold'  ? 'Warming up assistant…' :
+               warmupStatus === 'error' ? 'Starting up…' :
+                                          'Loading knowledge base…'}
             </span>
           </motion.div>
         </motion.div>
