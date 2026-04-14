@@ -23,14 +23,14 @@ type Logo = ImgLogo | SiLogo | TextLogo
 
 const LOGOS: Logo[] = [
   // ── Technologies ──────────────────────────────────────────────────────────
-  { type: 'si',   path: DATABRICKS_PATH,              label: 'Databricks' },
+  { type: 'img',  src: '/logos/databricks.svg',              label: 'Databricks' },
   { type: 'img',  src: '/logos/azure.svg',             label: 'Azure' },
 
   // ── Companies ─────────────────────────────────────────────────────────────
-  { type: 'img',  src: '/logos/repsol.svg',            label: 'Repsol' },
-  { type: 'text', label: 'Bluetab', sub: 'an IBM Company' },
-  { type: 'text', label: 'GMV' },
-  { type: 'text', label: 'Nommon' },
+  { type: 'img', src: '/logos/repsol.svg',            label: 'Repsol' },
+  { type: 'img', src: '/logos/bluetab.svg',label: 'Bluetab, an IBM Company' },
+  { type: 'img', src: '/logos/gmv.svg', label: 'GMV' },
+  { type: 'img', src: '/logos/nommon.svg', label: 'Nommon' },
 
   // ── Space & Research agencies ─────────────────────────────────────────────
   { type: 'img',  src: '/logos/nasa.svg',              label: 'NASA' },
