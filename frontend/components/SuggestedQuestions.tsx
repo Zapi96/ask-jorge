@@ -1,7 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 
-const QUESTIONS = [
+export const QUESTIONS = [
   "What's Jorge's experience with Databricks and MLflow?",
   "What ML projects has he led?",
   "What's his main tech stack?",

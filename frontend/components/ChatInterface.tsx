@@ -1,12 +1,12 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { Send } from 'lucide-react'
 import { useChat } from '@/hooks/useChat'
 import { WarmupStatus } from '@/lib/api'
 import { ChatBubble } from './ChatBubble'
 import { TypingIndicator } from './TypingIndicator'
-import { SuggestedQuestions } from './SuggestedQuestions'
+import { SuggestedQuestions, QUESTIONS } from './SuggestedQuestions'
 import { StatusBadge } from './StatusBadge'
 import { ThemeToggle } from './ThemeToggle'
 import { LogoCarousel } from './LogoCarousel'
@@ -19,29 +19,39 @@ interface ChatInterfaceProps {
 export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
   const { messages, isLoading, error, sendMessage } = useChat()
   const [input, setInput] = useState('')
-  // Only block input while an actual request is in flight — not on warmup error,
-  // since the chat endpoint may still work even if the warmup ping failed.
+  const [suggIdx, setSuggIdx] = useState(0)
   const isUnavailable = false
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const hasMessages = messages.length > 0
 
+  // Rotate compact suggestions after each assistant reply
+  useEffect(() => {
+    const last = messages[messages.length - 1]
+    if (last?.role === 'assistant') {
+      setSuggIdx((i) => (i + 2) % QUESTIONS.length)
+    }
+  }, [messages])
+
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, isLoading])
 
+  const handleSend = useCallback((q: string) => {
+    if (!q.trim() || isLoading || isUnavailable) return
+    setInput('')
+    sendMessage(q.trim())
+  }, [isLoading, isUnavailable, sendMessage])
+
   function handleSubmit(e?: React.FormEvent) {
     e?.preventDefault()
-    const q = input.trim()
-    if (!q || isLoading || isUnavailable) return
-    setInput('')
-    sendMessage(q)
+    handleSend(input)
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
-      handleSubmit()
+      handleSend(input)
     }
   }
 
@@ -67,9 +77,7 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
               <p className="font-body text-sm text-text-muted text-center max-w-sm">
                 Ask me anything about Jorge&apos;s professional experience, skills, or background.
               </p>
-              <SuggestedQuestions
-                onSelect={(q) => { setInput(q); sendMessage(q) }}
-              />
+              <SuggestedQuestions onSelect={handleSend} />
             </div>
           )}
 
@@ -96,6 +104,21 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
 
       {/* Input */}
       <footer className="border-t border-border-default px-4 py-4">
+        {/* Compact suggestions — only when conversation is active */}
+        {hasMessages && (
+          <div className="mx-auto mb-2 flex max-w-2xl flex-col items-end gap-1">
+            {[QUESTIONS[suggIdx], QUESTIONS[(suggIdx + 1) % QUESTIONS.length]].map((q) => (
+              <button
+                key={q}
+                onClick={() => handleSend(q)}
+                disabled={isLoading}
+                className="max-w-[260px] truncate rounded-lg border border-border-default px-3 py-1 font-mono text-[10px] text-text-muted transition-colors duration-150 hover:border-accent hover:text-accent disabled:opacity-40 cursor-pointer"
+              >
+                {q}
+              </button>
+            ))}
+          </div>
+        )}
         <form
           onSubmit={handleSubmit}
           className="mx-auto flex max-w-2xl items-end gap-3"
