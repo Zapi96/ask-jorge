@@ -65,6 +65,19 @@ body::before {
   opacity: 0.028;
 }
 
+/* Logo carousel — monochrome treatment per theme */
+.logo-img {
+  filter: grayscale(1) brightness(0.5) contrast(1.2);
+}
+.dark .logo-img {
+  filter: grayscale(1) invert(1) brightness(0.75);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 @layer base {
   ::-webkit-scrollbar {
     width: 4px;
