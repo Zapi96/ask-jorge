@@ -10,22 +10,22 @@ const TITLE = 'Senior MLOps & AI Engineer'
 
 // Facts técnicos curados de tu trayectoria (ESA, NASA, Repsol, Purdue)
 const FACTS = [
-  'Senior MLOps Engineer with an Aerospace Engineering background, applying mission-critical rigor to production AI[cite: 1, 213].',
-  'Databricks Champion Nominee specialized in Unity Catalog and large-scale Lakehouse architectures[cite: 85, 91].',
-  'Proven track record in designing self-service AI platforms that reduce Time-to-Production by up to 40%[cite: 93, 122].',
-  'Expert in architecting RAG solutions and LLMOps pipelines for enterprise-grade Generative AI[cite: 137, 140].',
-  'Advanced proficiency in distributed computing and parallel model training using Ray and Apache Spark[cite: 143, 249].',
-  'Technical Lead for national-scale mobility projects, managing high-volume pipelines and critical SLAs[cite: 55, 61].',
-  'Machine Learning Professor at Universidad CEU San Pablo, bridging the gap between theory and business strategy[cite: 204, 216].',
-  'Strategic focus on AI Governance, implementing automated auditing for model lineage and cost optimization[cite: 91, 107].',
-  'Hands-on experience in Geospatial Data Engineering, processing multi-terabyte datasets for GNSS research[cite: 1, 49].',
-  'Azure Solutions Architect Expert with deep expertise in AKS, Managed Identities, and secure networking[cite: 86, 246].',
-  'Developed custom Python SDKs to standardize model serving and ensure corporate security compliance[cite: 99, 102].',
-  'Experienced in "Wiki-as-Code" strategies, leveraging LLMs to increase documentation velocity by 80%[cite: 176, 183].',
-  'Purdue University Alumni (GPA 4.0/4.0), specializing in optimization research linked to NASA[cite: 251, 382].',
-  'Extreme Ownership mindset with experience in on-site mission recovery and hardware-software troubleshooting[cite: 20, 23].',
-  'Active tech community contributor, delivering workshops on DABs and MLOps best practices[cite: 139, 196].',
-  'Skilled in Infrastructure as Code (IaC) using Terraform and Azure DevOps for high-availability environments[cite: 86, 132].'
+  'Senior MLOps Engineer with an Aerospace Engineering background, applying mission-critical rigor to production AI.',
+  'Databricks Champion Nominee and Certified Professional specialized in Unity Catalog and large-scale Lakehouse architectures.',
+  'Proven track record in designing self-service AI platforms that reduce Time-to-Production by up to 40%.',
+  'Expert in architecting RAG solutions and LLMOps pipelines for enterprise-grade Generative AI.',
+  'Advanced proficiency in distributed computing and parallel model training using Ray and Apache Spark.',
+  'Technical Lead for national-scale mobility projects, managing high-volume pipelines and critical SLAs.',
+  'Machine Learning Professor at Universidad CEU San Pablo, bridging the gap between advanced theory and business strategy.',
+  'Strategic focus on AI Governance, implementing automated auditing for model lineage, security, and cost optimization.',
+  'Hands-on experience in Geospatial Data Engineering, processing multi-terabyte datasets for urban mobility and GNSS research.',
+  'Azure Solutions Architect Expert with deep expertise in AKS, Managed Identities, and secure networking.',
+  'Developed custom Python SDKs to standardize model serving and ensure corporate security compliance.',
+  'Experienced in "Wiki-as-Code" strategies, leveraging LLMs to automate technical documentation and increase team velocity.',
+  'Purdue University Alumni (GPA 4.0/4.0), specializing in optimization and clustering for research linked to NASA.',
+  'Extreme Ownership mindset with experience in on-site mission recovery and hardware-software troubleshooting in critical environments.',
+  'Active tech community contributor, delivering workshops on Declarative Automation Bundles (DABs) and MLOps best practices.',
+  'Skilled in Infrastructure as Code (IaC) using Terraform and Azure DevOps to orchestrate high-availability cloud environments.'
 ];
 
 const STATUS_MESSAGES = [
