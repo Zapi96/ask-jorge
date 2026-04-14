@@ -19,10 +19,44 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 })
 
+const BASE_URL = 'https://askjorge.info'
+
 export const metadata: Metadata = {
-  title: 'Ask Jorge',
-  description: 'Ask Jorge Martínez Zapico anything about his professional profile.',
+  metadataBase: new URL(BASE_URL),
+  title: 'Ask Jorge — Senior MLOps & AI Engineer',
+  description:
+    'AI-powered assistant to explore Jorge Martínez Zapico\'s professional profile: MLOps, Databricks, Azure, LangChain, RAG, and more.',
   robots: { index: true, follow: true },
+  openGraph: {
+    type: 'website',
+    url: BASE_URL,
+    siteName: 'Ask Jorge',
+    title: 'Ask Jorge — Senior MLOps & AI Engineer',
+    description:
+      'Ask anything about Jorge\'s experience, skills, and background. Powered by a Databricks RAG pipeline.',
+    images: [
+      {
+        url: '/og.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Ask Jorge — Senior MLOps & AI Engineer',
+      },
+    ],
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Ask Jorge — Senior MLOps & AI Engineer',
+    description:
+      'Ask anything about Jorge\'s experience, skills, and background. Powered by Databricks RAG.',
+    images: ['/og.svg'],
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+  },
 }
 
 export default function RootLayout({
