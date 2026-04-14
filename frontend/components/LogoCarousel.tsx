@@ -53,8 +53,7 @@ function LogoItem({ logo }: { logo: Logo }) {
         <img
           src={logo.src}
           alt={logo.label}
-          className="h-5 sm:h-6 w-auto max-w-[80px] sm:max-w-[100px] object-contain"
-          style={{ filter: 'grayscale(1) brightness(0.55) contrast(1.2)' }}
+          className="logo-img h-5 sm:h-6 w-auto max-w-[80px] sm:max-w-[100px] object-contain"
           loading="lazy"
           decoding="async"
         />
