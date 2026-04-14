@@ -5,7 +5,7 @@ export const QUESTIONS = [
   "What's Jorge's experience with Databricks and MLflow?",
   "What ML projects has he led?",
   "What's his main tech stack?",
-  "Does he have RAG architecture experience?",
+  "Does he have RAG (Retrieval-Augmented Generation) experience?",
   "What's his background before MLOps?",
   "Is he available to relocate?",
 ]
