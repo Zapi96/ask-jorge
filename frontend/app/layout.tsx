@@ -1,9 +1,23 @@
 import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
-import { Syne, Space_Grotesk } from 'next/font/google'
+import { Syne, Space_Grotesk, Manrope, Inter } from 'next/font/google'
 import { Providers } from '@/components/Providers'
 import './globals.css'
+
+const manrope = Manrope({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-manrope',
+  display: 'swap',
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-inter',
+  display: 'swap',
+})
 
 const syne = Syne({
   subsets: ['latin'],
@@ -62,7 +76,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable} ${syne.variable} ${spaceGrotesk.variable} min-h-dvh bg-bg text-text-primary antialiased font-body`}
+        className={`${GeistSans.variable} ${GeistMono.variable} ${syne.variable} ${spaceGrotesk.variable} ${manrope.variable} ${inter.variable} min-h-dvh bg-bg text-text-primary antialiased font-body`}
       >
         <Providers>{children}</Providers>
       </body>

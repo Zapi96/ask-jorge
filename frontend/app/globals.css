@@ -93,3 +93,21 @@ body::before {
     background: var(--scrollbar-thumb-hover);
   }
 }
+
+/* ── Portfolio pages (light Stitch palette) ────────────────────────────────── */
+.portfolio {
+  --p-bg:              #F9F9F9;
+  --p-surface:         #EEEEEE;
+  --p-surface-low:     #F4F3F3;
+  --p-surface-high:    #E8E8E8;
+  --p-surface-highest: #E2E2E2;
+  --p-primary:         #041627;
+  --p-primary-cont:    #1A2B3C;
+  --p-secondary:       #006A6A;
+  --p-secondary-cont:  #7BF2F2;
+  --p-on-surface:      #1A1C1C;
+  --p-on-surface-var:  #44474C;
+  --p-outline:         #74777D;
+  --p-outline-var:     #C4C6CD;
+  --p-error:           #BA1A1A;
+}
