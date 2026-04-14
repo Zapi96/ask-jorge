@@ -190,7 +190,7 @@ class Settings(BaseSettings):
     databricks_token: str
     databricks_job_id: int
     databricks_endpoint_name: str = "jorge_cv_endpoint"
-    databricks_volume_path: str = "/Volumes/workspace/default/jorge_cv_docs"
+    databricks_volume_path: str = "/Volumes/jorge/cv_rag/jorge_cv_docs"
 
     admin_password_hash: str  # bcrypt hash
     jwt_secret: str
@@ -250,7 +250,7 @@ DATABRICKS_HOST=https://adb-XXXXXXXXXXXXXXXX.X.azuredatabricks.net
 DATABRICKS_TOKEN=dapi...
 DATABRICKS_JOB_ID=123
 DATABRICKS_ENDPOINT_NAME=jorge_cv_endpoint
-DATABRICKS_VOLUME_PATH=/Volumes/workspace/default/jorge_cv_docs
+DATABRICKS_VOLUME_PATH=/Volumes/jorge/cv_rag/jorge_cv_docs
 ADMIN_PASSWORD_HASH=$2b$12$...
 JWT_SECRET=change-me-to-a-random-64-char-string
 ALLOWED_ORIGINS=https://ask-jorge.vercel.app,http://localhost:3000
@@ -987,7 +987,7 @@ import pypdf
 from typing import List
 from transformers import AutoTokenizer
 
-TABLE_NAME = "workspace.default.jorge_cv_chunks"
+TABLE_NAME = "jorge.cv_rag.jorge_cv_chunks"
 TOKENIZER_CACHE = "/tmp/hf_cache"
 MAX_TOKENS_PER_CHUNK = 500
 SEPARATORS = ["\n\n", "\n", " ", ""]

@@ -42,12 +42,12 @@ Resources to create in the existing workspace (adapted from CDJ workshop):
 
 | Resource | Name |
 |---|---|
-| Volume path | `/Volumes/workspace/default/jorge_cv_docs/` |
-| Delta table | `workspace.default.jorge_cv_chunks` |
+| Volume path | `/Volumes/jorge/cv_rag/jorge_cv_docs/` |
+| Delta table | `jorge.cv_rag.jorge_cv_chunks` |
 | Vector Search endpoint | `jorge_cv_search` |
-| Vector Search index | `workspace.default.jorge_cv_search_index` |
+| Vector Search index | `jorge.cv_rag.jorge_cv_search_index` |
 | Serving endpoint | `jorge_cv_endpoint` |
-| MLflow model | `workspace.default.jorge_cv_chatbot` |
+| MLflow model | `jorge.cv_rag.jorge_cv_chatbot` |
 | LLM | `databricks-meta-llama-3-3-70b-instruct` |
 | Retriever k | 3 chunks |
 | Max output tokens | 500 |
@@ -374,7 +374,7 @@ DATABRICKS_HOST=
 DATABRICKS_TOKEN=
 DATABRICKS_JOB_ID=
 DATABRICKS_ENDPOINT_NAME=jorge_cv_endpoint
-DATABRICKS_VOLUME_PATH=/Volumes/workspace/default/jorge_cv_docs
+DATABRICKS_VOLUME_PATH=/Volumes/jorge/cv_rag/jorge_cv_docs
 ADMIN_PASSWORD_HASH=          # bcrypt
 JWT_SECRET=
 ALLOWED_ORIGINS=https://ask-jorge.vercel.app,http://localhost:3000
