@@ -2,6 +2,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { WarmupStatus } from '@/lib/api'
+import { LogoCarousel } from './LogoCarousel'
 
 const FIRST_NAME = 'JORGE'
 const LAST_NAME = 'MARTÍNEZ ZAPICO'
@@ -98,21 +99,26 @@ export function IntroAnimation({ onComplete, warmupStatus }: IntroAnimationProps
             </motion.p>
           </div>
 
-          {/* Loading spinner */}
+          {/* Logo carousel + loading status */}
           <motion.div
-            className="absolute bottom-16 flex items-center gap-3"
+            className="absolute bottom-0 left-0 right-0 flex flex-col items-center gap-3 pb-6 sm:pb-8"
             initial={{ opacity: 0 }}
             animate={phase >= 3 ? { opacity: 1 } : {}}
             transition={{ duration: 0.4 }}
-            role="status"
-            aria-label="Loading assistant"
           >
-            <div className="h-4 w-4 rounded-full border-2 border-accent/20 border-t-accent animate-spin" aria-hidden />
-            <span className="font-mono text-[11px] text-text-muted">
-              {warmupStatus === 'cold'  ? 'Warming up assistant…' :
-               warmupStatus === 'error' ? 'Starting up…' :
-                                          'Loading knowledge base…'}
-            </span>
+            <div
+              className="flex items-center gap-3"
+              role="status"
+              aria-label="Loading assistant"
+            >
+              <div className="h-3 w-3 rounded-full border-2 border-accent/20 border-t-accent animate-spin" aria-hidden />
+              <span className="font-mono text-[10px] text-text-muted">
+                {warmupStatus === 'cold'  ? 'Warming up assistant…' :
+                 warmupStatus === 'error' ? 'Starting up…' :
+                                            'Loading knowledge base…'}
+              </span>
+            </div>
+            <LogoCarousel />
           </motion.div>
         </motion.div>
       )}

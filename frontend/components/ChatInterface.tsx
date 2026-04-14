@@ -9,6 +9,7 @@ import { TypingIndicator } from './TypingIndicator'
 import { SuggestedQuestions } from './SuggestedQuestions'
 import { StatusBadge } from './StatusBadge'
 import { ThemeToggle } from './ThemeToggle'
+import { LogoCarousel } from './LogoCarousel'
 import { cn } from '@/lib/utils'
 
 interface ChatInterfaceProps {
@@ -142,6 +143,9 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
             The assistant is starting up. This may take a few minutes — it will retry automatically.
           </p>
         )}
+        <div className="mt-3 border-t border-border-default pt-3">
+          <LogoCarousel />
+        </div>
       </footer>
     </div>
   )
