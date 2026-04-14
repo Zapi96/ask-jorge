@@ -60,7 +60,7 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
       {/* Header */}
       <header className="flex items-center justify-between border-b border-border-default px-6 py-4">
         <div>
-          <h1 className="font-heading font-[600] text-base text-text-primary">Ask Jorge</h1>
+          <h1 className="font-heading font-[600] text-base text-text-primary">Ask about Jorge</h1>
           <p className="font-mono text-[11px] text-text-muted">AI-powered professional profile</p>
         </div>
         <div className="flex items-center gap-3">
