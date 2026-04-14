@@ -53,8 +53,63 @@ async def query_endpoint(question: str) -> str:
         return str(prediction)
 
 
+async def _get_endpoint_state() -> tuple[str, str, dict]:
+    """Return (ready_state, config_update_state, config) for the serving endpoint.
+
+    ready_state      : "READY" | "NOT_READY"
+    config_update    : "NOT_UPDATING" | "IN_PROGRESS" | "UPDATE_FAILED"
+    config           : the served_entities / traffic_config dict needed to restart
+    """
+    async with httpx.AsyncClient(timeout=15.0) as client:
+        resp = await client.get(
+            f"{_base_url()}/api/2.0/serving-endpoints/{_endpoint_name()}",
+            headers=_headers(),
+        )
+        resp.raise_for_status()
+        data = resp.json()
+    state = data.get("state", {})
+    config = data.get("config", {})
+    return state.get("ready", "NOT_READY"), state.get("config_update", "NOT_UPDATING"), config
+
+
+async def _start_endpoint(config: dict) -> None:
+    """Trigger a restart by re-submitting the endpoint config."""
+    # Extract only the fields the PUT endpoint accepts
+    put_body: dict = {}
+    for key in ("served_entities", "served_models", "traffic_config", "auto_capture_config"):
+        if key in config:
+            put_body[key] = config[key]
+    async with httpx.AsyncClient(timeout=15.0) as client:
+        resp = await client.put(
+            f"{_base_url()}/api/2.0/serving-endpoints/{_endpoint_name()}/config",
+            headers=_headers(),
+            json=put_body,
+        )
+        resp.raise_for_status()
+
+
 async def ping_endpoint() -> dict:
-    """Lightweight ping to warm up the serving endpoint."""
+    """Check endpoint state, start it if stopped, then invoke it to confirm warmth."""
+    # 1. Check current state
+    try:
+        ready, config_update, config = await _get_endpoint_state()
+    except Exception:
+        # Can't reach management API — fall through to invocation attempt
+        ready, config_update, config = "UNKNOWN", "UNKNOWN", {}
+
+    # 2. If stopped (NOT_READY and not already updating), trigger restart
+    if ready == "NOT_READY" and config_update == "NOT_UPDATING" and config:
+        try:
+            await _start_endpoint(config)
+        except Exception:
+            pass  # best-effort; we'll report cold either way
+        return {"status": "cold", "latency_ms": None}
+
+    # 3. If already updating/starting, just report cold
+    if ready == "NOT_READY":
+        return {"status": "cold", "latency_ms": None}
+
+    # 4. Endpoint is READY — invoke it to confirm and measure latency
     payload = {"messages": [{"role": "user", "content": "ping"}]}
     start = time.monotonic()
     async with httpx.AsyncClient(timeout=30.0) as client:
@@ -68,6 +123,8 @@ async def ping_endpoint() -> dict:
             if resp.status_code == 200:
                 return {"status": "warm", "latency_ms": latency_ms}
             return {"status": "cold", "latency_ms": latency_ms}
+        except httpx.TimeoutException:
+            return {"status": "cold", "latency_ms": None}
         except Exception:
             return {"status": "error", "latency_ms": None}
 

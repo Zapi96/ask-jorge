@@ -1,5 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
+import ReactMarkdown from 'react-markdown'
 import { Message } from '@/hooks/useChat'
 import { cn } from '@/lib/utils'
 
@@ -20,7 +21,22 @@ export function ChatBubble({ message }: { message: Message }) {
             : 'rounded-tl-sm border border-border-default bg-surface text-text-primary backdrop-blur-md'
         )}
       >
-        {message.content}
+        {isUser ? (
+          message.content
+        ) : (
+          <ReactMarkdown
+            components={{
+              p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+              ul: ({ children }) => <ul className="mb-2 ml-4 list-disc space-y-1">{children}</ul>,
+              ol: ({ children }) => <ol className="mb-2 ml-4 list-decimal space-y-1">{children}</ol>,
+              li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+              strong: ({ children }) => <strong className="font-semibold text-text-primary">{children}</strong>,
+              em: ({ children }) => <em className="italic">{children}</em>,
+            }}
+          >
+            {message.content}
+          </ReactMarkdown>
+        )}
       </div>
     </motion.div>
   )
