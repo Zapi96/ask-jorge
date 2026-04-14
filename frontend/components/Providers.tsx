@@ -7,6 +7,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       attribute="class"
       defaultTheme="system"
       enableSystem
+      storageKey="ask-jorge-theme"
       themes={['dark', 'light']}
       disableTransitionOnChange={false}
     >

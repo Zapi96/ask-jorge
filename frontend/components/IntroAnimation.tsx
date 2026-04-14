@@ -101,7 +101,7 @@ export function IntroAnimation({ onComplete, warmupStatus }: IntroAnimationProps
 
           {/* Logo carousel + loading status */}
           <motion.div
-            className="absolute bottom-0 left-0 right-0 flex flex-col items-center gap-6 pb-6 sm:pb-8"
+            className="absolute bottom-0 left-0 right-0 flex flex-col items-center gap-8 pb-6 sm:pb-8"
             initial={{ opacity: 0 }}
             animate={phase >= 3 ? { opacity: 1 } : {}}
             transition={{ duration: 0.4 }}
