@@ -1,8 +1,5 @@
 'use client'
 
-// SVG paths from simple-icons (viewBox 0 0 24 24) — used only for Databricks
-const DATABRICKS_PATH =
-  'M.95 14.184L12 20.403l9.919-5.55v2.21L12 22.662l-10.484-5.96-.565.308v.77L12 24l11.05-6.290v-2.21l-.565-.308L12 21.074 1.516 14.801v-2.21l-.565.308zM1.516 9.802L12 16.074l10.484-6.272v2.21L12 18.284 1.516 12.01zM12 0 .95 6.29v2.21l.565.308L12 2.926l10.484 5.883.565-.308V6.29z'
 
 interface ImgLogo {
   type: 'img'
