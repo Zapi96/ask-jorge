@@ -8,15 +8,34 @@ const FIRST_NAME = 'JORGE'
 const LAST_NAME = 'MARTÍNEZ ZAPICO'
 const TITLE = 'Senior MLOps & AI Engineer'
 
+// Facts técnicos curados de tu trayectoria (ESA, NASA, Repsol, Purdue)
 const FACTS = [
-  'Senior MLOps Engineer con mindset aeronáutico: del diseño de algoritmos GNSS para la ESA al despliegue de modelos core en Repsol.',
-  'Databricks Champion & Azure Solutions Architect Expert, especializado en escalar arquitecturas Lakehouse y gobernanza de modelos.',
-  'Arquitecto de plataformas Self-Service de IA: reducción demostrada del 40% en Time-to-Production mediante automatización CI/CD/CT.',
-  'Experto en High-Performance Computing: implementación de entrenamiento distribuido con Ray y optimización de pipelines para movilidad nacional.',
-  'Líder en LLMOps: integrando RAG avanzado y auditoría de código con modelos GPT en entornos productivos altamente regulados.',
-  'Academic Authority: Profesor de Machine Learning en programas de Máster, traduciendo complejidad técnica en valor estratégico de negocio.',
-  'Extreme Ownership en operaciones críticas: recuperación in-situ de misiones navales y gestión de crisis de infraestructura Cloud.'
-]
+  'Senior MLOps Engineer with an Aerospace Engineering background, applying mission-critical rigor to production AI[cite: 1, 213].',
+  'Databricks Champion Nominee specialized in Unity Catalog and large-scale Lakehouse architectures[cite: 85, 91].',
+  'Proven track record in designing self-service AI platforms that reduce Time-to-Production by up to 40%[cite: 93, 122].',
+  'Expert in architecting RAG solutions and LLMOps pipelines for enterprise-grade Generative AI[cite: 137, 140].',
+  'Advanced proficiency in distributed computing and parallel model training using Ray and Apache Spark[cite: 143, 249].',
+  'Technical Lead for national-scale mobility projects, managing high-volume pipelines and critical SLAs[cite: 55, 61].',
+  'Machine Learning Professor at Universidad CEU San Pablo, bridging the gap between theory and business strategy[cite: 204, 216].',
+  'Strategic focus on AI Governance, implementing automated auditing for model lineage and cost optimization[cite: 91, 107].',
+  'Hands-on experience in Geospatial Data Engineering, processing multi-terabyte datasets for GNSS research[cite: 1, 49].',
+  'Azure Solutions Architect Expert with deep expertise in AKS, Managed Identities, and secure networking[cite: 86, 246].',
+  'Developed custom Python SDKs to standardize model serving and ensure corporate security compliance[cite: 99, 102].',
+  'Experienced in "Wiki-as-Code" strategies, leveraging LLMs to increase documentation velocity by 80%[cite: 176, 183].',
+  'Purdue University Alumni (GPA 4.0/4.0), specializing in optimization research linked to NASA[cite: 251, 382].',
+  'Extreme Ownership mindset with experience in on-site mission recovery and hardware-software troubleshooting[cite: 20, 23].',
+  'Active tech community contributor, delivering workshops on DABs and MLOps best practices[cite: 139, 196].',
+  'Skilled in Infrastructure as Code (IaC) using Terraform and Azure DevOps for high-availability environments[cite: 86, 132].'
+];
+
+const STATUS_MESSAGES = [
+  'Preparing the environment...',
+  'Deploying resources and knowledge base...',
+  'Initializing Jorge\'s AI assistant...',
+  'Almost there! Setting up the final details...',
+  'Optimizing engine for real-time interaction...',
+  'Soon you will be able to deep dive into Jorge\'s expertise...'
+];
 
 interface IntroAnimationProps {
   onComplete: () => void
@@ -28,14 +47,13 @@ export function IntroAnimation({ onComplete, warmupStatus }: IntroAnimationProps
   const [animDone, setAnimDone] = useState(false)
   const [exiting, setExiting] = useState(false)
   
-  // Estados para los mensajes rotativos
   const [factIdx, setFactIdx] = useState(0)
+  const [statusIdx, setStatusIdx] = useState(0)
   const [factVisible, setFactVisible] = useState(false)
 
   const onCompleteRef = useRef(onComplete)
   onCompleteRef.current = onComplete
 
-  // 1. Cronología principal de la animación inicial
   useEffect(() => {
     const t1 = setTimeout(() => setPhase(1), 300)
     const t2 = setTimeout(() => setPhase(2), 1800)
@@ -44,28 +62,22 @@ export function IntroAnimation({ onComplete, warmupStatus }: IntroAnimationProps
     return () => [t1, t2, t3, t4].forEach(clearTimeout)
   }, [])
 
-  // 2. Rotación de frases (FACTS) - Empieza en la fase 2
   useEffect(() => {
     if (phase < 2) return
-    
-    // Mostrar la primera frase
-    const showFirst = setTimeout(() => setFactVisible(true), 400)
+    setFactVisible(true)
     
     const interval = setInterval(() => {
       setFactVisible(false)
       setTimeout(() => {
         setFactIdx((prev) => (prev + 1) % FACTS.length)
+        setStatusIdx((prev) => (prev + 1) % STATUS_MESSAGES.length)
         setFactVisible(true)
-      }, 400) // Tiempo de transición entre frases
-    }, 4000) // Cambia cada 4 segundos
+      }, 400) 
+    }, 7000) // Rotación cada 7 segundos para asegurar legibilidad técnica
 
-    return () => {
-      clearTimeout(showFirst)
-      clearInterval(interval)
-    }
+    return () => clearInterval(interval)
   }, [phase])
 
-  // 3. Lógica de salida (Solo cuando el backend responde 'warm')
   useEffect(() => {
     if (!animDone || warmupStatus !== 'warm') return
     setExiting(true)
@@ -73,7 +85,6 @@ export function IntroAnimation({ onComplete, warmupStatus }: IntroAnimationProps
     return () => clearTimeout(t)
   }, [animDone, warmupStatus])
 
-  // 4. Fallback de seguridad (3 minutos)
   useEffect(() => {
     if (!animDone) return
     const t = setTimeout(() => {
@@ -92,7 +103,7 @@ export function IntroAnimation({ onComplete, warmupStatus }: IntroAnimationProps
           exit={{ opacity: 0, y: -16 }}
           transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Bloque de Nombre y Título */}
+          {/* Header Section */}
           <div className="text-center px-6">
             <div className="flex justify-center" aria-label={FIRST_NAME}>
               {FIRST_NAME.split('').map((char, i) => (
@@ -127,13 +138,13 @@ export function IntroAnimation({ onComplete, warmupStatus }: IntroAnimationProps
             </motion.p>
           </div>
 
-          {/* MENSAJES ROTATIVOS (Facts) */}
-          <div className="mt-12 h-10 flex items-center justify-center px-6">
+          {/* Technical Facts Carousel */}
+          <div className="mt-12 h-10 flex items-center justify-center px-6 text-center">
             <AnimatePresence mode="wait">
               {factVisible && (
                 <motion.p
-                  key={factIdx}
-                  className="font-body text-text-muted text-xs sm:text-sm tracking-wide text-center max-w-md italic"
+                  key={`fact-${factIdx}`}
+                  className="font-body text-text-muted text-xs sm:text-sm tracking-wide max-w-md italic"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
@@ -145,7 +156,7 @@ export function IntroAnimation({ onComplete, warmupStatus }: IntroAnimationProps
             </AnimatePresence>
           </div>
 
-          {/* Logo carousel + Status Inferior */}
+          {/* Footer Status & Logistics */}
           <motion.div
             className="absolute bottom-0 left-0 right-0 flex flex-col items-center gap-8 pb-6 sm:pb-8"
             initial={{ opacity: 0 }}
@@ -153,24 +164,40 @@ export function IntroAnimation({ onComplete, warmupStatus }: IntroAnimationProps
             transition={{ duration: 0.4 }}
           >
             <div className="flex flex-col items-center gap-3" role="status">
-              {/* Aviso de tiempo de espera */}
+              {/* Status Message Rotation */}
               <div className="flex items-center gap-2 mb-1">
-                <svg width="14" height="14" viewBox="0 0 18 18" fill="none" className="text-accent animate-pulse">
+                <svg width="14" height="14" viewBox="0 0 18 18" fill="none" className="text-accent/60 animate-pulse">
                   <circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.5" />
                   <path d="M9 5v4l2.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
-                <span className="font-body text-[10px] text-text-muted uppercase tracking-wider">
-                  La primera carga puede tardar hasta <span className="text-accent font-bold">2 minutos</span>
-                </span>
+                <AnimatePresence mode="wait">
+                  <motion.span 
+                    key={`status-${statusIdx}`}
+                    className="font-body text-[10px] text-text-muted uppercase tracking-wider min-w-[220px] text-center"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {STATUS_MESSAGES[statusIdx]}
+                  </motion.span>
+                </AnimatePresence>
               </div>
 
-              {/* Spinner y Estado de la API */}
-              <div className="flex items-center gap-3">
-                <div className="h-3 w-3 rounded-full border-2 border-accent/20 border-t-accent animate-spin" aria-hidden />
-                <span className="font-mono text-[10px] text-text-muted">
-                  {warmupStatus === 'cold'  ? 'Warming up assistant…' :
-                   warmupStatus === 'error' ? 'Retrying connection…' :
-                                              'Loading knowledge base…'}
+              {/* Progress Indicator & Boot Info */}
+              <div className="flex flex-col items-center gap-2">
+                <div className="flex items-center gap-3">
+                  <div className="h-3 w-3 rounded-full border-2 border-accent/20 border-t-accent animate-spin" />
+                  <span className="font-mono text-[10px] text-text-muted/80">
+                    {warmupStatus === 'cold'  ? 'Warming up assistant…' :
+                     warmupStatus === 'error' ? 'Retrying connection…' :
+                                                'Loading knowledge base…'}
+                  </span>
+                </div>
+                
+                {/* Discrete 2-min warning */}
+                <span className="font-body text-[9px] text-text-muted/40 tracking-tight lowercase">
+                  (Initial boot can take up to 2 min due to server wakeup)
                 </span>
               </div>
             </div>
