@@ -9,13 +9,13 @@ const LAST_NAME = 'MARTÍNEZ ZAPICO'
 const TITLE = 'Senior MLOps & AI Engineer'
 
 const FACTS = [
-  'Más de 5 años de experiencia en producción con sistemas ML',
-  'Especializado en LLMOps y despliegue de modelos de lenguaje',
-  'Ha trabajado con pipelines de datos a escala de petabytes',
-  'Apasionado por hacer la IA accesible y fiable en producción',
-  'Experto en Kubernetes, Ray y orquestación de workloads de IA',
-  'Colaborador activo en proyectos open source de MLOps',
-  'Combina ingeniería de software sólida con intuición de datos',
+  'Senior MLOps Engineer con mindset aeronáutico: del diseño de algoritmos GNSS para la ESA al despliegue de modelos core en Repsol.',
+  'Databricks Champion & Azure Solutions Architect Expert, especializado en escalar arquitecturas Lakehouse y gobernanza de modelos.',
+  'Arquitecto de plataformas Self-Service de IA: reducción demostrada del 40% en Time-to-Production mediante automatización CI/CD/CT.',
+  'Experto en High-Performance Computing: implementación de entrenamiento distribuido con Ray y optimización de pipelines para movilidad nacional.',
+  'Líder en LLMOps: integrando RAG avanzado y auditoría de código con modelos GPT en entornos productivos altamente regulados.',
+  'Academic Authority: Profesor de Machine Learning en programas de Máster, traduciendo complejidad técnica en valor estratégico de negocio.',
+  'Extreme Ownership en operaciones críticas: recuperación in-situ de misiones navales y gestión de crisis de infraestructura Cloud.'
 ]
 
 interface IntroAnimationProps {
