@@ -51,12 +51,7 @@ export const metadata: Metadata = {
       'Ask anything about Jorge\'s experience, skills, and background. Powered by Databricks RAG.',
     images: ['/og.svg'],
   },
-  icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
-    ],
-  },
+  icons: { icon: '/icon.svg' },
 }
 
 export default function RootLayout({
