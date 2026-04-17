@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Send } from 'lucide-react'
+import { Send, CheckCircle } from 'lucide-react'
 import { useChat } from '@/hooks/useChat'
 import { WarmupStatus } from '@/lib/api'
 import { ChatBubble } from './ChatBubble'
@@ -20,11 +20,24 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
   const { messages, isLoading, error, sendMessage } = useChat()
   const [input, setInput] = useState('')
   const [suggIdx, setSuggIdx] = useState(0)
+  const [justReady, setJustReady] = useState(false)
+  const prevStatus = useRef<WarmupStatus>('loading')
   const isWarmingUp = warmupStatus !== 'warm'
+  const showOverlay = isWarmingUp || justReady
   const isUnavailable = false
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const hasMessages = messages.length > 0
+
+  // Detect warm transition → show "ready" state on overlay for 2.5s
+  useEffect(() => {
+    if (prevStatus.current !== 'warm' && warmupStatus === 'warm') {
+      setJustReady(true)
+      const t = setTimeout(() => setJustReady(false), 2500)
+      return () => clearTimeout(t)
+    }
+    prevStatus.current = warmupStatus
+  }, [warmupStatus])
 
   // Rotate compact suggestions after each assistant reply
   useEffect(() => {
@@ -58,47 +71,86 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
 
   return (
     <div className="relative flex h-dvh flex-col">
-      {/* Warmup overlay — visible while endpoint is not warm */}
+      {/* Warmup overlay — warming state + ready flash */}
       <AnimatePresence>
-        {isWarmingUp && (
+        {showOverlay && (
           <motion.div
             key="warmup-overlay"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-bg/80 backdrop-blur-[3px]"
+            className={cn(
+              'absolute inset-0 z-20 flex flex-col items-center justify-center backdrop-blur-[3px]',
+              justReady ? 'bg-bg/90' : 'bg-bg/80'
+            )}
             aria-live="polite"
-            aria-label="Activating assistant"
           >
-            {/* Indeterminate progress bar */}
-            <div className="absolute top-0 left-0 right-0 h-0.5 overflow-hidden bg-border-default">
-              <div className="absolute h-full bg-accent warmup-bar" />
-            </div>
+            {/* Progress bar — only while warming */}
+            {!justReady && (
+              <div className="absolute top-0 left-0 right-0 h-0.5 overflow-hidden bg-border-default">
+                <div className="absolute h-full bg-accent warmup-bar" />
+              </div>
+            )}
 
-            {/* Status content */}
-            <div className="flex flex-col items-center gap-4 px-6 text-center">
-              <div className="flex items-center gap-3">
-                <div className="h-3 w-3 rounded-full border-2 border-accent/30 border-t-accent animate-spin" aria-hidden />
-                <span className="font-heading text-sm font-semibold text-text-primary">
-                  Activando asistente de IA…
-                </span>
-              </div>
-              <p className="max-w-xs font-mono text-[11px] text-text-muted">
-                {warmupStatus === 'error'
-                  ? 'Reintentando conexión con el modelo…'
-                  : 'El modelo está arrancando. La primera carga puede tardar hasta 2 min.'}
-              </p>
-              <div className="mt-2 flex items-center gap-2 rounded-lg border border-border-default bg-surface px-3 py-2">
-                <svg width="13" height="13" viewBox="0 0 18 18" fill="none" className="text-accent shrink-0">
-                  <circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.5" />
-                  <path d="M9 5v4l2.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
-                <span className="font-mono text-[10px] text-text-muted">
-                  Puedes explorar el portfolio mientras esperas
-                </span>
-              </div>
-            </div>
+            <AnimatePresence mode="wait">
+              {justReady ? (
+                /* ── Ready state ── */
+                <motion.div
+                  key="ready"
+                  initial={{ opacity: 0, scale: 0.92 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.92 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col items-center gap-4 px-6 text-center"
+                >
+                  <motion.div
+                    initial={{ scale: 0.5 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 18 }}
+                  >
+                    <CheckCircle className="h-10 w-10 text-accent" aria-hidden />
+                  </motion.div>
+                  <p className="font-heading text-lg font-semibold text-text-primary">
+                    Asistente listo
+                  </p>
+                  <p className="font-mono text-xs text-text-muted">
+                    Ya puedes hacer tu primera pregunta
+                  </p>
+                </motion.div>
+              ) : (
+                /* ── Warming state ── */
+                <motion.div
+                  key="warming"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="flex flex-col items-center gap-4 px-6 text-center"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="h-3 w-3 rounded-full border-2 border-accent/30 border-t-accent animate-spin" aria-hidden />
+                    <span className="font-heading text-sm font-semibold text-text-primary">
+                      Activando asistente de IA…
+                    </span>
+                  </div>
+                  <p className="max-w-xs font-mono text-[11px] text-text-muted">
+                    {warmupStatus === 'error'
+                      ? 'Reintentando conexión con el modelo…'
+                      : 'El modelo está arrancando. La primera carga puede tardar hasta 2 min.'}
+                  </p>
+                  <div className="mt-2 flex items-center gap-2 rounded-lg border border-border-default bg-surface px-3 py-2">
+                    <svg width="13" height="13" viewBox="0 0 18 18" fill="none" className="text-accent shrink-0">
+                      <circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.5" />
+                      <path d="M9 5v4l2.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    </svg>
+                    <span className="font-mono text-[10px] text-text-muted">
+                      Puedes explorar el portfolio mientras esperas
+                    </span>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         )}
       </AnimatePresence>

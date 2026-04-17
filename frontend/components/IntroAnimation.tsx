@@ -28,8 +28,8 @@ export function IntroAnimation({ onComplete, warmupStatus }: IntroAnimationProps
   const [animDone, setAnimDone] = useState(false)
   const [exiting, setExiting] = useState(false)
   
-  // Estados para los mensajes rotativos
-  const [factIdx, setFactIdx] = useState(0)
+  // Estados para los mensajes rotativos — índice inicial aleatorio
+  const [factIdx, setFactIdx] = useState(() => Math.floor(Math.random() * FACTS.length))
   const [factVisible, setFactVisible] = useState(false)
 
   const onCompleteRef = useRef(onComplete)
@@ -40,7 +40,7 @@ export function IntroAnimation({ onComplete, warmupStatus }: IntroAnimationProps
     const t1 = setTimeout(() => setPhase(1), 300)
     const t2 = setTimeout(() => setPhase(2), 1800)
     const t3 = setTimeout(() => setPhase(3), 2600)
-    const t4 = setTimeout(() => setAnimDone(true), 3200)
+    const t4 = setTimeout(() => setAnimDone(true), 12000)
     return () => [t1, t2, t3, t4].forEach(clearTimeout)
   }, [])
 
