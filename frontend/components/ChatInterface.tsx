@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useRef, useState, useCallback } from 'react'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Send } from 'lucide-react'
 import { useChat } from '@/hooks/useChat'
 import { WarmupStatus } from '@/lib/api'
@@ -20,6 +20,7 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
   const { messages, isLoading, error, sendMessage } = useChat()
   const [input, setInput] = useState('')
   const [suggIdx, setSuggIdx] = useState(0)
+  const isWarmingUp = warmupStatus !== 'warm'
   const isUnavailable = false
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -56,7 +57,52 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
   }
 
   return (
-    <div className="flex h-dvh flex-col">
+    <div className="relative flex h-dvh flex-col">
+      {/* Warmup overlay — visible while endpoint is not warm */}
+      <AnimatePresence>
+        {isWarmingUp && (
+          <motion.div
+            key="warmup-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-bg/80 backdrop-blur-[3px]"
+            aria-live="polite"
+            aria-label="Activating assistant"
+          >
+            {/* Indeterminate progress bar */}
+            <div className="absolute top-0 left-0 right-0 h-0.5 overflow-hidden bg-border-default">
+              <div className="absolute h-full bg-accent warmup-bar" />
+            </div>
+
+            {/* Status content */}
+            <div className="flex flex-col items-center gap-4 px-6 text-center">
+              <div className="flex items-center gap-3">
+                <div className="h-3 w-3 rounded-full border-2 border-accent/30 border-t-accent animate-spin" aria-hidden />
+                <span className="font-heading text-sm font-semibold text-text-primary">
+                  Activando asistente de IA…
+                </span>
+              </div>
+              <p className="max-w-xs font-mono text-[11px] text-text-muted">
+                {warmupStatus === 'error'
+                  ? 'Reintentando conexión con el modelo…'
+                  : 'El modelo está arrancando. La primera carga puede tardar hasta 2 min.'}
+              </p>
+              <div className="mt-2 flex items-center gap-2 rounded-lg border border-border-default bg-surface px-3 py-2">
+                <svg width="13" height="13" viewBox="0 0 18 18" fill="none" className="text-accent shrink-0">
+                  <circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="M9 5v4l2.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+                <span className="font-mono text-[10px] text-text-muted">
+                  Puedes explorar el portfolio mientras esperas
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Header */}
       <header className="flex items-center justify-between border-b border-border-default px-6 py-4">
         <div>
@@ -128,9 +174,9 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ask something about Jorge…"
+            placeholder={isWarmingUp ? 'El asistente se está activando…' : 'Ask something about Jorge…'}
             rows={1}
-            disabled={isLoading || isUnavailable}
+            disabled={isLoading || isUnavailable || isWarmingUp}
             aria-label="Your question"
             className={cn(
               'flex-1 resize-none rounded-xl border border-border-default bg-elevated px-4 py-3',
@@ -143,7 +189,7 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
           />
           <button
             type="submit"
-            disabled={isLoading || isUnavailable || !input.trim()}
+            disabled={isLoading || isUnavailable || isWarmingUp || !input.trim()}
             aria-label="Send message"
             className={cn(
               'flex h-12 w-12 shrink-0 items-center justify-center rounded-xl',

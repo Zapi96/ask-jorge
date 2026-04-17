@@ -65,21 +65,11 @@ export function IntroAnimation({ onComplete, warmupStatus }: IntroAnimationProps
     }
   }, [phase])
 
-  // 3. Lógica de salida (Solo cuando el backend responde 'warm')
-  useEffect(() => {
-    if (!animDone || warmupStatus !== 'warm') return
-    setExiting(true)
-    const t = setTimeout(() => onCompleteRef.current(), 550)
-    return () => clearTimeout(t)
-  }, [animDone, warmupStatus])
-
-  // 4. Fallback de seguridad (3 minutos)
+  // 3. Salida siempre al terminar la animación — el warmup continúa en background
   useEffect(() => {
     if (!animDone) return
-    const t = setTimeout(() => {
-      setExiting(true)
-      setTimeout(() => onCompleteRef.current(), 550)
-    }, 3 * 60 * 1000)
+    setExiting(true)
+    const t = setTimeout(() => onCompleteRef.current(), 550)
     return () => clearTimeout(t)
   }, [animDone])
 
