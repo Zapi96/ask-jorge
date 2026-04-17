@@ -16,7 +16,7 @@ export default function CertificationsPage() {
       <Navbar />
       <main className="mx-auto max-w-6xl px-6 py-16">
         {/* Header */}
-        <div className="mb-4 flex items-center justify-between">
+        <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="mb-2 font-inter text-xs font-semibold uppercase tracking-widest text-p-on-surface-var">
               Professional Credentials
