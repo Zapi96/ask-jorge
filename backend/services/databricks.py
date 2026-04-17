@@ -69,14 +69,23 @@ async def _get_endpoint_state() -> tuple[str, str, dict]:
         data = resp.json()
     state = data.get("state", {})
     config = data.get("config", {})
-    return state.get("ready", "NOT_READY"), state.get("config_update", "NOT_UPDATING"), config
+    return (
+        state.get("ready", "NOT_READY"),
+        state.get("config_update", "NOT_UPDATING"),
+        config,
+    )
 
 
 async def _start_endpoint(config: dict) -> None:
     """Trigger a restart by re-submitting the endpoint config."""
     # Extract only the fields the PUT endpoint accepts
     put_body: dict = {}
-    for key in ("served_entities", "served_models", "traffic_config", "auto_capture_config"):
+    for key in (
+        "served_entities",
+        "served_models",
+        "traffic_config",
+        "auto_capture_config",
+    ):
         if key in config:
             put_body[key] = config[key]
     async with httpx.AsyncClient(timeout=15.0) as client:

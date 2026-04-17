@@ -37,7 +37,9 @@ class TokenResponse(BaseModel):
 
 class ContactRequest(BaseModel):
     name: str = Field(..., min_length=1, max_length=100)
-    email: str = Field(..., min_length=5, max_length=200, pattern=r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
+    email: str = Field(
+        ..., min_length=5, max_length=200, pattern=r"^[^@\s]+@[^@\s]+\.[^@\s]+$"
+    )
     subject: str = Field(..., min_length=1, max_length=200)
     message: str = Field(..., min_length=10, max_length=2000)
 
