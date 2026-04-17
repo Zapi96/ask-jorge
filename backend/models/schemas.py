@@ -33,3 +33,14 @@ class LoginRequest(BaseModel):
 class TokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
+
+
+class ContactRequest(BaseModel):
+    name: str = Field(..., min_length=1, max_length=100)
+    email: str = Field(..., min_length=5, max_length=200, pattern=r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
+    subject: str = Field(..., min_length=1, max_length=200)
+    message: str = Field(..., min_length=10, max_length=2000)
+
+
+class ContactResponse(BaseModel):
+    status: str  # "sent"

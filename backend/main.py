@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
-from routers import chat, upload, warmup
+from routers import chat, upload, warmup, contact
 import os
 import sys
 
@@ -62,3 +62,4 @@ async def security_headers(request: Request, call_next) -> Response:
 app.include_router(warmup.router)
 app.include_router(chat.router)
 app.include_router(upload.router)
+app.include_router(contact.router)
