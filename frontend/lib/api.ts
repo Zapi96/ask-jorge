@@ -69,3 +69,22 @@ export async function pollUploadStatus(runIds: number[], token: string): Promise
   const data = await res.json()
   return data.statuses
 }
+
+export interface ContactPayload {
+  name: string
+  email: string
+  subject: string
+  message: string
+}
+
+export async function submitContact(payload: ContactPayload): Promise<void> {
+  const res = await fetch(`${API_URL}/contact`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}))
+    throw new Error((err as { detail?: string }).detail ?? 'Submission failed')
+  }
+}
