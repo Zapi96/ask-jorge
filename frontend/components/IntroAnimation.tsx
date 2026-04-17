@@ -40,7 +40,7 @@ export function IntroAnimation({ onComplete, warmupStatus }: IntroAnimationProps
     const t1 = setTimeout(() => setPhase(1), 300)
     const t2 = setTimeout(() => setPhase(2), 1800)
     const t3 = setTimeout(() => setPhase(3), 2600)
-    const t4 = setTimeout(() => setAnimDone(true), 12000)
+    const t4 = setTimeout(() => setAnimDone(true), 16000)
     return () => [t1, t2, t3, t4].forEach(clearTimeout)
   }, [])
 
