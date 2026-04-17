@@ -94,6 +94,17 @@ body::before {
   }
 }
 
+/* ── Warmup indeterminate progress bar ─────────────────────────────────────── */
+@keyframes warmup-progress {
+  0%   { left: -60%; width: 50%; }
+  50%  { left: 60%;  width: 30%; }
+  100% { left: 130%; width: 50%; }
+}
+
+.warmup-bar {
+  animation: warmup-progress 1.8s ease-in-out infinite;
+}
+
 /* ── Portfolio pages (light Stitch palette) ────────────────────────────────── */
 .portfolio {
   --p-bg:              #F9F9F9;
