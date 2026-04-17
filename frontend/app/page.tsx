@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { IntroAnimation } from '@/components/IntroAnimation'
 import { ChatInterface } from '@/components/ChatInterface'
+import { Navbar } from '@/components/portfolio/Navbar'
 import { useWarmup } from '@/hooks/useWarmup'
 
 export default function HomePage() {
@@ -16,7 +17,12 @@ export default function HomePage() {
           <IntroAnimation onComplete={() => setIntroDone(true)} warmupStatus={status} />
         )}
       </AnimatePresence>
-      {introDone && <ChatInterface warmupStatus={status} />}
+      {introDone && (
+        <div className="portfolio flex min-h-screen flex-col bg-p-bg">
+          <Navbar />
+          <ChatInterface warmupStatus={status} />
+        </div>
+      )}
     </>
   )
 }
