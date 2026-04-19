@@ -83,7 +83,7 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
   )
 
   return (
-    <div className="relative flex h-dvh flex-col">
+    <div className="relative flex min-h-0 flex-1 flex-col">
       {/* Warmup overlay */}
       <AnimatePresence>
         {showOverlay && (
