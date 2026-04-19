@@ -1,5 +1,5 @@
 'use client'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { sendChat } from '@/lib/api'
 
 export interface Message {
@@ -8,10 +8,24 @@ export interface Message {
   content: string
 }
 
+const MESSAGES_KEY = 'chat-messages'
+
 export function useChat() {
-  const [messages, setMessages] = useState<Message[]>([])
+  const [messages, setMessages] = useState<Message[]>(() => {
+    if (typeof window === 'undefined') return []
+    try {
+      const stored = sessionStorage.getItem(MESSAGES_KEY)
+      return stored ? (JSON.parse(stored) as Message[]) : []
+    } catch {
+      return []
+    }
+  })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    sessionStorage.setItem(MESSAGES_KEY, JSON.stringify(messages))
+  }, [messages])
 
   const sendMessage = useCallback(async (question: string) => {
     if (isLoading || !question.trim()) return

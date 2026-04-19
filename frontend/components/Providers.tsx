@@ -1,6 +1,7 @@
 'use client'
 import { ThemeProvider } from 'next-themes'
 import { LanguageProvider } from '@/lib/i18n'
+import { ThemeColorSync } from './ThemeColorSync'
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -12,6 +13,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       themes={['dark', 'light']}
       disableTransitionOnChange={false}
     >
+      <ThemeColorSync />
       <LanguageProvider>{children}</LanguageProvider>
     </ThemeProvider>
   )

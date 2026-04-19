@@ -39,7 +39,9 @@ export default function HomePage() {
       {introDone && (
         <div className="flex h-screen flex-col overflow-hidden bg-p-bg">
           <Navbar />
-          <ChatInterface warmupStatus={status} />
+          <div className="chat-scope flex-1 min-h-0 flex flex-col bg-bg">
+            <ChatInterface warmupStatus={status} />
+          </div>
           <WarmupToast warmupStatus={status} onChatNow={focusChat} />
         </div>
       )}

@@ -8,7 +8,6 @@ import { ChatBubble } from './ChatBubble'
 import { TypingIndicator } from './TypingIndicator'
 import { SuggestedQuestions, QUESTIONS } from './SuggestedQuestions'
 import { StatusBadge } from './StatusBadge'
-import { ThemeToggle } from './ThemeToggle'
 import { LogoCarousel } from './LogoCarousel'
 import { cn } from '@/lib/utils'
 import { useLang } from '@/lib/i18n'
@@ -32,7 +31,7 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
   const [input, setInput] = useState('')
   const [suggIdx, setSuggIdx] = useState(0)
   const [justReady, setJustReady] = useState(false)
-  const prevStatus = useRef<WarmupStatus>('loading')
+  const prevStatus = useRef<WarmupStatus>(warmupStatus)
   const isWarmingUp = warmupStatus !== 'warm'
   const showOverlay = isWarmingUp || justReady
   const isUnavailable = false
@@ -177,7 +176,6 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <ThemeToggle />
           <StatusBadge status={warmupStatus} />
         </div>
       </header>

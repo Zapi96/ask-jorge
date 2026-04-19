@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { Syne, Space_Grotesk, Manrope, Inter } from 'next/font/google'
@@ -34,6 +34,10 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 const BASE_URL = 'https://jorgezapico.dev'
+
+export const viewport: Viewport = {
+  themeColor: '#F9F9F9', // updated dynamically by ThemeColorSync on client
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

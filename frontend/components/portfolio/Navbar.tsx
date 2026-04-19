@@ -8,6 +8,7 @@ import { useWarmup } from '@/hooks/useWarmup'
 import { WarmupStatus } from '@/lib/api'
 import { useLang } from '@/lib/i18n'
 import { LanguageSwitcher } from './LanguageSwitcher'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 function AssistantStatus({ status }: { status: WarmupStatus }) {
   const t = useLang()
@@ -53,8 +54,8 @@ export function Navbar() {
   return (
     <header className="portfolio sticky top-0 z-50 border-b border-p-outline-var bg-p-bg/95 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-        <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-          <span className="font-manrope text-sm font-semibold text-p-primary">AI Assistant</span>
+        <Link href="/" className="flex shrink-0 items-center gap-2" onClick={() => setOpen(false)}>
+          <span className="whitespace-nowrap font-manrope text-sm font-semibold text-p-primary">AI Assistant</span>
           <AssistantStatus status={status} />
         </Link>
 
@@ -65,7 +66,7 @@ export function Navbar() {
               <Link
                 href={href}
                 className={cn(
-                  'rounded-portfolio-lg px-3 py-1.5 font-inter text-sm transition-colors duration-150',
+                  'rounded-portfolio-lg px-3 py-1.5 font-inter text-sm transition-colors duration-150 whitespace-nowrap',
                   isActive(href)
                     ? 'bg-p-secondary/10 font-semibold text-p-secondary'
                     : 'text-p-on-surface-var hover:text-p-on-surface'
@@ -78,6 +79,7 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <LanguageSwitcher />
           <Link
             href="/contact"
