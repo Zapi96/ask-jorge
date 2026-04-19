@@ -8,6 +8,7 @@ import { useWarmup } from '@/hooks/useWarmup'
 import { WarmupStatus } from '@/lib/api'
 import { useLang } from '@/lib/i18n'
 import { LanguageSwitcher } from './LanguageSwitcher'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 function AssistantStatus({ status }: { status: WarmupStatus }) {
   const t = useLang()
@@ -78,6 +79,7 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <LanguageSwitcher />
           <Link
             href="/contact"
