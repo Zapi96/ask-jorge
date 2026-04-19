@@ -105,8 +105,7 @@ body::before {
   animation: warmup-progress 1.8s ease-in-out infinite;
 }
 
-/* ── Portfolio pages (light Stitch palette) ────────────────────────────────── */
-/* Fix iOS overscroll bounce + Safari chrome color: html & body must match     */
+/* ── Portfolio pages — light palette (default) ─────────────────────────────── */
 html:has(.portfolio),
 html:has(.portfolio) body {
   background-color: #F9F9F9;
@@ -128,7 +127,6 @@ html:has(.portfolio) body {
   --p-outline-var:     #C4C6CD;
   --p-error:           #BA1A1A;
 
-  /* Override chat/intro theme tokens to match portfolio light palette */
   color-scheme: light;
   --color-bg:             #F9F9F9;
   --color-surface:        #EEEEEE;
@@ -145,9 +143,50 @@ html:has(.portfolio) body {
   --scrollbar-thumb-hover:#A8ABB2;
 }
 
-/* Keep logo filter light inside portfolio regardless of OS/user theme */
+/* ── Portfolio pages — dark palette ────────────────────────────────────────── */
+html.dark:has(.portfolio),
+html.dark:has(.portfolio) body {
+  background-color: #0D1717;
+}
+
+html.dark .portfolio {
+  --p-bg:              #0D1717;
+  --p-surface:         #132020;
+  --p-surface-low:     #0F1A1A;
+  --p-surface-high:    #1A2929;
+  --p-surface-highest: #203232;
+  --p-primary:         #90CAD0;
+  --p-primary-cont:    #243C4A;
+  --p-secondary:       #4CBABA;
+  --p-secondary-cont:  #003737;
+  --p-on-surface:      #E2ECEC;
+  --p-on-surface-var:  #A0B4B4;
+  --p-outline:         #6A8080;
+  --p-outline-var:     #2A3C3C;
+  --p-error:           #FFB4AB;
+
+  color-scheme: dark;
+  --color-bg:             #0D1717;
+  --color-surface:        #132020;
+  --color-elevated:       #1A2929;
+  --color-text-primary:   #E2ECEC;
+  --color-text-secondary: #A0B4B4;
+  --color-text-muted:     #6A8080;
+  --color-accent:         #4CBABA;
+  --color-accent-glow:    rgba(76, 186, 186, 0.12);
+  --color-border-default: rgba(255, 255, 255, 0.08);
+  --color-border-gold:    rgba(76, 186, 186, 0.20);
+  --scrollbar-track:      #0D1717;
+  --scrollbar-thumb:      #1A2929;
+  --scrollbar-thumb-hover:#274040;
+}
+
+/* Logo filter adapts to theme */
 .portfolio .logo-img {
   filter: grayscale(1) brightness(0.5) contrast(1.2);
+}
+html.dark .portfolio .logo-img {
+  filter: grayscale(1) invert(1) brightness(0.65);
 }
 
 /* ── Chat section: own dark/light scope, escapes .portfolio palette ─────────── */
