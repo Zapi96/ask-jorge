@@ -54,8 +54,8 @@ export function Navbar() {
   return (
     <header className="portfolio sticky top-0 z-50 border-b border-p-outline-var bg-p-bg/95 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-        <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-          <span className="font-manrope text-sm font-semibold text-p-primary">AI Assistant</span>
+        <Link href="/" className="flex shrink-0 items-center gap-2" onClick={() => setOpen(false)}>
+          <span className="whitespace-nowrap font-manrope text-sm font-semibold text-p-primary">AI Assistant</span>
           <AssistantStatus status={status} />
         </Link>
 
