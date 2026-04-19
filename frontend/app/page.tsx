@@ -30,14 +30,14 @@ export default function HomePage() {
   if (introDone === null) return null
 
   return (
-    <div className="portfolio">
+    <div className="portfolio bg-p-bg">
       <AnimatePresence>
         {!introDone && (
           <IntroAnimation onComplete={handleIntroComplete} warmupStatus={status} />
         )}
       </AnimatePresence>
       {introDone && (
-        <div className="flex min-h-screen flex-col bg-p-bg">
+        <div className="flex h-screen flex-col overflow-hidden bg-p-bg">
           <Navbar />
           <ChatInterface warmupStatus={status} />
           <WarmupToast warmupStatus={status} onChatNow={focusChat} />
