@@ -66,7 +66,7 @@ export function Navbar() {
               <Link
                 href={href}
                 className={cn(
-                  'rounded-portfolio-lg px-3 py-1.5 font-inter text-sm transition-colors duration-150',
+                  'rounded-portfolio-lg px-3 py-1.5 font-inter text-sm transition-colors duration-150 whitespace-nowrap',
                   isActive(href)
                     ? 'bg-p-secondary/10 font-semibold text-p-secondary'
                     : 'text-p-on-surface-var hover:text-p-on-surface'

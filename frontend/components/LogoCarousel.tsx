@@ -5,6 +5,7 @@ interface ImgLogo {
   type: 'img'
   src: string
   label: string
+  large?: boolean
 }
 interface SiLogo {
   type: 'si'
@@ -20,7 +21,7 @@ type Logo = ImgLogo | SiLogo | TextLogo
 
 const LOGOS: Logo[] = [
   // ── Technologies ──────────────────────────────────────────────────────────
-  { type: 'img',  src: '/logos/databricks.svg',              label: 'Databricks' },
+  { type: 'img',  src: '/logos/databricks.svg',              label: 'Databricks', large: true },
   { type: 'img',  src: '/logos/azure.svg',             label: 'Azure' },
 
   // ── Companies ─────────────────────────────────────────────────────────────
@@ -53,7 +54,7 @@ function LogoItem({ logo }: { logo: Logo }) {
         <img
           src={logo.src}
           alt={logo.label}
-          className="logo-img h-5 sm:h-6 w-auto max-w-[80px] sm:max-w-[100px] object-contain"
+          className={`logo-img w-auto object-contain ${logo.large ? 'h-7 sm:h-9 max-w-[120px] sm:max-w-[140px]' : 'h-5 sm:h-6 max-w-[80px] sm:max-w-[100px]'}`}
           loading="lazy"
           decoding="async"
         />
