@@ -34,16 +34,14 @@ export default function CertificationsPage() {
               rel="noopener noreferrer"
               className="group relative flex flex-col overflow-hidden rounded-portfolio-xl border border-p-outline-var bg-p-surface p-6 transition-all duration-200 hover:border-p-secondary hover:shadow-md"
             >
-              {/* Logo container */}
-              <div className="mb-5 flex h-20 w-20 items-center justify-center rounded-portfolio-xl bg-p-surface-high p-4">
-                <Image
-                  src={cert.logo}
-                  alt={cert.issuer}
-                  width={56}
-                  height={56}
-                  className="object-contain opacity-75"
-                />
-              </div>
+              {/* Logo */}
+              <Image
+                src={cert.logo}
+                alt={cert.issuer}
+                width={80}
+                height={80}
+                className="mb-5 object-contain opacity-85"
+              />
 
               {/* Year */}
               <p className="mb-1 font-inter text-xs text-p-on-surface-var">
