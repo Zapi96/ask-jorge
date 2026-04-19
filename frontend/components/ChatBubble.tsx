@@ -17,7 +17,7 @@ export function ChatBubble({ message }: { message: Message }) {
         className={cn(
           'max-w-[75%] rounded-2xl px-4 py-3 text-sm leading-relaxed font-body',
           isUser
-            ? 'rounded-tr-sm bg-[rgba(201,168,76,0.12)] border border-border-gold text-text-primary'
+            ? 'rounded-tr-sm bg-accent/10 border border-accent/25 text-text-primary'
             : 'rounded-tl-sm border border-border-default bg-surface text-text-primary backdrop-blur-md'
         )}
       >
