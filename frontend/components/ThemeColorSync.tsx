@@ -11,10 +11,18 @@ export function ThemeColorSync() {
   const { resolvedTheme } = useTheme()
 
   useEffect(() => {
+    if (!resolvedTheme) return
+
     const color = resolvedTheme === 'dark' ? COLORS.dark : COLORS.light
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute('content', color)
+
+    // Remove all existing theme-color metas (including media-query variants)
+    document.querySelectorAll('meta[name="theme-color"]').forEach((el) => el.remove())
+
+    // Insert a single canonical one
+    const meta = document.createElement('meta')
+    meta.name = 'theme-color'
+    meta.content = color
+    document.head.appendChild(meta)
   }, [resolvedTheme])
 
   return null
