@@ -32,43 +32,41 @@ export default function CertificationsPage() {
               href={cert.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex flex-col overflow-hidden rounded-portfolio-xl border border-p-outline-var bg-p-surface p-6 transition-all duration-300 hover:border-p-primary hover:bg-p-primary-cont hover:shadow-xl"
+              className="group relative flex flex-col overflow-hidden rounded-portfolio-xl border border-p-outline-var bg-p-surface p-6 transition-all duration-200 hover:border-p-secondary hover:shadow-md"
             >
               {/* Logo container */}
-              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-portfolio-xl bg-p-surface-high p-3.5 transition-colors duration-300 group-hover:bg-white/10">
+              <div className="mb-5 flex h-20 w-20 items-center justify-center rounded-portfolio-xl bg-p-surface-high p-4">
                 <Image
                   src={cert.logo}
                   alt={cert.issuer}
-                  width={40}
-                  height={40}
-                  className="opacity-60 transition-all duration-300 group-hover:invert group-hover:opacity-90"
+                  width={56}
+                  height={56}
+                  className="object-contain opacity-75"
                 />
               </div>
 
               {/* Year */}
-              <p className="mb-1 font-inter text-xs text-p-on-surface-var transition-colors duration-300 group-hover:text-white/50">
+              <p className="mb-1 font-inter text-xs text-p-on-surface-var">
                 {cert.year}
               </p>
 
               {/* Title */}
-              <h3 className="mb-1 font-manrope text-base font-bold leading-snug text-p-primary transition-colors duration-300 group-hover:text-white">
+              <h3 className="mb-1 font-manrope text-base font-bold leading-snug text-p-on-surface">
                 {cert.title}
               </h3>
 
               {/* Issuer */}
-              <p className="mb-4 font-inter text-xs text-p-on-surface-var transition-colors duration-300 group-hover:text-white/60">
+              <p className="mb-3 font-inter text-xs text-p-on-surface-var">
                 {cert.issuer}
               </p>
 
-              {/* Description — collapses to 0 height when not hovered */}
-              <div className="grid grid-rows-[0fr] transition-all duration-300 group-hover:grid-rows-[1fr]">
-                <p className="mb-0 overflow-hidden font-inter text-xs leading-relaxed text-white/75 opacity-0 transition-opacity duration-300 group-hover:mb-4 group-hover:opacity-100">
-                  {t(cert.description.en, cert.description.es)}
-                </p>
-              </div>
+              {/* Description */}
+              <p className="mb-4 font-inter text-xs leading-relaxed text-p-on-surface-var line-clamp-3">
+                {t(cert.description.en, cert.description.es)}
+              </p>
 
               {/* CTA */}
-              <p className="mt-auto font-inter text-[10px] text-p-outline transition-colors duration-300 group-hover:text-white/50">
+              <p className="mt-auto font-inter text-[10px] font-semibold text-p-secondary">
                 {t('View credential →', 'Ver credencial →')}
               </p>
             </a>
