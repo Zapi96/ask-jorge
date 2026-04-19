@@ -31,7 +31,7 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
   const [input, setInput] = useState('')
   const [suggIdx, setSuggIdx] = useState(0)
   const [justReady, setJustReady] = useState(false)
-  const prevStatus = useRef<WarmupStatus>('loading')
+  const prevStatus = useRef<WarmupStatus>(warmupStatus)
   const isWarmingUp = warmupStatus !== 'warm'
   const showOverlay = isWarmingUp || justReady
   const isUnavailable = false
