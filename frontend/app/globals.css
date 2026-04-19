@@ -106,8 +106,9 @@ body::before {
 }
 
 /* ── Portfolio pages (light Stitch palette) ────────────────────────────────── */
-/* Fix iOS overscroll bounce: html background shows at top/bottom edges        */
-html:has(.portfolio) {
+/* Fix iOS overscroll bounce + Safari chrome color: html & body must match     */
+html:has(.portfolio),
+html:has(.portfolio) body {
   background-color: #F9F9F9;
 }
 
