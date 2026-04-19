@@ -2,9 +2,16 @@
 import { useTheme } from 'next-themes'
 import { useEffect } from 'react'
 
-const COLORS = {
-  dark:  '#0D1717',
-  light: '#F9F9F9',
+const COLORS = { dark: '#0D1717', light: '#F9F9F9' }
+
+function setMeta(name: string, content: string) {
+  let el = document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`)
+  if (!el) {
+    el = document.createElement('meta')
+    el.name = name
+    document.head.appendChild(el)
+  }
+  el.content = content
 }
 
 export function ThemeColorSync() {
@@ -12,17 +19,9 @@ export function ThemeColorSync() {
 
   useEffect(() => {
     if (!resolvedTheme) return
-
-    const color = resolvedTheme === 'dark' ? COLORS.dark : COLORS.light
-
-    // Remove all existing theme-color metas (including media-query variants)
-    document.querySelectorAll('meta[name="theme-color"]').forEach((el) => el.remove())
-
-    // Insert a single canonical one
-    const meta = document.createElement('meta')
-    meta.name = 'theme-color'
-    meta.content = color
-    document.head.appendChild(meta)
+    const isDark = resolvedTheme === 'dark'
+    setMeta('theme-color', isDark ? COLORS.dark : COLORS.light)
+    setMeta('color-scheme', isDark ? 'dark' : 'light')
   }, [resolvedTheme])
 
   return null
