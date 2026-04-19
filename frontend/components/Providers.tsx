@@ -1,5 +1,6 @@
 'use client'
 import { ThemeProvider } from 'next-themes'
+import { LanguageProvider } from '@/lib/i18n'
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -11,7 +12,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       themes={['dark', 'light']}
       disableTransitionOnChange={false}
     >
-      {children}
+      <LanguageProvider>{children}</LanguageProvider>
     </ThemeProvider>
   )
 }

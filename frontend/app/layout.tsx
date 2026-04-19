@@ -33,39 +33,38 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 })
 
-const BASE_URL = 'https://askjorge.info'
+const BASE_URL = 'https://jorgezapico.dev'
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
-  title: 'Jorge — Senior MLOps & AI Engineer',
+  title: 'Jorge Martínez Zapico — Senior MLOps & AI Engineer',
   description:
-    'AI-powered assistant to explore Jorge Martínez Zapico\'s professional profile: MLOps, Databricks, Azure, LangChain, RAG, and more.',
+    'Senior MLOps & AI Engineer specialising in Databricks, Azure, LangChain, and RAG architectures. Ask anything about Jorge\'s background via the AI-powered assistant.',
   robots: { index: true, follow: true },
   openGraph: {
     type: 'website',
     url: BASE_URL,
-    siteName: 'Jorge',
-    title: 'Jorge — Senior MLOps & AI Engineer',
+    siteName: 'Jorge Martínez Zapico',
+    title: 'Jorge Martínez Zapico — Senior MLOps & AI Engineer',
     description:
-      'Ask anything about Jorge\'s experience, skills, and background. Powered by a Databricks RAG pipeline.',
+      'Senior MLOps & AI Engineer — Databricks, Azure, LangChain, RAG. Explore Jorge\'s full profile via an AI-powered assistant.',
     images: [
       {
         url: '/og.svg',
         width: 1200,
         height: 630,
-        alt: 'Jorge — Senior MLOps & AI Engineer',
+        alt: 'Jorge Martínez Zapico — Senior MLOps & AI Engineer',
       },
     ],
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jorge — Senior MLOps & AI Engineer',
+    title: 'Jorge Martínez Zapico — Senior MLOps & AI Engineer',
     description:
-      'Ask anything about Jorge\'s experience, skills, and background. Powered by Databricks RAG.',
+      'Senior MLOps & AI Engineer — Databricks, Azure, LangChain, RAG. Explore Jorge\'s full profile via an AI-powered assistant.',
     images: ['/og.svg'],
   },
-  icons: { icon: '/icon.svg' },
 }
 
 export default function RootLayout({

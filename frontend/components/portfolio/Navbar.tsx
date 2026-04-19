@@ -4,24 +4,58 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useWarmup } from '@/hooks/useWarmup'
+import { WarmupStatus } from '@/lib/api'
+import { useLang } from '@/lib/i18n'
+import { LanguageSwitcher } from './LanguageSwitcher'
 
-const NAV_LINKS = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Experience', href: '/experience' },
-  { label: 'Certifications', href: '/certifications' },
-  { label: 'Contact', href: '/contact' },
-]
+function AssistantStatus({ status }: { status: WarmupStatus }) {
+  const t = useLang()
+  const isWarm = status === 'warm'
+  const label = isWarm ? t('Ready', 'Listo') : t('Warming up…', 'Iniciando…')
+  return (
+    <span className="flex items-center gap-1.5" aria-label={`Assistant: ${label}`}>
+      <span
+        className={cn(
+          'h-1.5 w-1.5 rounded-full shrink-0',
+          isWarm ? 'bg-p-secondary' : 'bg-amber-400 animate-pulse'
+        )}
+        aria-hidden
+      />
+      <span className={cn('font-inter text-[10px]', isWarm ? 'text-p-secondary' : 'text-p-on-surface-var')}>
+        {label}
+      </span>
+    </span>
+  )
+}
 
 export function Navbar() {
+  const t = useLang()
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const { status } = useWarmup()
+
+  const NAV_LINKS = [
+    { label: t('Home', 'Inicio'), href: '/' },
+    { label: t('About', 'Sobre mí'), href: '/about' },
+    { label: t('Experience', 'Experiencia'), href: '/experience' },
+    { label: t('Projects', 'Proyectos'), href: '/projects' },
+    { label: t('Activities', 'Actividades'), href: '/activities' },
+    { label: t('Certifications', 'Certificaciones'), href: '/certifications' },
+    { label: t('Contact', 'Contacto'), href: '/contact' },
+  ]
+
+  function isActive(href: string) {
+    if (href === '/') return pathname === '/'
+    return pathname === href || pathname.startsWith(href + '/')
+  }
 
   return (
     <header className="portfolio sticky top-0 z-50 border-b border-p-outline-var bg-p-bg/95 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-        <Link href="/" className="font-manrope text-sm font-semibold text-p-primary" onClick={() => setOpen(false)}>
-          AI Assistant
+        <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
+          <span className="font-manrope text-sm font-semibold text-p-primary">AI Assistant</span>
+          <AssistantStatus status={status} />
         </Link>
 
         {/* Desktop links */}
@@ -32,7 +66,7 @@ export function Navbar() {
                 href={href}
                 className={cn(
                   'rounded-portfolio-lg px-3 py-1.5 font-inter text-sm transition-colors duration-150',
-                  pathname === href
+                  isActive(href)
                     ? 'bg-p-secondary/10 font-semibold text-p-secondary'
                     : 'text-p-on-surface-var hover:text-p-on-surface'
                 )}
@@ -44,12 +78,13 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
+          <LanguageSwitcher />
           <Link
-            href="/"
-            className="rounded-portfolio-xl bg-p-secondary px-4 py-1.5 font-inter text-sm font-semibold text-white transition-opacity duration-150 hover:opacity-90"
+            href="/contact"
+            className="hidden sm:inline-block rounded-portfolio-xl bg-p-secondary px-4 py-1.5 font-inter text-sm font-semibold text-white transition-opacity duration-150 hover:opacity-90"
             onClick={() => setOpen(false)}
           >
-            Let&apos;s Chat
+            {t("Let's Chat", 'Hablemos')}
           </Link>
 
           {/* Hamburger — mobile only */}
@@ -75,7 +110,7 @@ export function Navbar() {
                   onClick={() => setOpen(false)}
                   className={cn(
                     'block rounded-portfolio-lg px-3 py-2.5 font-inter text-sm transition-colors duration-150',
-                    pathname === href
+                    isActive(href)
                       ? 'bg-p-secondary/10 font-semibold text-p-secondary'
                       : 'text-p-on-surface-var hover:text-p-on-surface'
                   )}
@@ -84,6 +119,15 @@ export function Navbar() {
                 </Link>
               </li>
             ))}
+            <li className="pt-2">
+              <Link
+                href="/contact"
+                onClick={() => setOpen(false)}
+                className="block rounded-portfolio-xl bg-p-secondary px-4 py-2 text-center font-inter text-sm font-semibold text-white"
+              >
+                {t("Let's Chat", 'Hablemos')}
+              </Link>
+            </li>
           </ul>
         </div>
       )}

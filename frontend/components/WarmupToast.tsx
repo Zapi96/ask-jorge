@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CheckCircle, X } from 'lucide-react'
 import { WarmupStatus } from '@/lib/api'
+import { useLang } from '@/lib/i18n'
 
 interface WarmupToastProps {
   warmupStatus: WarmupStatus
@@ -10,15 +11,15 @@ interface WarmupToastProps {
 }
 
 export function WarmupToast({ warmupStatus, onChatNow }: WarmupToastProps) {
+  const t = useLang()
   const [visible, setVisible] = useState(false)
   const prevStatus = useRef<WarmupStatus>('loading')
 
   useEffect(() => {
-    // Only show when transitioning from non-warm → warm
     if (prevStatus.current !== 'warm' && warmupStatus === 'warm') {
       setVisible(true)
-      const t = setTimeout(() => setVisible(false), 8000)
-      return () => clearTimeout(t)
+      const timer = setTimeout(() => setVisible(false), 8000)
+      return () => clearTimeout(timer)
     }
     prevStatus.current = warmupStatus
   }, [warmupStatus])
@@ -38,18 +39,18 @@ export function WarmupToast({ warmupStatus, onChatNow }: WarmupToastProps) {
           <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden />
           <div className="flex-1 min-w-0">
             <p className="font-heading text-sm font-semibold text-text-primary">
-              Asistente listo
+              {t('Assistant ready', 'Asistente listo')}
             </p>
             <button
               onClick={() => { setVisible(false); onChatNow() }}
               className="mt-1 font-mono text-[11px] text-accent hover:underline cursor-pointer"
             >
-              Chatear ahora →
+              {t('Chat now →', 'Chatear ahora →')}
             </button>
           </div>
           <button
             onClick={() => setVisible(false)}
-            aria-label="Cerrar notificación"
+            aria-label={t('Close notification', 'Cerrar notificación')}
             className="mt-0.5 rounded p-0.5 text-text-muted transition-colors hover:text-text-primary cursor-pointer"
           >
             <X className="h-3.5 w-3.5" />

@@ -11,12 +11,23 @@ import { StatusBadge } from './StatusBadge'
 import { ThemeToggle } from './ThemeToggle'
 import { LogoCarousel } from './LogoCarousel'
 import { cn } from '@/lib/utils'
+import { useLang } from '@/lib/i18n'
+
+const QUESTIONS_ES = [
+  '¿Cuál es la experiencia de Jorge con Databricks y MLflow?',
+  '¿Qué proyectos de ML ha liderado?',
+  '¿Cuál es su stack tecnológico principal?',
+  '¿Tiene experiencia con RAG (Retrieval-Augmented Generation)?',
+  '¿Cuál es su background antes del MLOps?',
+  '¿Qué charlas o talleres ha impartido?',
+]
 
 interface ChatInterfaceProps {
   warmupStatus: WarmupStatus
 }
 
 export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
+  const t = useLang()
   const { messages, isLoading, error, sendMessage } = useChat()
   const [input, setInput] = useState('')
   const [suggIdx, setSuggIdx] = useState(0)
@@ -29,17 +40,15 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const hasMessages = messages.length > 0
 
-  // Detect warm transition → show "ready" state on overlay for 2.5s
   useEffect(() => {
     if (prevStatus.current !== 'warm' && warmupStatus === 'warm') {
       setJustReady(true)
-      const t = setTimeout(() => setJustReady(false), 2500)
-      return () => clearTimeout(t)
+      const timer = setTimeout(() => setJustReady(false), 2500)
+      return () => clearTimeout(timer)
     }
     prevStatus.current = warmupStatus
   }, [warmupStatus])
 
-  // Rotate compact suggestions after each assistant reply
   useEffect(() => {
     const last = messages[messages.length - 1]
     if (last?.role === 'assistant') {
@@ -69,9 +78,13 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
     }
   }
 
+  const compactQuestions = [QUESTIONS[suggIdx], QUESTIONS[(suggIdx + 1) % QUESTIONS.length]].map(
+    (q, i) => t(q, QUESTIONS_ES[(suggIdx + i) % QUESTIONS_ES.length])
+  )
+
   return (
     <div className="relative flex h-dvh flex-col">
-      {/* Warmup overlay — warming state + ready flash */}
+      {/* Warmup overlay */}
       <AnimatePresence>
         {showOverlay && (
           <motion.div
@@ -86,7 +99,7 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
             )}
             aria-live="polite"
           >
-            {/* Progress bar — only while warming */}
+            {/* Progress bar */}
             {!justReady && (
               <div className="absolute top-0 left-0 right-0 h-0.5 overflow-hidden bg-border-default">
                 <div className="absolute h-full bg-accent warmup-bar" />
@@ -95,7 +108,6 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
 
             <AnimatePresence mode="wait">
               {justReady ? (
-                /* ── Ready state ── */
                 <motion.div
                   key="ready"
                   initial={{ opacity: 0, scale: 0.92 }}
@@ -112,14 +124,13 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
                     <CheckCircle className="h-10 w-10 text-accent" aria-hidden />
                   </motion.div>
                   <p className="font-heading text-lg font-semibold text-text-primary">
-                    Asistente listo
+                    {t('Assistant ready', 'Asistente listo')}
                   </p>
                   <p className="font-mono text-xs text-text-muted">
-                    Ya puedes hacer tu primera pregunta
+                    {t('Go ahead and ask your first question', 'Adelante, haz tu primera pregunta')}
                   </p>
                 </motion.div>
               ) : (
-                /* ── Warming state ── */
                 <motion.div
                   key="warming"
                   initial={{ opacity: 0 }}
@@ -131,13 +142,13 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
                   <div className="flex items-center gap-3">
                     <div className="h-3 w-3 rounded-full border-2 border-accent/30 border-t-accent animate-spin" aria-hidden />
                     <span className="font-heading text-sm font-semibold text-text-primary">
-                      Activando asistente de IA…
+                      {t('Activating AI assistant…', 'Activando asistente de IA…')}
                     </span>
                   </div>
                   <p className="max-w-xs font-mono text-[11px] text-text-muted">
                     {warmupStatus === 'error'
-                      ? 'Reintentando conexión con el modelo…'
-                      : 'El modelo está arrancando. La primera carga puede tardar hasta 2 min.'}
+                      ? t('The model is starting up. This may take a moment…', 'El modelo está iniciando. Esto puede tardar un momento…')
+                      : t('The model is starting up. First load may take up to 2 min.', 'El modelo está iniciando. La primera carga puede tardar hasta 2 min.')}
                   </p>
                   <div className="mt-2 flex items-center gap-2 rounded-lg border border-border-default bg-surface px-3 py-2">
                     <svg width="13" height="13" viewBox="0 0 18 18" fill="none" className="text-accent shrink-0">
@@ -145,7 +156,7 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
                       <path d="M9 5v4l2.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
                     <span className="font-mono text-[10px] text-text-muted">
-                      Puedes explorar el portfolio mientras esperas
+                      {t('You can explore the portfolio while you wait', 'Puedes explorar el portfolio mientras esperas')}
                     </span>
                   </div>
                 </motion.div>
@@ -158,8 +169,12 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
       {/* Header */}
       <header className="flex items-center justify-between border-b border-border-default px-6 py-4">
         <div>
-          <h1 className="font-heading font-[600] text-base text-text-primary">Ask about Jorge</h1>
-          <p className="font-mono text-[11px] text-text-muted">AI-powered professional profile</p>
+          <h1 className="font-heading font-[600] text-base text-text-primary">
+            {t('Ask Jorge', 'Pregunta a Jorge')}
+          </h1>
+          <p className="font-mono text-[11px] text-text-muted">
+            {t('AI-powered professional profile', 'Perfil profesional con IA')}
+          </p>
         </div>
         <div className="flex items-center gap-3">
           <ThemeToggle />
@@ -173,7 +188,10 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
           {!hasMessages && (
             <div className="flex flex-1 flex-col items-center justify-center gap-8 pt-16">
               <p className="font-body text-sm text-text-muted text-center max-w-sm">
-                Ask me anything about Jorge&apos;s professional experience, skills, or background.
+                {t(
+                  "Ask me anything about Jorge's professional experience, skills, or background.",
+                  'Pregúntame cualquier cosa sobre la experiencia profesional, habilidades o formación de Jorge.'
+                )}
               </p>
               <SuggestedQuestions onSelect={handleSend} />
             </div>
@@ -202,12 +220,11 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
 
       {/* Input */}
       <footer className="border-t border-border-default px-4 py-4">
-        {/* Compact suggestions — only when conversation is active */}
         {hasMessages && (
           <div className="mx-auto mb-2 flex max-w-2xl flex-col items-end gap-1">
-            {[QUESTIONS[suggIdx], QUESTIONS[(suggIdx + 1) % QUESTIONS.length]].map((q) => (
+            {compactQuestions.map((q, i) => (
               <button
-                key={q}
+                key={i}
                 onClick={() => handleSend(q)}
                 disabled={isLoading}
                 className="max-w-[260px] truncate rounded-lg border border-border-default px-3 py-1 font-mono text-[10px] text-text-muted transition-colors duration-150 hover:border-accent hover:text-accent disabled:opacity-40 cursor-pointer"
@@ -226,10 +243,14 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder={isWarmingUp ? 'El asistente se está activando…' : 'Ask something about Jorge…'}
+            placeholder={
+              isWarmingUp
+                ? t('The assistant is warming up…', 'El asistente está iniciando…')
+                : t('Ask something about Jorge…', 'Pregunta algo sobre Jorge…')
+            }
             rows={1}
             disabled={isLoading || isUnavailable || isWarmingUp}
-            aria-label="Your question"
+            aria-label={t('Your question', 'Tu pregunta')}
             className={cn(
               'flex-1 resize-none rounded-xl border border-border-default bg-elevated px-4 py-3',
               'font-body text-sm text-text-primary placeholder:text-text-muted',
@@ -242,7 +263,7 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
           <button
             type="submit"
             disabled={isLoading || isUnavailable || isWarmingUp || !input.trim()}
-            aria-label="Send message"
+            aria-label={t('Send message', 'Enviar mensaje')}
             className={cn(
               'flex h-12 w-12 shrink-0 items-center justify-center rounded-xl',
               'bg-accent text-bg transition-all duration-150',
@@ -256,12 +277,18 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
         </form>
         {warmupStatus === 'cold' && (
           <p className="mt-2 text-center font-mono text-[11px] text-text-muted">
-            First response may take a few seconds while the assistant warms up.
+            {t(
+              'First response may take a few seconds while the assistant warms up.',
+              'La primera respuesta puede tardar unos segundos mientras el asistente se inicia.'
+            )}
           </p>
         )}
         {warmupStatus === 'error' && (
           <p className="mt-2 text-center font-mono text-[11px] text-text-muted">
-            The assistant is starting up. This may take a few minutes — it will retry automatically.
+            {t(
+              'The assistant is starting up. This may take a few minutes — it will retry automatically.',
+              'El asistente está iniciando. Puede tardar unos minutos — reintentará automáticamente.'
+            )}
           </p>
         )}
         <div className="mt-3 border-t border-border-default pt-3">

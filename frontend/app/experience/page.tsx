@@ -1,96 +1,106 @@
+'use client'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import { Navbar } from '@/components/portfolio/Navbar'
 import { Footer } from '@/components/portfolio/Footer'
-import { PROJECTS, EXPERIENCE } from '@/lib/portfolio-data'
-
-export const metadata = {
-  title: 'Experience — Jorge Martínez Zapico',
-  description: 'Selected projects and professional trajectory of Jorge Martínez Zapico, Senior MLOps & AI Engineer.',
-}
+import { EXPERIENCE } from '@/lib/portfolio-data'
+import { useLang } from '@/lib/i18n'
 
 export default function ExperiencePage() {
-  const [featured, ...rest] = PROJECTS
+  const t = useLang()
 
   return (
     <div className="portfolio min-h-screen bg-p-bg">
       <Navbar />
-      <main className="mx-auto max-w-6xl px-6 py-16">
+      <main className="mx-auto max-w-4xl px-6 py-16">
         {/* Header */}
-        <div className="mb-12">
+        <div className="mb-14">
           <p className="mb-2 font-inter text-xs font-semibold uppercase tracking-widest text-p-on-surface-var">
-            Engineering Impact
+            {t('Career History', 'Trayectoria Profesional')}
           </p>
-          <h1 className="font-manrope text-5xl font-extrabold text-p-primary">Selected Projects</h1>
+          <h1 className="font-manrope text-4xl font-extrabold text-p-primary sm:text-5xl">
+            {t('Professional Trajectory', 'Trayectoria Profesional')}
+          </h1>
           <p className="mt-4 max-w-xl font-inter text-base text-p-on-surface-var">
-            From data strategy and architecture to technical leadership, Jorge&apos;s work synthesises
-            scalable infrastructure and algorithmic efficiency.
+            {t(
+              "From aerospace research in the USA to enterprise MLOps at one of Spain's largest energy companies — and now academia.",
+              'Desde la investigación aeroespacial en EE.UU. hasta el MLOps empresarial en una de las mayores energéticas de España — y ahora la academia.'
+            )}
           </p>
         </div>
 
-        {/* Featured project — dark card */}
-        <div className="mb-6 overflow-hidden rounded-portfolio-xl bg-p-primary-cont p-8 text-white">
-          <p className="mb-1 font-inter text-xs font-semibold uppercase tracking-widest text-p-secondary-cont">
-            Flagship Project
-          </p>
-          <h2 className="mb-3 font-manrope text-3xl font-bold">{featured.title}</h2>
-          <p className="max-w-xl font-inter text-sm leading-relaxed text-white/70">{featured.description}</p>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {featured.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-portfolio-2xl border border-white/20 px-3 py-1 font-inter text-xs text-white/80"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
+        {/* Timeline */}
+        <div className="relative space-y-0">
+          {/* Vertical line */}
+          <div className="absolute left-[7px] top-2 hidden h-[calc(100%-2rem)] w-px bg-p-outline-var md:block" />
 
-        {/* Other projects grid */}
-        <div className="mb-16 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {rest.map((project) => (
-            <div
-              key={project.title}
-              className="rounded-portfolio-xl border border-p-outline-var bg-p-surface p-6 transition-shadow duration-150 hover:shadow-md"
-            >
-              <h3 className="mb-2 font-manrope text-lg font-bold text-p-primary">{project.title}</h3>
-              <p className="mb-4 font-inter text-sm leading-relaxed text-p-on-surface-var">{project.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
+          {EXPERIENCE.map((entry, idx) => (
+            <div key={`${entry.slug}-${idx}`} className="relative pb-10 md:pl-10">
+              {/* Dot */}
+              <div
+                className={`absolute left-0 top-1.5 hidden h-3.5 w-3.5 rounded-full border-2 border-p-bg md:block ${
+                  entry.current ? 'border-p-secondary bg-p-secondary' : 'border-p-outline-var bg-p-bg'
+                }`}
+              />
+
+              {/* Card */}
+              <div className="rounded-portfolio-xl border border-p-outline-var bg-p-surface p-6">
+                {/* Top row */}
+                <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <h2 className="font-manrope text-lg font-bold text-p-primary">{entry.role}</h2>
+                    <p className="mt-0.5 font-inter text-sm text-p-on-surface-var">{entry.company}</p>
+                  </div>
                   <span
-                    key={tag}
-                    className="rounded-portfolio-2xl bg-p-surface-high px-2.5 py-0.5 font-inter text-xs text-p-on-surface-var"
+                    className={`shrink-0 rounded-portfolio-2xl px-3 py-1 font-inter text-xs font-semibold ${
+                      entry.current
+                        ? 'bg-p-secondary/10 text-p-secondary'
+                        : 'bg-p-surface-high text-p-on-surface-var'
+                    }`}
                   >
-                    {tag}
+                    {entry.current ? `${entry.period} · ${t('Current', 'Actual')}` : entry.period}
                   </span>
-                ))}
+                </div>
+
+                {/* Description */}
+                <p className="mb-5 font-inter text-sm leading-relaxed text-p-on-surface-var">
+                  {t(entry.description.en, entry.description.es)}
+                </p>
+
+                {/* Highlights */}
+                <ul className="mb-5 space-y-2">
+                  {entry.highlights.map((h, i) => (
+                    <li key={i} className="flex gap-2">
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-p-secondary" />
+                      <p className="font-inter text-sm text-p-on-surface-var">{t(h.en, h.es)}</p>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Footer row: tags + link */}
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex flex-wrap gap-2">
+                    {entry.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-portfolio-2xl bg-p-surface-high px-2.5 py-0.5 font-inter text-xs text-p-on-surface-var"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <Link
+                    href={`/experience/${entry.slug}`}
+                    className="group inline-flex items-center gap-1 font-inter text-xs font-semibold text-p-secondary transition-opacity hover:opacity-80"
+                  >
+                    {t('View details', 'Ver detalles')}
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
         </div>
-
-        {/* Professional Trajectory */}
-        <section>
-          <h2 className="mb-8 font-manrope text-2xl font-bold text-p-primary">Professional Trajectory</h2>
-          <div className="divide-y divide-p-outline-var">
-            {EXPERIENCE.map((entry) => (
-              <div key={entry.role} className="flex items-center justify-between py-5">
-                <div>
-                  <p className="font-manrope text-base font-bold text-p-primary">{entry.role}</p>
-                  <p className="mt-0.5 font-inter text-sm text-p-on-surface-var">{entry.company}</p>
-                </div>
-                <span
-                  className={`rounded-portfolio-2xl px-3 py-1 font-inter text-xs font-semibold ${
-                    entry.current
-                      ? 'bg-p-secondary/10 text-p-secondary'
-                      : 'bg-p-surface-high text-p-on-surface-var'
-                  }`}
-                >
-                  {entry.current ? 'Current' : entry.period}
-                </span>
-              </div>
-            ))}
-          </div>
-        </section>
       </main>
       <Footer />
     </div>

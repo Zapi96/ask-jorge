@@ -121,4 +121,25 @@ body::before {
   --p-outline:         #74777D;
   --p-outline-var:     #C4C6CD;
   --p-error:           #BA1A1A;
+
+  /* Override chat/intro theme tokens to match portfolio light palette */
+  color-scheme: light;
+  --color-bg:             #F9F9F9;
+  --color-surface:        #EEEEEE;
+  --color-elevated:       #FFFFFF;
+  --color-text-primary:   #1A1C1C;
+  --color-text-secondary: #44474C;
+  --color-text-muted:     #74777D;
+  --color-accent:         #006A6A;
+  --color-accent-glow:    rgba(0, 106, 106, 0.10);
+  --color-border-default: rgba(0, 0, 0, 0.08);
+  --color-border-gold:    rgba(0, 106, 106, 0.20);
+  --scrollbar-track:      #F9F9F9;
+  --scrollbar-thumb:      #C4C6CD;
+  --scrollbar-thumb-hover:#A8ABB2;
+}
+
+/* Keep logo filter light inside portfolio regardless of OS/user theme */
+.portfolio .logo-img {
+  filter: grayscale(1) brightness(0.5) contrast(1.2);
 }
