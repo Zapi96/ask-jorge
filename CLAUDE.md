@@ -1,71 +1,99 @@
-# RAG CV Assistant — CLAUDE.md
+# ask-jorge — CLAUDE.md
 
-## Contexto del propietario — LEER SIEMPRE
-Los ficheros en `_context/` contienen el perfil real de Jorge:
-- `_context/main.pdf` — CV completo (fuente de verdad para el contenido)
-- `_context/personal.md` — datos de contacto y links
-
-**Resumen del perfil** (para diseño, copy y system prompt):
+## Perfil — leer siempre
 - Nombre: Jorge Martínez Zapico
 - Título: Senior MLOps & AI Engineer
-- Certs destacadas: Azure Solutions Architect Expert, Databricks Certified ML Professional
+- Certs: Azure Solutions Architect Expert, Databricks Certified ML Professional
 - Empresa actual: Bluetab (IBM Company) — cliente Repsol (MLOps framework, self-service AI platform)
 - También: Profesor Adjunto de ML en CEU San Pablo
 - Background: Ingeniería Aeroespacial (UPV + Purdue, GPA 4.0) → Big Data (MITMA) → MLOps/AI
 - Stack core: Databricks, Azure, LangChain, RAG, FastAPI, Python
 - Idiomas: Español (nativo), Inglés C1
-- Reubicación: Zürich, agosto 2026
+- Ubicación: España | Abierto a reubicación internacional
 - GitHub: @Zapi96 | LinkedIn: /in/jorge-martinez-zapico
 
-Usar este perfil para:
-- Copy de la UI (animación de entrada, título del asistente, suggested questions)
-- System prompt del LLM en Databricks
-- Decisiones de diseño (tono técnico/profesional, no corporativo genérico)
-- Cualquier texto que represente a Jorge ante recruiters
+## Fuentes de verdad (externas)
+- Contexto profesional: `/Users/jorge/Developer/Personal/Projects-code/jorge-cv/_context/`
+- Grafo: `/Users/jorge/Developer/Personal/Projects-code/jorge-cv/graphify-out/`
+
+## Query protocol — antes de escribir cualquier copy sobre Jorge
+1. `/graphify query "[pregunta]" --graph /Users/jorge/Developer/Personal/Projects-code/jorge-cv/graphify-out/graph.json`
+2. `@/Users/jorge/Developer/Personal/Projects-code/jorge-cv/graphify-out/GRAPH_REPORT.md`
+3. Leer `_context/` raw solo si el grafo no responde
+
+Queries útiles:
+- `/graphify query "What are Jorge's most central technical skills?"`
+- `/graphify query "What connects Databricks across all roles?"`
+- `/graphify query "What projects show leadership or impact?"`
+- `/graphify query "What technologies bridge multiple domains?"`
+
+No inventar métricas ni proyectos. Si falta info → STOP y preguntar.
+
+## Skills — cargar según tarea
+
+### Escritura / copy (siempre en tareas de texto)
+`@/Users/jorge/.claude/skills/humanizer/SKILL.md`
+Aplicar para: UI copy, suggested questions, mensajes de estado, system prompt LLM, cualquier texto visible al recruiter.
+
+### Frontend
+`@/Users/jorge/.claude/skills/react-components/SKILL.md`
+Cargar cuando: componentes, hooks, páginas Next.js.
+
+`@/Users/jorge/.claude/skills/shadcn-ui/SKILL.md`
+Cargar cuando: cualquier componente shadcn/ui.
+
+`@/Users/jorge/.claude/skills/stitch-design/SKILL.md`
+Cargar cuando: design system, tokens, layout, consistencia visual.
+
+### Backend
+`@/Users/jorge/.claude/skills/python-data/SKILL.md`
+Cargar cuando: endpoints FastAPI, modelos Pydantic, lógica backend.
+
+### Seguridad
+`@/Users/jorge/.claude/skills/owasp-security/SKILL.md`
+Cargar cuando: JWT, rate limiting, CORS, guardarraíles, validación de inputs.
+
+## Plugins activos (automáticos, no requieren carga manual)
+- `ui-ux-pro-max` — diseño UI avanzado
+- `frontend-design` — patrones Next.js / Tailwind
+- `code-review` — validación antes de commits
+- `vercel` / `vercel-plugin` — deploy y previews
 
 ## ¿Qué es este proyecto?
-Asistente conversacional basado en RAG que permite a recruiters
-hacer preguntas sobre el perfil profesional de Jorge Martínez Zapico.
-El sistema recupera información relevante de sus documentos de CV
-y responde usando LLMs de Databricks.
+Asistente conversacional RAG que permite a recruiters hacer preguntas
+sobre el perfil profesional de Jorge. Recupera información de sus documentos
+de CV y responde usando LLMs de Databricks.
 
-## Estructura del repositorio
+## Estructura
 ask-jorge/
-├── frontend/      # Next.js + Tailwind + shadcn/ui (Vercel)
+├── frontend/      # Next.js 14 + Tailwind + shadcn/ui (Vercel)
 ├── backend/       # FastAPI Python (Render)
 ├── databricks/    # Notebooks, Asset Bundles y Jobs
 ├── docs/          # Specs e implementation plans
 └── .github/       # GitHub Actions CI/CD
 
-## Stack tecnológico
+## Stack
 - Frontend: Next.js 14, Tailwind CSS, shadcn/ui, Framer Motion
 - Backend: FastAPI, Python 3.11+
 - RAG: Databricks Vector Search + Foundation Models
 - Deploy: Vercel (frontend), Render (backend)
 - CI/CD: GitHub Actions
 
-## Comandos de desarrollo
+## Comandos
 
 ### Frontend
-cd frontend
-npm install
-npm run dev        # http://localhost:3000
-npm run build      # build de producción
-npm run lint       # eslint
-npm run typecheck  # tsc --noEmit
+cd frontend && npm install && npm run dev   # http://localhost:3000
 
 ### Backend
-cd backend
-python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
+cd backend && python -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
-uvicorn main:app --reload  # http://localhost:8000
-pytest                     # tests
+uvicorn main:app --reload   # http://localhost:8000
+pytest
 
 ### Databricks
 cd databricks
-databricks bundle validate  # valida el bundle
-databricks bundle deploy    # despliega al workspace
+databricks bundle validate
+databricks bundle deploy
 
 ## Variables de entorno
 
@@ -88,80 +116,55 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 
 ## Convenciones de código
 
-### Python (backend)
-- Formatter: ruff format
-- Linter: ruff check
-- Types: siempre tipado con type hints
-- Docstrings: en funciones públicas
-- Tests: pytest, ficheros test_*.py
+### Python
+- ruff format + ruff check · type hints siempre · docstrings en públicas · pytest
 
-### TypeScript (frontend)
-- Formatter: prettier
-- Linter: eslint
-- Types: siempre, nunca usar any
-- Componentes: functional components con tipos explícitos
+### TypeScript
+- prettier + eslint · nunca `any` · functional components tipados
 
 ### Git
-- Rama principal: main
-- Ramas de feature: feature/nombre-descriptivo
-- Commits en inglés, formato: tipo(scope): descripción
-  Ejemplos:
+- main · feature/nombre-descriptivo
+- Commits en inglés: tipo(scope): descripción
   feat(chat): add warm-up ping on page load
   fix(guardrails): improve prompt injection detection
-  docs(readme): add deployment instructions
-  chore(ci): add backend workflow
 
-## Arquitectura — flujos principales
+## Arquitectura
 
-### Flujo de chat (query)
-1. Usuario escribe pregunta en el frontend
-2. Frontend valida longitud básica y envía a FastAPI /chat
-3. FastAPI aplica guardarraíles de input (regex + validación)
-4. FastAPI llama al serving endpoint de Databricks
-5. Databricks hace retrieval en Vector Search + genera respuesta
-6. FastAPI aplica guardarraíles de output
-7. Frontend muestra respuesta con animación de typing
+### Chat (query)
+Usuario → frontend → FastAPI /chat → guardarraíles input
+→ Databricks serving → Vector Search + LLM
+→ guardarraíles output → frontend (typing animation)
 
-### Flujo de ingesta (upload)
-1. Admin sube fichero desde /admin
-2. FastAPI recibe fichero y lo sube al Volume de Databricks
-3. FastAPI lanza job efímero via Jobs API con file_path como parámetro
-4. Job ejecuta notebook de ingesta (chunking + embeddings + upsert)
-5. FastAPI hace polling y notifica al frontend el estado
-6. Admin ve confirmación de éxito o error
+### Ingesta (upload)
+Admin → /admin → FastAPI → Volume → job efímero
+→ notebook (chunking + embeddings + upsert) → polling → confirmación
 
 ### Warm-up
-1. Usuario carga la página
-2. Animación de intro arranca (Framer Motion, ~3-4 segundos)
-3. En background, frontend llama a FastAPI /warmup
-4. FastAPI hace ping al serving endpoint de Databricks
-5. Cuando la animación termina, el endpoint ya está caliente
+Page load → animación Framer Motion (~3-4s)
+→ /warmup en background → ping Databricks → endpoint caliente
 
-## Seguridad — reglas que nunca romper
-- El token de Databricks NUNCA llega al frontend
+## Seguridad — nunca romper
+- Token Databricks NUNCA al frontend
 - Todas las llamadas a Databricks pasan por FastAPI
-- CORS solo permite el dominio de producción + localhost en dev
-- Nunca hardcodear secrets en código, siempre variables de entorno
-- El admin panel requiere JWT válido en cada petición
-- Rate limiting activo siempre, incluso en desarrollo
+- CORS: solo dominio producción + localhost en dev
+- Sin secrets hardcodeados, siempre variables de entorno
+- Admin panel requiere JWT válido en cada petición
+- Rate limiting activo siempre
 
-## Databricks — notas importantes
-- Los notebooks de referencia están en databricks/notebooks/
+## Databricks — notas
+- Notebooks de referencia en `databricks/notebooks/`
 - NO asumir nombres de endpoints, clusters o paths
-- Toda integración debe basarse en lo que existe en los notebooks
-- El job de ingesta es efímero: usa job cluster, no all-purpose cluster
-- El serving endpoint tiene autoscaling y puede estar frío:
-  gestionar siempre con warm-up y mensajes de estado al usuario
+- Job de ingesta es efímero (job cluster, no all-purpose)
+- Serving endpoint puede estar frío → gestionar con warm-up
 
 ## CI/CD
-- Push a main con cambios en /frontend → deploy automático a Vercel
-- Push a main con cambios en /backend → deploy automático a Render
-- Push a main con cambios en /databricks → deploy bundle a Databricks
-- Los PRs ejecutan lint + tests pero NO despliegan
-- Secrets en GitHub Actions, nunca en los ficheros de workflow
+- Push a main → deploy automático según carpeta modificada
+  (Vercel / Render / Databricks bundle)
+- PRs: lint + tests, sin deploy
+- Secrets en GitHub Actions únicamente
 
-## Lo que NO hace este proyecto
+## Fuera de scope
 - No almacena conversaciones de usuarios
-- No tiene autenticación de usuarios (solo admin)
-- No expone datos personales sensibles en las respuestas
-- No responde preguntas fuera del ámbito profesional
+- No autenticación de usuarios (solo admin)
+- No expone datos personales sensibles
+- No responde fuera del ámbito profesional de Jorge
