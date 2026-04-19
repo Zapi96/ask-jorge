@@ -36,10 +36,7 @@ const spaceGrotesk = Space_Grotesk({
 const BASE_URL = 'https://jorgezapico.dev'
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#F9F9F9' },
-    { media: '(prefers-color-scheme: dark)',  color: '#0D1717' },
-  ],
+  themeColor: '#F9F9F9', // updated dynamically by ThemeColorSync on client
 }
 
 export const metadata: Metadata = {
