@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Send, CheckCircle } from 'lucide-react'
+import Link from 'next/link'
 import { useChat } from '@/hooks/useChat'
 import { WarmupStatus } from '@/lib/api'
 import { ChatBubble } from './ChatBubble'
@@ -13,12 +14,19 @@ import { cn } from '@/lib/utils'
 import { useLang } from '@/lib/i18n'
 
 const QUESTIONS_ES = [
-  '¿Cuál es la experiencia de Jorge con Databricks y MLflow?',
-  '¿Qué proyectos de ML ha liderado?',
-  '¿Cuál es su stack tecnológico principal?',
-  '¿Tiene experiencia con RAG (Retrieval-Augmented Generation)?',
-  '¿Cuál es su background antes del MLOps?',
-  '¿Qué charlas o talleres ha impartido?',
+  '¿Cuál es tu experiencia con Databricks y MLflow?',
+  '¿Qué proyectos de ML has liderado?',
+  '¿Cuál es tu stack tecnológico principal?',
+  '¿Tienes experiencia con RAG (Retrieval-Augmented Generation)?',
+  '¿Cuál es tu background antes del MLOps?',
+  '¿Qué charlas o talleres has impartido?',
+]
+
+const PORTFOLIO_LINKS = [
+  { href: '/about',          en: 'About',           es: 'Sobre mí'       },
+  { href: '/experience',     en: 'Experience',      es: 'Experiencia'    },
+  { href: '/projects',       en: 'Projects',        es: 'Proyectos'      },
+  { href: '/certifications', en: 'Certifications',  es: 'Certificaciones'},
 ]
 
 interface ChatInterfaceProps {
@@ -149,14 +157,21 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
                       ? t('The model is starting up. This may take a moment…', 'El modelo está iniciando. Esto puede tardar un momento…')
                       : t('The model is starting up. First load may take up to 2 min.', 'El modelo está iniciando. La primera carga puede tardar hasta 2 min.')}
                   </p>
-                  <div className="mt-2 flex items-center gap-2 rounded-lg border border-border-default bg-surface px-3 py-2">
-                    <svg width="13" height="13" viewBox="0 0 18 18" fill="none" className="text-accent shrink-0">
-                      <circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.5" />
-                      <path d="M9 5v4l2.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
+                  <div className="mt-2 flex flex-col items-center gap-2">
                     <span className="font-mono text-[10px] text-text-muted">
-                      {t('You can explore the portfolio while you wait', 'Puedes explorar el portfolio mientras esperas')}
+                      {t('Explore my profile while you wait:', 'Explora mi perfil mientras esperas:')}
                     </span>
+                    <div className="flex flex-wrap justify-center gap-2">
+                      {PORTFOLIO_LINKS.map((l) => (
+                        <Link
+                          key={l.href}
+                          href={l.href}
+                          className="rounded-lg border border-accent/30 px-3 py-1 font-mono text-[10px] text-accent hover:bg-accent/10 transition-colors duration-150"
+                        >
+                          {t(l.en, l.es)}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </motion.div>
               )}
@@ -169,7 +184,7 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
       <header className="flex items-center justify-between border-b border-border-default px-6 py-4">
         <div>
           <h1 className="font-heading font-[600] text-base text-text-primary">
-            {t('Ask Jorge', 'Pregunta a Jorge')}
+            {t('Ask me anything', 'Pregúntame lo que quieras')}
           </h1>
           <p className="font-mono text-[11px] text-text-muted">
             {t('AI-powered professional profile', 'Perfil profesional con IA')}
@@ -187,8 +202,8 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
             <div className="flex flex-1 flex-col items-center justify-center gap-8 pt-16">
               <p className="font-body text-sm text-text-muted text-center max-w-sm">
                 {t(
-                  "Ask me anything about Jorge's professional experience, skills, or background.",
-                  'Pregúntame cualquier cosa sobre la experiencia profesional, habilidades o formación de Jorge.'
+                  "Ask me anything about my professional experience, skills, or background.",
+                  'Pregúntame cualquier cosa sobre mi experiencia profesional, habilidades o formación.'
                 )}
               </p>
               <SuggestedQuestions onSelect={handleSend} />
@@ -244,7 +259,7 @@ export function ChatInterface({ warmupStatus }: ChatInterfaceProps) {
             placeholder={
               isWarmingUp
                 ? t('The assistant is warming up…', 'El asistente está iniciando…')
-                : t('Ask something about Jorge…', 'Pregunta algo sobre Jorge…')
+                : t('Ask me something…', 'Pregúntame algo…')
             }
             rows={1}
             disabled={isLoading || isUnavailable || isWarmingUp}
