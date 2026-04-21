@@ -99,8 +99,8 @@ export const PROJECTS: Project[] = [
       es: 'Ministerio de Transportes — España',
     },
     description: {
-      en: 'Technical Lead for Spain\'s national mobility data platform at Nommon — processing Orange mobile network data (CDR) to deliver daily movement matrices covering the entire country for the Ministry of Transport (MITMA).',
-      es: 'Líder técnico de la plataforma nacional de datos de movilidad de España en Nommon — procesando datos de red móvil de Orange (CDR) para generar matrices de movimiento diarias cubriendo todo el país para el Ministerio de Transportes (MITMA).',
+      en: 'Technical Lead for Spain\'s national mobility data platform at Nommon — I processed Orange mobile network data (CDR) to deliver daily movement matrices covering the entire country for the Ministry of Transport (MITMA).',
+      es: 'Líder técnico de la plataforma nacional de datos de movilidad de España en Nommon — procesé datos de red móvil de Orange (CDR) para generar matrices de movimiento diarias cubriendo todo el país para el Ministerio de Transportes (MITMA).',
     },
     period: '2022 – 2023',
     client: 'MITMA (Ministry of Transport, Mobility and Urban Agenda)',
@@ -147,8 +147,8 @@ export const PROJECTS: Project[] = [
       es: 'Agencia Espacial Europea y Comisión Europea',
     },
     description: {
-      en: 'Research engineer at GMV developing satellite occlusion simulation engines and signal analysis tools for the Galileo constellation — processing 100+ GB of telemetry data and leading a solo field mission on Helgoland island.',
-      es: 'Ingeniero de investigación en GMV desarrollando motores de simulación de ocultación satelital y herramientas de análisis de señal para la constelación Galileo — procesando más de 100 GB de datos de telemetría y liderando una misión de campo en solitario en la isla de Helgoland.',
+      en: 'Research engineer at GMV — I developed satellite occlusion simulation engines and signal analysis tools for the Galileo constellation, processing 100+ GB of telemetry data and leading a solo field mission on Helgoland island.',
+      es: 'Ingeniero de investigación en GMV — desarrollé motores de simulación de ocultación satelital y herramientas de análisis de señal para la constelación Galileo, procesando más de 100 GB de datos de telemetría y liderando una misión de campo en solitario en la isla de Helgoland.',
     },
     period: '2020 – 2022',
     client: 'ESA · European Commission · DLR (German Aerospace Center)',
@@ -194,8 +194,8 @@ export const PROJECTS: Project[] = [
       es: 'Purdue University × NASA',
     },
     description: {
-      en: 'Graduate research at Purdue University School of Aeronautics modeling aerotaxi demand for Chicago\'s metropolitan area — Big Data analysis, ML clustering, and multimodal route optimization in collaboration with NASA research lines.',
-      es: 'Investigación de posgrado en la Universidad de Purdue modelando la demanda de aerotaxis para el área metropolitana de Chicago — análisis de Big Data, clustering de ML y optimización de rutas multimodal en colaboración con líneas de investigación de la NASA.',
+      en: 'Graduate research at Purdue University School of Aeronautics — I modelled aerotaxi demand for Chicago\'s metropolitan area using Big Data analysis, ML clustering, and multimodal route optimization in collaboration with NASA research lines.',
+      es: 'Investigación de posgrado en la Universidad de Purdue — modelé la demanda de aerotaxis para el área metropolitana de Chicago usando análisis de Big Data, clustering de ML y optimización de rutas multimodal en colaboración con líneas de investigación de la NASA.',
     },
     period: '2019 – 2020',
     client: 'Purdue University · NASA (collaborative research)',
@@ -245,8 +245,8 @@ export const EXPERIENCE: WorkEntry[] = [
     period: 'Feb 2026 – present',
     current: true,
     description: {
-      en: 'Adjunct professor leading the Machine Learning module in the Master\'s in Business Analytics for Strategic Management — bridging rigorous theory and real industry practice.',
-      es: 'Profesor adjunto liderando el módulo de Machine Learning en el Máster en Business Analytics para la Gestión Estratégica — conectando teoría rigurosa con práctica industrial real.',
+      en: 'I lead the Machine Learning module as an adjunct professor in the Master\'s in Business Analytics for Strategic Management — bridging rigorous theory and real industry practice.',
+      es: 'Lidero el módulo de Machine Learning como profesor adjunto en el Máster en Business Analytics para la Gestión Estratégica — conectando teoría rigurosa con práctica industrial real.',
     },
     highlights: [
       {
@@ -254,12 +254,12 @@ export const EXPERIENCE: WorkEntry[] = [
         es: 'Diseñé un programa de 60 horas que cubre aprendizaje supervisado/no supervisado, métodos ensemble y fundamentos de Deep Learning.',
       },
       {
-        en: 'Runs hands-on labs on Databricks with Scikit-learn, instructing future analysts in end-to-end ML workflows.',
-        es: 'Imparte laboratorios prácticos en Databricks con Scikit-learn, instruyendo a futuros analistas en flujos de trabajo ML end-to-end.',
+        en: 'I run hands-on labs on Databricks with Scikit-learn, instructing future analysts in end-to-end ML workflows.',
+        es: 'Imparto laboratorios prácticos en Databricks con Scikit-learn, instruyendo a futuros analistas en flujos de trabajo ML end-to-end.',
       },
       {
-        en: 'Mentors student capstone projects applying ML to real business datasets.',
-        es: 'Mentoriza proyectos fin de máster de alumnos aplicando ML a datasets empresariales reales.',
+        en: 'I mentor student capstone projects applying ML to real business datasets.',
+        es: 'Mentorizo proyectos fin de máster de alumnos aplicando ML a datasets empresariales reales.',
       },
     ],
     tags: ['Machine Learning', 'Databricks', 'Python', 'Scikit-learn', 'Teaching'],
@@ -272,8 +272,8 @@ export const EXPERIENCE: WorkEntry[] = [
     period: 'Mar 2025 – present',
     current: true,
     description: {
-      en: 'Technical reference for MLOps on Repsol\'s AI Platform — leading the end-to-end ML asset lifecycle across a Databricks + Azure stack, from experiment governance to production serving.',
-      es: 'Referente técnico de MLOps en la Plataforma de AI de Repsol — liderando el ciclo de vida completo de activos ML en un stack Databricks + Azure, desde la gobernanza de experimentos hasta el serving en producción.',
+      en: 'Technical reference for MLOps on Repsol\'s AI Platform — I lead the end-to-end ML asset lifecycle across a Databricks + Azure stack, from experiment governance to production serving.',
+      es: 'Referente técnico de MLOps en la Plataforma de AI de Repsol — lidero el ciclo de vida completo de activos ML en un stack Databricks + Azure, desde la gobernanza de experimentos hasta el serving en producción.',
     },
     highlights: [
       {
@@ -299,8 +299,8 @@ export const EXPERIENCE: WorkEntry[] = [
     period: 'Nov 2023 – Mar 2025',
     current: false,
     description: {
-      en: 'Responsible for productionising ML models and building the operational foundation of Repsol\'s AI platform, implementing quality tooling, drift monitoring, and the first Databricks Asset Bundles in the organisation.',
-      es: 'Responsable de la puesta en producción de modelos ML y de la construcción de la base operacional de la plataforma de AI de Repsol, implementando herramientas de calidad, monitorización de drift y los primeros Databricks Asset Bundles de la organización.',
+      en: 'I was responsible for productionising ML models and building the operational foundation of Repsol\'s AI platform, implementing quality tooling, drift monitoring, and the first Databricks Asset Bundles in the organisation.',
+      es: 'Fui responsable de la puesta en producción de modelos ML y de la construcción de la base operacional de la plataforma de AI de Repsol, implementando herramientas de calidad, monitorización de drift y los primeros Databricks Asset Bundles de la organización.',
     },
     highlights: [
       {
@@ -326,8 +326,8 @@ export const EXPERIENCE: WorkEntry[] = [
     period: 'Sep 2022 – Nov 2023',
     current: false,
     description: {
-      en: 'Technical lead for mobility analytics at national scale — responsible for Spain\'s MITMA national mobility data project, delivering daily movement matrices and building internal infrastructure tooling.',
-      es: 'Líder técnico de analítica de movilidad a escala nacional — responsable del proyecto nacional de datos de movilidad MITMA de España, entregando matrices de movimiento diarias y construyendo herramientas internas de infraestructura.',
+      en: 'Technical lead for mobility analytics at national scale — I was responsible for Spain\'s MITMA national mobility data project, delivering daily movement matrices and building internal infrastructure tooling.',
+      es: 'Líder técnico de analítica de movilidad a escala nacional — fui responsable del proyecto nacional de datos de movilidad MITMA de España, entregando matrices de movimiento diarias y construyendo herramientas internas de infraestructura.',
     },
     highlights: [
       {
@@ -352,8 +352,8 @@ export const EXPERIENCE: WorkEntry[] = [
     period: 'Jul 2020 – Sep 2022',
     current: false,
     description: {
-      en: 'Research engineer specialising in satellite signal modelling and simulation for the Galileo constellation, delivering high-precision analytical systems for ESA, the European Commission, and DLR.',
-      es: 'Ingeniero de investigación especializado en modelado y simulación de señales satelitales para la constelación Galileo, entregando sistemas analíticos de alta precisión para ESA, la Comisión Europea y DLR.',
+      en: 'I specialised in satellite signal modelling and simulation for the Galileo constellation, delivering high-precision analytical systems for ESA, the European Commission, and DLR.',
+      es: 'Me especialicé en modelado y simulación de señales satelitales para la constelación Galileo, entregando sistemas analíticos de alta precisión para ESA, la Comisión Europea y DLR.',
     },
     highlights: [
       {
@@ -378,8 +378,8 @@ export const EXPERIENCE: WorkEntry[] = [
     period: 'Aug 2019 – Jul 2020',
     current: false,
     description: {
-      en: 'Graduate researcher at the School of Aeronautics and Astronautics modelling aerotaxi demand for Chicago in collaboration with NASA research lines — Big Data, ML, and multimodal optimisation.',
-      es: 'Investigador de posgrado en la Escuela de Aeronáutica y Astronáutica modelando la demanda de aerotaxis para Chicago en colaboración con líneas de investigación de la NASA — Big Data, ML y optimización multimodal.',
+      en: 'Graduate researcher at Purdue School of Aeronautics — I modelled aerotaxi demand for Chicago in collaboration with NASA research lines, using Big Data, ML, and multimodal optimisation.',
+      es: 'Investigador de posgrado en la Escuela de Aeronáutica de Purdue — modelé la demanda de aerotaxis para Chicago en colaboración con líneas de investigación de la NASA, usando Big Data, ML y optimización multimodal.',
     },
     highlights: [
       {
