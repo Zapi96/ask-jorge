@@ -3,7 +3,7 @@ export function Footer() {
     <footer className="portfolio border-t border-p-outline-var bg-p-bg">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <p className="font-inter text-xs text-p-on-surface-var">
-          © 2024 Jorge Martínez Zapico. Built for the future.
+          © 2026 Jorge Martínez Zapico. Built for the future.
         </p>
         <div className="flex items-center gap-4">
           <a
