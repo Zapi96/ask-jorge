@@ -26,6 +26,8 @@ export interface WorkEntry {
   description: B
   highlights: B[]
   tags: string[]
+  narrative?: B[]
+  impact?: B
 }
 
 export interface Certification {
@@ -263,6 +265,20 @@ export const EXPERIENCE: WorkEntry[] = [
       },
     ],
     tags: ['Machine Learning', 'Databricks', 'Python', 'Scikit-learn', 'Teaching'],
+    narrative: [
+      {
+        en: "The program brings together executives and analysts from leading Spanish companies — students arrive with real industry problems, and I design the curriculum to address them directly. Every cohort pushes me to stay at the edge of applied ML.",
+        es: "El programa reúne a directivos y analistas de empresas españolas líderes — los estudiantes llegan con problemas reales de industria, y diseño el currículo para abordarlos directamente. Cada promoción me exige mantenerme en la frontera del ML aplicado.",
+      },
+      {
+        en: "Capstone projects span retail demand forecasting, NLP for legal document classification, and churn prediction — giving me constant exposure to diverse ML challenges across sectors. I also run internal workshops on Databricks Asset Bundles and RAG architectures for Bluetab's technical teams.",
+        es: "Los proyectos fin de máster abarcan previsión de demanda en retail, NLP para clasificación de documentos legales y predicción de churn — manteniéndome en contacto constante con retos de ML en sectores muy distintos. También imparto talleres internos sobre Databricks Asset Bundles y arquitecturas RAG para los equipos técnicos de Bluetab.",
+      },
+    ],
+    impact: {
+      en: "60-hour program designed from scratch — first cohort graduated 2026.",
+      es: "Programa de 60 horas diseñado desde cero — primera promoción graduada en 2026.",
+    },
   },
   {
     slug: 'senior-mlops-bluetab',
@@ -290,6 +306,20 @@ export const EXPERIENCE: WorkEntry[] = [
       },
     ],
     tags: ['Databricks', 'MLflow', 'Azure', 'Ray', 'LangChain', 'RAG', 'FastAPI', 'Terraform'],
+    narrative: [
+      {
+        en: "At this level the role shifts from implementation to architecture and ownership. I set the standards that all AI teams at Repsol follow — naming conventions, model deployment patterns, cost governance, and drift alerting. When something breaks in production, I'm the first call.",
+        es: "En este nivel el rol pasa de la implementación a la arquitectura y la propiedad. Establezco los estándares que siguen todos los equipos de AI de Repsol — convenciones de nombres, patrones de despliegue, gobernanza de costes y alertas de drift. Cuando algo falla en producción, soy la primera llamada.",
+      },
+      {
+        en: "Alongside the platform work, I lead GenAI research initiatives — prototyping RAG pipelines with LangChain, evaluating open-weight models (Llama, Mistral), and advising client teams on LLM integration strategies for document intelligence and search.",
+        es: "Junto al trabajo en plataforma, lidero iniciativas de investigación en GenAI — prototipando pipelines RAG con LangChain, evaluando modelos open-weight (Llama, Mistral) y asesorando a equipos de clientes en estrategias de integración de LLMs para inteligencia documental y búsqueda.",
+      },
+    ],
+    impact: {
+      en: "Technical authority across all ML production systems at Repsol — serving 10+ active AI teams.",
+      es: "Referencia técnica en todos los sistemas ML en producción de Repsol — dando servicio a más de 10 equipos de AI activos.",
+    },
   },
   {
     slug: 'mlops-engineer-bluetab',
@@ -317,6 +347,20 @@ export const EXPERIENCE: WorkEntry[] = [
       },
     ],
     tags: ['PySpark', 'MLflow', 'Azure OpenAI', 'LLMs', 'DABs', 'Python', 'CI/CD'],
+    narrative: [
+      {
+        en: "This was my entry into enterprise MLOps at scale. Repsol runs dozens of ML models across refineries, trading desks, and exploration units — my job was to make the operational side invisible and reliable. I inherited a fragmented landscape and built the first standardised deployment pipeline.",
+        es: "Esta fue mi entrada al MLOps empresarial a gran escala. Repsol opera docenas de modelos ML en refinerías, mesas de trading y unidades de exploración — mi trabajo era hacer que el lado operacional fuera invisible y fiable. Heredé un panorama fragmentado y construí el primer pipeline de despliegue estandarizado.",
+      },
+      {
+        en: "One of the biggest early challenges was a critical Azure Private Endpoints failure that took down all AI services across the organisation. I identified the root cause, coordinated the incident response, and escalated to Microsoft — ultimately forcing them to acknowledge a global availability zone issue affecting multiple enterprise clients.",
+        es: "Uno de los primeros grandes retos fue un fallo crítico en Azure Private Endpoints que bloqueó todos los servicios de AI de la organización. Identifiqué la causa raíz, coordiné la respuesta al incidente y escallé a Microsoft — forzándoles finalmente a reconocer un problema global de zona de disponibilidad que afectaba a varios clientes enterprise.",
+      },
+    ],
+    impact: {
+      en: "First Databricks Asset Bundles deployment in the Repsol organisation — now the standard across all teams.",
+      es: "Primer despliegue de Databricks Asset Bundles en la organización de Repsol — ahora el estándar en todos los equipos.",
+    },
   },
   {
     slug: 'data-engineer-nommon',
@@ -344,6 +388,20 @@ export const EXPERIENCE: WorkEntry[] = [
       },
     ],
     tags: ['Python', 'GeoPandas', 'AWS', 'Docker', 'Streamlit', 'OTP', 'GIS'],
+    narrative: [
+      {
+        en: "The MITMA project was one of the first national-scale mobility intelligence platforms in Europe — processing CDR data from millions of Spanish mobile subscribers daily to produce the movement matrices that government planners use to model transport demand and infrastructure investment.",
+        es: "El proyecto MITMA fue una de las primeras plataformas de inteligencia de movilidad a escala nacional en Europa — procesando datos CDR de millones de suscriptores móviles españoles diariamente para generar las matrices de movimiento que los planificadores gubernamentales utilizan para modelar la demanda de transporte e inversión en infraestructura.",
+      },
+      {
+        en: "Beyond the core delivery, I built the internal AWS infrastructure portal as a side project. It started as a personal time-saver and ended up being adopted by 100% of the company — saving around 16 hours per week of manual EC2 management across the team.",
+        es: "Más allá de la entrega principal, construí el portal de infraestructura AWS como proyecto paralelo. Empezó como un ahorro de tiempo personal y acabó siendo adoptado por el 100% de la empresa — ahorrando unas 16 horas semanales de gestión manual de EC2 en el equipo.",
+      },
+    ],
+    impact: {
+      en: "100% daily delivery compliance across 12+ months for a live government contract at national scale.",
+      es: "100% de cumplimiento en entregas diarias durante más de 12 meses en un contrato gubernamental activo a escala nacional.",
+    },
   },
   {
     slug: 'gnss-engineer-gmv',
@@ -370,6 +428,20 @@ export const EXPERIENCE: WorkEntry[] = [
       },
     ],
     tags: ['Python', 'GNSS', 'GIS', 'MATLAB', 'Signal Analysis', 'NumPy'],
+    narrative: [
+      {
+        en: "Working on the Galileo constellation was my first exposure to safety-critical engineering — where the quality bar is set by ESA audits, not internal code review. Every deliverable was validated against international aerospace standards, and errors had real consequences for the programme.",
+        es: "Trabajar en la constelación Galileo fue mi primera exposición a la ingeniería crítica de seguridad — donde el estándar de calidad lo fijan las auditorías de la ESA, no la revisión de código interna. Cada entregable se validaba contra estándares aeroespaciales internacionales, y los errores tenían consecuencias reales para el programa.",
+      },
+      {
+        en: "The solo Helgoland mission was one of the most formative experiences of my career. A hardware failure had cancelled the first expedition — I flew alone to a North Sea island, diagnosed the problem on-site, sourced materials locally, and had three triangulation stations operational in 72 hours, saving the ESA test window.",
+        es: "La misión en solitario en Helgoland fue una de las experiencias más formativas de mi carrera. Un fallo de hardware había cancelado la primera expedición — volé solo a una isla en el Mar del Norte, diagnostiqué el problema in situ, conseguí materiales localmente y tuve tres estaciones de triangulación operativas en 72 horas, salvando la ventana de prueba de la ESA.",
+      },
+    ],
+    impact: {
+      en: "10 high-level technical reports delivered to ESA and DLR; solo Helgoland field mission completed under 72 hours.",
+      es: "10 informes técnicos de alto nivel entregados a ESA y DLR; misión de campo en solitario en Helgoland completada en menos de 72 horas.",
+    },
   },
   {
     slug: 'research-purdue',
@@ -396,6 +468,20 @@ export const EXPERIENCE: WorkEntry[] = [
       },
     ],
     tags: ['Python', 'MATLAB', 'Machine Learning', 'Big Data', 'NASA', 'Research'],
+    narrative: [
+      {
+        en: "The research sat at the intersection of aerospace engineering and data science — modelling how air taxis could integrate with Chicago's transit network using mobility datasets and ML clustering to identify where vertiports made economic sense. It was my first large-scale ML project, and it shaped how I think about data-driven decision-making.",
+        es: "La investigación se situaba en la intersección entre la ingeniería aeroespacial y la ciencia de datos — modelando cómo los aerotaxis podrían integrarse en la red de transporte de Chicago usando datasets de movilidad y clustering ML para identificar dónde tendría sentido económico situar vertipuertos. Fue mi primer proyecto ML a gran escala, y marcó cómo pienso sobre la toma de decisiones basada en datos.",
+      },
+      {
+        en: "The findings were reviewed directly by NASA researchers in technical meetings and contributed to agency-level work on Urban Air Mobility — a field that has since become one of the most active areas of aerospace investment globally.",
+        es: "Los resultados fueron revisados directamente por investigadores de la NASA en reuniones técnicas y contribuyeron al trabajo de la agencia sobre Movilidad Aérea Urbana — un campo que desde entonces se ha convertido en una de las áreas de inversión aeroespacial más activas a nivel global.",
+      },
+    ],
+    impact: {
+      en: "GPA 4.0/4.0 — Dean's List & Semester Honors; research published at SciTech international conference.",
+      es: "GPA 4.0/4.0 — Dean's List y Semester Honors; investigación publicada en la conferencia internacional SciTech.",
+    },
   },
 ]
 

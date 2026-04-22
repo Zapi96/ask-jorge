@@ -14,7 +14,7 @@ export default function CertificationsPage() {
       <main className="mx-auto max-w-6xl px-6 py-16">
         {/* Header */}
         <div className="mb-12">
-          <p className="mb-2 font-inter text-xs font-semibold uppercase tracking-widest text-p-on-surface-var">
+          <p className="mb-2 font-inter text-xs font-semibold uppercase tracking-widest text-p-secondary">
             {t('Professional Credentials', 'Credenciales Profesionales')}
           </p>
           <h1 className="font-manrope text-4xl font-extrabold text-p-primary sm:text-5xl">

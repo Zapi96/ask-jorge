@@ -20,7 +20,7 @@ export default function AboutPage() {
           <h1 className="font-manrope text-4xl font-extrabold leading-tight text-p-primary sm:text-5xl md:text-6xl">
             {t('Aerospace Roots,', 'Raíces Aeroespaciales,')}
             <br />
-            {t('AI Systems.', 'Sistemas de IA.')}
+            {t('AI Pursuits.', 'Metas de IA.')}
           </h1>
         </div>
 
