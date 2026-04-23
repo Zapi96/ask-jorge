@@ -263,6 +263,18 @@ export const EXPERIENCE: WorkEntry[] = [
         en: 'I mentor student capstone projects applying ML to real business datasets.',
         es: 'Mentorizo proyectos fin de máster de alumnos aplicando ML a datasets empresariales reales.',
       },
+      {
+        en: 'Structured assessment around a 60% group project with business presentation — training analysts to communicate technical findings to strategic stakeholders.',
+        es: 'Diseñé una evaluación con un 60% de peso en proyecto grupal con presentación — formando analistas para comunicar hallazgos técnicos a stakeholders estratégicos.',
+      },
+      {
+        en: 'Cohort includes executives and analysts from leading Spanish companies — curriculum co-evolved with real industry problems brought by each class.',
+        es: 'La clase incluye directivos y analistas de empresas líderes españolas — el currículo co-evoluciona con los problemas reales de industria que trae cada promoción.',
+      },
+      {
+        en: 'Run internal workshops on Databricks Asset Bundles and RAG architectures for Bluetab\'s technical teams alongside teaching responsibilities.',
+        es: 'Imparto talleres internos sobre Databricks Asset Bundles y arquitecturas RAG para los equipos técnicos de Bluetab en paralelo a la docencia.',
+      },
     ],
     tags: ['Machine Learning', 'Databricks', 'Python', 'Scikit-learn', 'Teaching'],
     narrative: [
@@ -303,6 +315,18 @@ export const EXPERIENCE: WorkEntry[] = [
       {
         en: 'Led RAG + LangChain research initiatives and integrated GPT Codex into CI/CD pipelines for automated code auditing.',
         es: 'Lideré iniciativas de investigación RAG + LangChain e integré GPT Codex en pipelines CI/CD para auditoría automatizada de código.',
+      },
+      {
+        en: 'Migrated the AI management console from Flask to FastAPI with User Managed Identities — 40% faster response times and 30% lower compute costs.',
+        es: 'Migré la consola de gestión de AI de Flask a FastAPI con User Managed Identities — 40% más rápida y 30% menos costosa en cómputo.',
+      },
+      {
+        en: 'Designed a granular RBAC data model (Azure AD + SQL) for team-level infrastructure access control — pattern adopted across multiple Repsol products.',
+        es: 'Diseñé un modelo de datos RBAC granular (Azure AD + SQL) para el control de acceso a infraestructura por equipo — patrón adoptado en varios productos de Repsol.',
+      },
+      {
+        en: 'Nominated as Databricks Champion — attended Databricks Summit in San Francisco and Databricks Industry Forum in Madrid representing Repsol\'s AI engineering practice.',
+        es: 'Nominado como Databricks Champion — asistí al Databricks Summit en San Francisco y al Databricks Industry Forum en Madrid representando la práctica de ingeniería de AI de Repsol.',
       },
     ],
     tags: ['Databricks', 'MLflow', 'Azure', 'Ray', 'LangChain', 'RAG', 'FastAPI', 'Terraform'],
@@ -345,6 +369,18 @@ export const EXPERIENCE: WorkEntry[] = [
         en: 'Resolved a critical Azure infrastructure incident (Private Endpoints failure) that impacted all Repsol AI services, forcing Microsoft to acknowledge a global availability zone issue.',
         es: 'Resolví un incidente crítico de infraestructura Azure (fallo en Private Endpoints) que impactó a todos los servicios de AI de Repsol, forzando a Microsoft a reconocer un problema global de zona de disponibilidad.',
       },
+      {
+        en: 'Deployed Kubernetes CronJobs on AKS for daily Azure AD identity sync and automatic orphan branch cleanup — reducing manual maintenance overhead.',
+        es: 'Desplegué CronJobs en AKS para sincronización diaria de identidades Azure AD y limpieza automática de ramas huérfanas — reduciendo la carga de mantenimiento manual.',
+      },
+      {
+        en: 'Implemented Wiki-as-Code documentation strategy (Git + PRs) with AI-assisted generation — 80% faster documentation, zero drift from production.',
+        es: 'Implementé una estrategia de Wiki-as-Code (Git + PRs) con generación asistida por IA — documentación un 80% más rápida y siempre alineada con producción.',
+      },
+      {
+        en: 'Designed methodology for deploying MLflow-packaged models to IoT edge devices via Docker — enabling offline inference on non-cloud infrastructure.',
+        es: 'Diseñé metodología para desplegar modelos MLflow en dispositivos IoT via Docker — habilitando inferencia offline en infraestructura sin cloud.',
+      },
     ],
     tags: ['PySpark', 'MLflow', 'Azure OpenAI', 'LLMs', 'DABs', 'Python', 'CI/CD'],
     narrative: [
@@ -386,6 +422,18 @@ export const EXPERIENCE: WorkEntry[] = [
         en: 'Developed geospatial algorithms processing Orange CDR data with Voronoi maps, achieving 100% data continuity via statistical imputation.',
         es: 'Desarrollé algoritmos geoespaciales procesando datos CDR de Orange con mapas de Voronoi, logrando 100% de continuidad de datos mediante imputación estadística.',
       },
+      {
+        en: 'Delivered daily mobility matrices for CRTM (Madrid transit authority) and OUIGO — supporting real-time frequency adjustment and commercial route optimization.',
+        es: 'Entregué matrices de movilidad diarias para CRTM (autoridad de transporte de Madrid) y OUIGO — apoyando el ajuste de frecuencias en tiempo real y la optimización de rutas comerciales.',
+      },
+      {
+        en: 'Pioneered Streamlit dashboards for interactive client data validation — reducing validation meeting time by 30% and enabling self-service data exploration.',
+        es: 'Pionero en dashboards Streamlit para validación interactiva de datos con clientes — reduciendo el tiempo de reuniones de validación en un 30% y habilitando la exploración autónoma.',
+      },
+      {
+        en: 'Led international mobility modelling for Santiago de Chile and Rio de Janeiro, developing new OTP product modules for intermodal route aggregation.',
+        es: 'Lideré la modelización de movilidad internacional para Santiago de Chile y Río de Janeiro, desarrollando nuevos módulos OTP para la agregación de rutas intermodales.',
+      },
     ],
     tags: ['Python', 'GeoPandas', 'AWS', 'Docker', 'Streamlit', 'OTP', 'GIS'],
     narrative: [
@@ -426,6 +474,18 @@ export const EXPERIENCE: WorkEntry[] = [
         en: 'Led a solo contingency field mission on Helgoland island — deployed three triangulation stations in 3 days after hardware failure, saving the ESA test window.',
         es: 'Lideré una misión de campo de contingencia en solitario en la isla de Helgoland — desplegué tres estaciones de triangulación en 3 días tras un fallo de hardware, salvando la ventana de test de ESA.',
       },
+      {
+        en: 'Built Matplotlib and Plotly dashboards tracking C/N0 signal-to-noise ratios and positioning errors across satellite frequencies — central to all ESA deliverables.',
+        es: 'Construí dashboards con Matplotlib y Plotly para rastrear relaciones señal-ruido (C/N0) y errores de posicionamiento en múltiples frecuencias — herramienta central en todos los entregables de ESA.',
+      },
+      {
+        en: 'Led internal Python training at GMV — standardised NumPy and Pandas workflows across the team, eliminating legacy manual analysis processes.',
+        es: 'Lideré la formación interna en Python en GMV — estandaricé flujos de trabajo con NumPy y Pandas en el equipo, eliminando procesos de análisis manual obsoletos.',
+      },
+      {
+        en: 'Participated in drone flight campaigns at ATLAS Experimental Flight Center (Jaén) — calibrated precision sensors for ESA wildfire suppression and agricultural inspection missions.',
+        es: 'Participé en campañas de vuelo de drones en el Centro Experimental ATLAS (Jaén) — calibré sensores de precisión para misiones de supresión de incendios e inspección agrícola de la ESA.',
+      },
     ],
     tags: ['Python', 'GNSS', 'GIS', 'MATLAB', 'Signal Analysis', 'NumPy'],
     narrative: [
@@ -465,6 +525,18 @@ export const EXPERIENCE: WorkEntry[] = [
       {
         en: 'Graduated with GPA 4.0/4.0 — Dean\'s List and Semester Honors (top 1% of cohort).',
         es: 'Me gradué con GPA 4.0/4.0 — Dean\'s List y Semester Honors (top 1% del cohorte).',
+      },
+      {
+        en: 'Developed Python and Java data acquisition scripts via Open Trip Planner API — simulating door-to-door travel times comparing air vs. ground routes across Chicago\'s metro area.',
+        es: 'Desarrollé scripts de adquisición de datos en Python y Java via la API de Open Trip Planner — simulando tiempos de viaje puerta a puerta comparando rutas aéreas vs. terrestres en el área de Chicago.',
+      },
+      {
+        en: 'Designed MATLAB trajectory optimisation algorithms (ascent, cruise, descent) minimising operational cost and travel time for aerotaxi mission planning.',
+        es: 'Diseñé algoritmos de optimización de trayectorias en MATLAB (ascenso, crucero, descenso) minimizando el coste operativo y el tiempo de viaje para la planificación de misiones de aerotaxis.',
+      },
+      {
+        en: 'Applied coursework in Multidisciplinary Design Optimization (AAE 550), Optimal Control (AAE 568), and Satellite Navigation (AAE 575) directly to the research methodology.',
+        es: 'Apliqué directamente la formación en Optimización Multidisciplinar (AAE 550), Control Óptimo (AAE 568) y Navegación Satelital (AAE 575) a la metodología de investigación.',
       },
     ],
     tags: ['Python', 'MATLAB', 'Machine Learning', 'Big Data', 'NASA', 'Research'],

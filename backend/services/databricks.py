@@ -28,6 +28,54 @@ def _job_id() -> int:
     return int(os.environ.get("DATABRICKS_JOB_ID", "0"))
 
 
+def _extract_answer(data) -> str:
+    """Extract the answer string from all known Databricks response formats.
+
+    Handles:
+    - Direct list: ["answer"]  (custom chain default)
+    - OpenAI chat format: {"choices": [{"message": {"content": "answer"}}]}
+      (returned when AI Gateway is enabled on the endpoint)
+    - Predictions dict: {"predictions": ["answer"]}  (standard custom model)
+    - Predictions with tracing: {"predictions": [...], "databricks_output": {...}}
+      (returned when inference tables + MLflow tracing are enabled)
+    """
+    if isinstance(data, list):
+        return str(data[0])
+
+    if not isinstance(data, dict):
+        return str(data)
+
+    # OpenAI-compatible format — AI Gateway or foundation model endpoints
+    if "choices" in data:
+        choices = data["choices"]
+        if choices and isinstance(choices[0], dict):
+            message = choices[0].get("message", {})
+            if isinstance(message, dict) and "content" in message:
+                return str(message["content"])
+
+    # Standard custom model format, possibly with databricks_output tracing metadata
+    if "predictions" in data:
+        raw = data["predictions"]
+        prediction = raw[0] if isinstance(raw, list) else raw
+        if isinstance(prediction, str):
+            return prediction
+        if isinstance(prediction, list):
+            return str(prediction[0])
+        if isinstance(prediction, dict):
+            return (
+                prediction.get("content")
+                or prediction.get("output")
+                or str(prediction)
+            )
+        return str(prediction)
+
+    # Simple output key (some custom chain signatures)
+    if "output" in data:
+        return str(data["output"])
+
+    return str(data)
+
+
 async def query_endpoint(question: str) -> str:
     """Call the Databricks serving endpoint and return the answer string."""
     payload = {"messages": [{"role": "user", "content": question}]}
@@ -38,19 +86,7 @@ async def query_endpoint(question: str) -> str:
             json=payload,
         )
         resp.raise_for_status()
-        data = resp.json()
-        # Databricks returns the chain output directly as a list: ["answer string"]
-        if isinstance(data, list):
-            return str(data[0])
-        # Fallback: {"predictions": ["string"]} or {"predictions": [{"content": ...}]}
-        prediction = data["predictions"][0]
-        if isinstance(prediction, str):
-            return prediction
-        if isinstance(prediction, dict):
-            return (
-                prediction.get("content") or prediction.get("output") or str(prediction)
-            )
-        return str(prediction)
+        return _extract_answer(resp.json())
 
 
 async def _get_endpoint_state() -> tuple[str, str, dict]:
