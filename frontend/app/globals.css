@@ -105,6 +105,11 @@ body::before {
   animation: warmup-progress 1.8s ease-in-out infinite;
 }
 
+/* ── iOS safe-area: push sticky navbar below notch / dynamic island ─────────── */
+.portfolio header {
+  padding-top: env(safe-area-inset-top);
+}
+
 /* ── Portfolio pages — light palette (default) ─────────────────────────────── */
 html:has(.portfolio),
 html:has(.portfolio) body {

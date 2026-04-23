@@ -20,7 +20,7 @@ export default function AboutPage() {
           <h1 className="font-manrope text-4xl font-extrabold leading-tight text-p-primary sm:text-5xl md:text-6xl">
             {t('Aerospace Roots,', 'Raíces Aeroespaciales,')}
             <br />
-            {t('AI Systems.', 'Sistemas de IA.')}
+            {t('AI Pursuits.', 'Metas de IA.')}
           </h1>
         </div>
 
@@ -71,14 +71,14 @@ export default function AboutPage() {
               </h2>
               <p className="text-p-on-surface-var">
                 {t(
-                  "Jorge holds a degree in Aerospace Engineering from the Universitat Politècnica de València (UPV) and completed graduate studies at Purdue University (Indiana, USA) with a perfect GPA of 4.0/4.0 — earning Dean's List and Semester Honors. His research there on urban air mobility and satellite orbit simulation, in collaboration with NASA-linked projects, was published at the SciTech international conference.",
-                  'Jorge tiene un grado en Ingeniería Aeroespacial por la Universitat Politècnica de València (UPV) y completó estudios de posgrado en la Universidad de Purdue (Indiana, EE.UU.) con un GPA perfecto de 4.0/4.0 — obteniendo Dean\'s List y Semester Honors. Su investigación allí sobre movilidad aérea urbana y simulación de órbitas satelitales, en colaboración con proyectos vinculados a la NASA, fue publicada en la conferencia internacional SciTech.'
+                  "I hold a degree in Aerospace Engineering from the Universitat Politècnica de València (UPV) and completed graduate studies at Purdue University (Indiana, USA) with a perfect GPA of 4.0/4.0 — earning Dean's List and Semester Honors. My research there on urban air mobility and satellite orbit simulation, in collaboration with NASA-linked projects, was published at the SciTech international conference.",
+                  'Tengo un grado en Ingeniería Aeroespacial por la Universitat Politècnica de València (UPV) y completé estudios de posgrado en la Universidad de Purdue (Indiana, EE.UU.) con un GPA perfecto de 4.0/4.0 — obteniendo Dean\'s List y Semester Honors. Mi investigación allí sobre movilidad aérea urbana y simulación de órbitas satelitales, en colaboración con proyectos vinculados a la NASA, fue publicada en la conferencia internacional SciTech.'
                 )}
               </p>
               <p className="mt-4 text-p-on-surface-var">
                 {t(
-                  'This foundation in rigorous quantitative thinking — from computational fluid dynamics to orbital mechanics and signal analysis — shapes how he approaches every engineering problem: with first-principles clarity and an obsession for measurable outcomes.',
-                  'Esta base en pensamiento cuantitativo riguroso — desde dinámica de fluidos computacional hasta mecánica orbital y análisis de señales — define cómo afronta cada problema de ingeniería: con claridad de primeros principios y una obsesión por los resultados medibles.'
+                  'This foundation in rigorous quantitative thinking — from computational fluid dynamics to orbital mechanics and signal analysis — shapes how I approach every engineering problem: with first-principles clarity and an obsession for measurable outcomes.',
+                  'Esta base en pensamiento cuantitativo riguroso — desde dinámica de fluidos computacional hasta mecánica orbital y análisis de señales — define cómo afronto cada problema de ingeniería: con claridad de primeros principios y una obsesión por los resultados medibles.'
                 )}
               </p>
             </section>
@@ -89,14 +89,14 @@ export default function AboutPage() {
               </h2>
               <p className="text-p-on-surface-var">
                 {t(
-                  "His Purdue research already pointed toward data and AI — applying Big Data techniques and ML clustering to urban mobility at scale, in collaboration with NASA. From there, Jorge joined GMV as a GNSS data engineer, developing signal analysis pipelines for the European Space Agency, before moving into full-stack data engineering at Nommon and ultimately into MLOps at Bluetab (an IBM Company), where he now leads the design of Repsol's self-service AI platform on Databricks and Azure.",
-                  'Su investigación en Purdue ya apuntaba hacia datos e IA — aplicando técnicas de Big Data y clustering de ML a movilidad urbana a escala, en colaboración con la NASA. Desde allí, Jorge se incorporó a GMV como ingeniero de datos GNSS, desarrollando pipelines de análisis de señal para la Agencia Espacial Europea, antes de pasar a ingeniería de datos full-stack en Nommon y finalmente a MLOps en Bluetab (una empresa de IBM), donde ahora lidera el diseño de la plataforma de AI de autoservicio de Repsol sobre Databricks y Azure.'
+                  "My Purdue research already pointed toward data and AI — applying Big Data techniques and ML clustering to urban mobility at scale, in collaboration with NASA. From there, I joined GMV as a GNSS data engineer, developing signal analysis pipelines for the European Space Agency, before moving into full-stack data engineering at Nommon and ultimately into MLOps at Bluetab (an IBM Company), where I now lead the design of Repsol's self-service AI platform on Databricks and Azure.",
+                  'Mi investigación en Purdue ya apuntaba hacia datos e IA — aplicando técnicas de Big Data y clustering de ML a movilidad urbana a escala, en colaboración con la NASA. Desde allí, me incorporé a GMV como ingeniero de datos GNSS, desarrollando pipelines de análisis de señal para la Agencia Espacial Europea, antes de pasar a ingeniería de datos full-stack en Nommon y finalmente a MLOps en Bluetab (una empresa de IBM), donde ahora lidero el diseño de la plataforma de AI de autoservicio de Repsol sobre Databricks y Azure.'
                 )}
               </p>
               <p className="mt-4 text-p-on-surface-var">
                 {t(
-                  'His work spans the entire ML lifecycle: from experiment governance and model lineage with MLflow and Unity Catalog, to distributed training with Ray, automated deployments via Databricks Asset Bundles, and GenAI research in RAG architectures with LangChain. He holds the Azure Solutions Architect Expert and multiple Databricks Professional certifications, and was nominated for the Databricks Champion programme.',
-                  'Su trabajo abarca todo el ciclo de vida ML: desde la gobernanza de experimentos y linaje de modelos con MLflow y Unity Catalog, hasta el entrenamiento distribuido con Ray, despliegues automatizados mediante Databricks Asset Bundles, e investigación en GenAI con arquitecturas RAG y LangChain. Cuenta con la certificación Azure Solutions Architect Expert y múltiples certificaciones Databricks Professional, y fue nominado para el programa Databricks Champion.'
+                  'My work spans the entire ML lifecycle: from experiment governance and model lineage with MLflow and Unity Catalog, to distributed training with Ray, automated deployments via Databricks Asset Bundles, and GenAI research in RAG architectures with LangChain. I hold the Azure Solutions Architect Expert and multiple Databricks Professional certifications, and was nominated for the Databricks Champion programme.',
+                  'Mi trabajo abarca todo el ciclo de vida ML: desde la gobernanza de experimentos y linaje de modelos con MLflow y Unity Catalog, hasta el entrenamiento distribuido con Ray, despliegues automatizados mediante Databricks Asset Bundles, e investigación en GenAI con arquitecturas RAG y LangChain. Cuento con la certificación Azure Solutions Architect Expert y múltiples certificaciones Databricks Professional, y fui nominado para el programa Databricks Champion.'
                 )}
               </p>
             </section>
@@ -107,14 +107,14 @@ export default function AboutPage() {
               </h2>
               <p className="text-p-on-surface-var">
                 {t(
-                  "Jorge has studied and worked across Spain, the United States, Germany, Poland, and internationally with agencies including the ESA, DLR, and NASA-linked research groups. This cross-cultural experience — combined with a track record of leading technical projects under pressure, from solo field missions in the North Sea to national-scale data platforms for Spain's Ministry of Transport — defines his approach to engineering leadership.",
-                  'Jorge ha estudiado y trabajado en España, Estados Unidos, Alemania, Polonia e internacionalmente con agencias como la ESA, el DLR y grupos de investigación vinculados a la NASA. Esta experiencia intercultural — combinada con un historial de liderazgo de proyectos técnicos bajo presión, desde misiones de campo en solitario en el Mar del Norte hasta plataformas de datos a escala nacional para el Ministerio de Transportes de España — define su enfoque del liderazgo en ingeniería.'
+                  "I have studied and worked across Spain, the United States, Germany, Poland, and internationally with agencies including the ESA, DLR, and NASA-linked research groups. This cross-cultural experience — combined with a track record of leading technical projects under pressure, from solo field missions in the North Sea to national-scale data platforms for Spain's Ministry of Transport — defines my approach to engineering leadership.",
+                  'He estudiado y trabajado en España, Estados Unidos, Alemania, Polonia e internacionalmente con agencias como la ESA, el DLR y grupos de investigación vinculados a la NASA. Esta experiencia intercultural — combinada con un historial de liderazgo de proyectos técnicos bajo presión, desde misiones de campo en solitario en el Mar del Norte hasta plataformas de datos a escala nacional para el Ministerio de Transportes de España — define mi enfoque del liderazgo en ingeniería.'
                 )}
               </p>
               <p className="mt-4 text-p-on-surface-var">
                 {t(
-                  'He is actively exploring senior opportunities at the frontier of AI infrastructure in the European tech ecosystem.',
-                  'Explora activamente oportunidades senior en la frontera de la infraestructura de AI en el ecosistema tecnológico europeo.'
+                  'I am actively exploring senior opportunities at the frontier of AI infrastructure in the European tech ecosystem.',
+                  'Estoy explorando activamente oportunidades senior en la frontera de la infraestructura de AI en el ecosistema tecnológico europeo.'
                 )}
               </p>
             </section>
@@ -125,8 +125,8 @@ export default function AboutPage() {
               </h2>
               <p className="text-p-on-surface-var">
                 {t(
-                  "Since February 2026, Jorge teaches Machine Learning as an adjunct professor in the Master's in Business Analytics for Strategic Management at Universidad CEU San Pablo — a 60-hour program covering the full ML lifecycle on Databricks, from EDA and supervised learning to Deep Learning fundamentals and capstone projects. He also runs internal workshops on Databricks Asset Bundles and RAG architectures for Bluetab's technical teams and strategic clients.",
-                  'Desde febrero de 2026, Jorge imparte Machine Learning como profesor adjunto en el Máster en Business Analytics para la Gestión Estratégica en la Universidad CEU San Pablo — un programa de 60 horas que cubre el ciclo de vida completo de ML en Databricks, desde EDA y aprendizaje supervisado hasta fundamentos de Deep Learning y proyectos fin de máster. También imparte talleres internos sobre Databricks Asset Bundles y arquitecturas RAG para los equipos técnicos y clientes estratégicos de Bluetab.'
+                  "Since February 2026, I teach Machine Learning as an adjunct professor in the Master's in Business Analytics for Strategic Management at Universidad CEU San Pablo — a 60-hour program covering the full ML lifecycle on Databricks, from EDA and supervised learning to Deep Learning fundamentals and capstone projects. I also run internal workshops on Databricks Asset Bundles and RAG architectures for Bluetab's technical teams and strategic clients.",
+                  'Desde febrero de 2026, imparto Machine Learning como profesor adjunto en el Máster en Business Analytics para la Gestión Estratégica en la Universidad CEU San Pablo — un programa de 60 horas que cubre el ciclo de vida completo de ML en Databricks, desde EDA y aprendizaje supervisado hasta fundamentos de Deep Learning y proyectos fin de máster. También imparto talleres internos sobre Databricks Asset Bundles y arquitecturas RAG para los equipos técnicos y clientes estratégicos de Bluetab.'
                 )}
               </p>
             </section>

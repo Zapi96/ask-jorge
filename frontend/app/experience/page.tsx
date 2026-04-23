@@ -15,7 +15,7 @@ export default function ExperiencePage() {
       <main className="mx-auto max-w-4xl px-6 py-16">
         {/* Header */}
         <div className="mb-14">
-          <p className="mb-2 font-inter text-xs font-semibold uppercase tracking-widest text-p-on-surface-var">
+          <p className="mb-2 font-inter text-xs font-semibold uppercase tracking-widest text-p-secondary">
             {t('Career History', 'Trayectoria Profesional')}
           </p>
           <h1 className="font-manrope text-4xl font-extrabold text-p-primary sm:text-5xl">

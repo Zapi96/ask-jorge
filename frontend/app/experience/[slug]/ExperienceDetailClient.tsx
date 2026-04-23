@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, TrendingUp } from 'lucide-react'
 import { Navbar } from '@/components/portfolio/Navbar'
 import { Footer } from '@/components/portfolio/Footer'
 import { useLang } from '@/lib/i18n'
@@ -46,6 +46,37 @@ export function ExperienceDetailClient({ entry }: { entry: WorkEntry }) {
           </p>
         </div>
 
+        {/* Impact highlight */}
+        {entry.impact && (
+          <div className="mb-12 flex items-start gap-4 rounded-portfolio-xl border border-p-secondary/20 bg-p-secondary/5 p-5">
+            <TrendingUp className="mt-0.5 h-5 w-5 shrink-0 text-p-secondary" />
+            <div>
+              <p className="mb-0.5 font-inter text-xs font-semibold uppercase tracking-widest text-p-secondary">
+                {t('Key Impact', 'Impacto Clave')}
+              </p>
+              <p className="font-inter text-sm font-medium leading-relaxed text-p-on-surface">
+                {t(entry.impact.en, entry.impact.es)}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Narrative — deeper context */}
+        {entry.narrative && entry.narrative.length > 0 && (
+          <div className="mb-12">
+            <h2 className="mb-5 font-manrope text-2xl font-bold text-p-primary">
+              {t('Context & Approach', 'Contexto y Enfoque')}
+            </h2>
+            <div className="space-y-4">
+              {entry.narrative.map((para, i) => (
+                <p key={i} className="font-inter text-base leading-relaxed text-p-on-surface-var">
+                  {t(para.en, para.es)}
+                </p>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Key contributions */}
         <div className="mb-12">
           <h2 className="mb-6 font-manrope text-2xl font-bold text-p-primary">
@@ -88,7 +119,7 @@ export function ExperienceDetailClient({ entry }: { entry: WorkEntry }) {
             {t('Want to know more?', '¿Quieres saber más?')}
           </p>
           <h3 className="mb-3 font-manrope text-2xl font-bold">
-            {t('Ask Jorge directly.', 'Pregúntale directamente a Jorge.')}
+            {t('Ask me directly.', 'Pregúntame directamente.')}
           </h3>
           <p className="mb-6 max-w-md font-inter text-sm text-white/70">
             {t(

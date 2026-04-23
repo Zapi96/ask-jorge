@@ -26,6 +26,8 @@ export interface WorkEntry {
   description: B
   highlights: B[]
   tags: string[]
+  narrative?: B[]
+  impact?: B
 }
 
 export interface Certification {
@@ -99,8 +101,8 @@ export const PROJECTS: Project[] = [
       es: 'Ministerio de Transportes — España',
     },
     description: {
-      en: 'Technical Lead for Spain\'s national mobility data platform at Nommon — processing Orange mobile network data (CDR) to deliver daily movement matrices covering the entire country for the Ministry of Transport (MITMA).',
-      es: 'Líder técnico de la plataforma nacional de datos de movilidad de España en Nommon — procesando datos de red móvil de Orange (CDR) para generar matrices de movimiento diarias cubriendo todo el país para el Ministerio de Transportes (MITMA).',
+      en: 'Technical Lead for Spain\'s national mobility data platform at Nommon — I processed Orange mobile network data (CDR) to deliver daily movement matrices covering the entire country for the Ministry of Transport (MITMA).',
+      es: 'Líder técnico de la plataforma nacional de datos de movilidad de España en Nommon — procesé datos de red móvil de Orange (CDR) para generar matrices de movimiento diarias cubriendo todo el país para el Ministerio de Transportes (MITMA).',
     },
     period: '2022 – 2023',
     client: 'MITMA (Ministry of Transport, Mobility and Urban Agenda)',
@@ -147,8 +149,8 @@ export const PROJECTS: Project[] = [
       es: 'Agencia Espacial Europea y Comisión Europea',
     },
     description: {
-      en: 'Research engineer at GMV developing satellite occlusion simulation engines and signal analysis tools for the Galileo constellation — processing 100+ GB of telemetry data and leading a solo field mission on Helgoland island.',
-      es: 'Ingeniero de investigación en GMV desarrollando motores de simulación de ocultación satelital y herramientas de análisis de señal para la constelación Galileo — procesando más de 100 GB de datos de telemetría y liderando una misión de campo en solitario en la isla de Helgoland.',
+      en: 'Research engineer at GMV — I developed satellite occlusion simulation engines and signal analysis tools for the Galileo constellation, processing 100+ GB of telemetry data and leading a solo field mission on Helgoland island.',
+      es: 'Ingeniero de investigación en GMV — desarrollé motores de simulación de ocultación satelital y herramientas de análisis de señal para la constelación Galileo, procesando más de 100 GB de datos de telemetría y liderando una misión de campo en solitario en la isla de Helgoland.',
     },
     period: '2020 – 2022',
     client: 'ESA · European Commission · DLR (German Aerospace Center)',
@@ -194,8 +196,8 @@ export const PROJECTS: Project[] = [
       es: 'Purdue University × NASA',
     },
     description: {
-      en: 'Graduate research at Purdue University School of Aeronautics modeling aerotaxi demand for Chicago\'s metropolitan area — Big Data analysis, ML clustering, and multimodal route optimization in collaboration with NASA research lines.',
-      es: 'Investigación de posgrado en la Universidad de Purdue modelando la demanda de aerotaxis para el área metropolitana de Chicago — análisis de Big Data, clustering de ML y optimización de rutas multimodal en colaboración con líneas de investigación de la NASA.',
+      en: 'Graduate research at Purdue University School of Aeronautics — I modelled aerotaxi demand for Chicago\'s metropolitan area using Big Data analysis, ML clustering, and multimodal route optimization in collaboration with NASA research lines.',
+      es: 'Investigación de posgrado en la Universidad de Purdue — modelé la demanda de aerotaxis para el área metropolitana de Chicago usando análisis de Big Data, clustering de ML y optimización de rutas multimodal en colaboración con líneas de investigación de la NASA.',
     },
     period: '2019 – 2020',
     client: 'Purdue University · NASA (collaborative research)',
@@ -245,8 +247,8 @@ export const EXPERIENCE: WorkEntry[] = [
     period: 'Feb 2026 – present',
     current: true,
     description: {
-      en: 'Adjunct professor leading the Machine Learning module in the Master\'s in Business Analytics for Strategic Management — bridging rigorous theory and real industry practice.',
-      es: 'Profesor adjunto liderando el módulo de Machine Learning en el Máster en Business Analytics para la Gestión Estratégica — conectando teoría rigurosa con práctica industrial real.',
+      en: 'I lead the Machine Learning module as an adjunct professor in the Master\'s in Business Analytics for Strategic Management — bridging rigorous theory and real industry practice.',
+      es: 'Lidero el módulo de Machine Learning como profesor adjunto en el Máster en Business Analytics para la Gestión Estratégica — conectando teoría rigurosa con práctica industrial real.',
     },
     highlights: [
       {
@@ -254,15 +256,29 @@ export const EXPERIENCE: WorkEntry[] = [
         es: 'Diseñé un programa de 60 horas que cubre aprendizaje supervisado/no supervisado, métodos ensemble y fundamentos de Deep Learning.',
       },
       {
-        en: 'Runs hands-on labs on Databricks with Scikit-learn, instructing future analysts in end-to-end ML workflows.',
-        es: 'Imparte laboratorios prácticos en Databricks con Scikit-learn, instruyendo a futuros analistas en flujos de trabajo ML end-to-end.',
+        en: 'I run hands-on labs on Databricks with Scikit-learn, instructing future analysts in end-to-end ML workflows.',
+        es: 'Imparto laboratorios prácticos en Databricks con Scikit-learn, instruyendo a futuros analistas en flujos de trabajo ML end-to-end.',
       },
       {
-        en: 'Mentors student capstone projects applying ML to real business datasets.',
-        es: 'Mentoriza proyectos fin de máster de alumnos aplicando ML a datasets empresariales reales.',
+        en: 'I mentor student capstone projects applying ML to real business datasets.',
+        es: 'Mentorizo proyectos fin de máster de alumnos aplicando ML a datasets empresariales reales.',
       },
     ],
     tags: ['Machine Learning', 'Databricks', 'Python', 'Scikit-learn', 'Teaching'],
+    narrative: [
+      {
+        en: "The program brings together executives and analysts from leading Spanish companies — students arrive with real industry problems, and I design the curriculum to address them directly. Every cohort pushes me to stay at the edge of applied ML.",
+        es: "El programa reúne a directivos y analistas de empresas españolas líderes — los estudiantes llegan con problemas reales de industria, y diseño el currículo para abordarlos directamente. Cada promoción me exige mantenerme en la frontera del ML aplicado.",
+      },
+      {
+        en: "Capstone projects span retail demand forecasting, NLP for legal document classification, and churn prediction — giving me constant exposure to diverse ML challenges across sectors. I also run internal workshops on Databricks Asset Bundles and RAG architectures for Bluetab's technical teams.",
+        es: "Los proyectos fin de máster abarcan previsión de demanda en retail, NLP para clasificación de documentos legales y predicción de churn — manteniéndome en contacto constante con retos de ML en sectores muy distintos. También imparto talleres internos sobre Databricks Asset Bundles y arquitecturas RAG para los equipos técnicos de Bluetab.",
+      },
+    ],
+    impact: {
+      en: "60-hour program designed from scratch — first cohort graduated 2026.",
+      es: "Programa de 60 horas diseñado desde cero — primera promoción graduada en 2026.",
+    },
   },
   {
     slug: 'senior-mlops-bluetab',
@@ -272,8 +288,8 @@ export const EXPERIENCE: WorkEntry[] = [
     period: 'Mar 2025 – present',
     current: true,
     description: {
-      en: 'Technical reference for MLOps on Repsol\'s AI Platform — leading the end-to-end ML asset lifecycle across a Databricks + Azure stack, from experiment governance to production serving.',
-      es: 'Referente técnico de MLOps en la Plataforma de AI de Repsol — liderando el ciclo de vida completo de activos ML en un stack Databricks + Azure, desde la gobernanza de experimentos hasta el serving en producción.',
+      en: 'Technical reference for MLOps on Repsol\'s AI Platform — I lead the end-to-end ML asset lifecycle across a Databricks + Azure stack, from experiment governance to production serving.',
+      es: 'Referente técnico de MLOps en la Plataforma de AI de Repsol — lidero el ciclo de vida completo de activos ML en un stack Databricks + Azure, desde la gobernanza de experimentos hasta el serving en producción.',
     },
     highlights: [
       {
@@ -290,6 +306,20 @@ export const EXPERIENCE: WorkEntry[] = [
       },
     ],
     tags: ['Databricks', 'MLflow', 'Azure', 'Ray', 'LangChain', 'RAG', 'FastAPI', 'Terraform'],
+    narrative: [
+      {
+        en: "At this level the role shifts from implementation to architecture and ownership. I set the standards that all AI teams at Repsol follow — naming conventions, model deployment patterns, cost governance, and drift alerting. When something breaks in production, I'm the first call.",
+        es: "En este nivel el rol pasa de la implementación a la arquitectura y la propiedad. Establezco los estándares que siguen todos los equipos de AI de Repsol — convenciones de nombres, patrones de despliegue, gobernanza de costes y alertas de drift. Cuando algo falla en producción, soy la primera llamada.",
+      },
+      {
+        en: "Alongside the platform work, I lead GenAI research initiatives — prototyping RAG pipelines with LangChain, evaluating open-weight models (Llama, Mistral), and advising client teams on LLM integration strategies for document intelligence and search.",
+        es: "Junto al trabajo en plataforma, lidero iniciativas de investigación en GenAI — prototipando pipelines RAG con LangChain, evaluando modelos open-weight (Llama, Mistral) y asesorando a equipos de clientes en estrategias de integración de LLMs para inteligencia documental y búsqueda.",
+      },
+    ],
+    impact: {
+      en: "Technical authority across all ML production systems at Repsol — serving 10+ active AI teams.",
+      es: "Referencia técnica en todos los sistemas ML en producción de Repsol — dando servicio a más de 10 equipos de AI activos.",
+    },
   },
   {
     slug: 'mlops-engineer-bluetab',
@@ -299,8 +329,8 @@ export const EXPERIENCE: WorkEntry[] = [
     period: 'Nov 2023 – Mar 2025',
     current: false,
     description: {
-      en: 'Responsible for productionising ML models and building the operational foundation of Repsol\'s AI platform, implementing quality tooling, drift monitoring, and the first Databricks Asset Bundles in the organisation.',
-      es: 'Responsable de la puesta en producción de modelos ML y de la construcción de la base operacional de la plataforma de AI de Repsol, implementando herramientas de calidad, monitorización de drift y los primeros Databricks Asset Bundles de la organización.',
+      en: 'I was responsible for productionising ML models and building the operational foundation of Repsol\'s AI platform, implementing quality tooling, drift monitoring, and the first Databricks Asset Bundles in the organisation.',
+      es: 'Fui responsable de la puesta en producción de modelos ML y de la construcción de la base operacional de la plataforma de AI de Repsol, implementando herramientas de calidad, monitorización de drift y los primeros Databricks Asset Bundles de la organización.',
     },
     highlights: [
       {
@@ -317,6 +347,20 @@ export const EXPERIENCE: WorkEntry[] = [
       },
     ],
     tags: ['PySpark', 'MLflow', 'Azure OpenAI', 'LLMs', 'DABs', 'Python', 'CI/CD'],
+    narrative: [
+      {
+        en: "This was my entry into enterprise MLOps at scale. Repsol runs dozens of ML models across refineries, trading desks, and exploration units — my job was to make the operational side invisible and reliable. I inherited a fragmented landscape and built the first standardised deployment pipeline.",
+        es: "Esta fue mi entrada al MLOps empresarial a gran escala. Repsol opera docenas de modelos ML en refinerías, mesas de trading y unidades de exploración — mi trabajo era hacer que el lado operacional fuera invisible y fiable. Heredé un panorama fragmentado y construí el primer pipeline de despliegue estandarizado.",
+      },
+      {
+        en: "One of the biggest early challenges was a critical Azure Private Endpoints failure that took down all AI services across the organisation. I identified the root cause, coordinated the incident response, and escalated to Microsoft — ultimately forcing them to acknowledge a global availability zone issue affecting multiple enterprise clients.",
+        es: "Uno de los primeros grandes retos fue un fallo crítico en Azure Private Endpoints que bloqueó todos los servicios de AI de la organización. Identifiqué la causa raíz, coordiné la respuesta al incidente y escallé a Microsoft — forzándoles finalmente a reconocer un problema global de zona de disponibilidad que afectaba a varios clientes enterprise.",
+      },
+    ],
+    impact: {
+      en: "First Databricks Asset Bundles deployment in the Repsol organisation — now the standard across all teams.",
+      es: "Primer despliegue de Databricks Asset Bundles en la organización de Repsol — ahora el estándar en todos los equipos.",
+    },
   },
   {
     slug: 'data-engineer-nommon',
@@ -326,8 +370,8 @@ export const EXPERIENCE: WorkEntry[] = [
     period: 'Sep 2022 – Nov 2023',
     current: false,
     description: {
-      en: 'Technical lead for mobility analytics at national scale — responsible for Spain\'s MITMA national mobility data project, delivering daily movement matrices and building internal infrastructure tooling.',
-      es: 'Líder técnico de analítica de movilidad a escala nacional — responsable del proyecto nacional de datos de movilidad MITMA de España, entregando matrices de movimiento diarias y construyendo herramientas internas de infraestructura.',
+      en: 'Technical lead for mobility analytics at national scale — I was responsible for Spain\'s MITMA national mobility data project, delivering daily movement matrices and building internal infrastructure tooling.',
+      es: 'Líder técnico de analítica de movilidad a escala nacional — fui responsable del proyecto nacional de datos de movilidad MITMA de España, entregando matrices de movimiento diarias y construyendo herramientas internas de infraestructura.',
     },
     highlights: [
       {
@@ -344,6 +388,20 @@ export const EXPERIENCE: WorkEntry[] = [
       },
     ],
     tags: ['Python', 'GeoPandas', 'AWS', 'Docker', 'Streamlit', 'OTP', 'GIS'],
+    narrative: [
+      {
+        en: "The MITMA project was one of the first national-scale mobility intelligence platforms in Europe — processing CDR data from millions of Spanish mobile subscribers daily to produce the movement matrices that government planners use to model transport demand and infrastructure investment.",
+        es: "El proyecto MITMA fue una de las primeras plataformas de inteligencia de movilidad a escala nacional en Europa — procesando datos CDR de millones de suscriptores móviles españoles diariamente para generar las matrices de movimiento que los planificadores gubernamentales utilizan para modelar la demanda de transporte e inversión en infraestructura.",
+      },
+      {
+        en: "Beyond the core delivery, I built the internal AWS infrastructure portal as a side project. It started as a personal time-saver and ended up being adopted by 100% of the company — saving around 16 hours per week of manual EC2 management across the team.",
+        es: "Más allá de la entrega principal, construí el portal de infraestructura AWS como proyecto paralelo. Empezó como un ahorro de tiempo personal y acabó siendo adoptado por el 100% de la empresa — ahorrando unas 16 horas semanales de gestión manual de EC2 en el equipo.",
+      },
+    ],
+    impact: {
+      en: "100% daily delivery compliance across 12+ months for a live government contract at national scale.",
+      es: "100% de cumplimiento en entregas diarias durante más de 12 meses en un contrato gubernamental activo a escala nacional.",
+    },
   },
   {
     slug: 'gnss-engineer-gmv',
@@ -352,8 +410,8 @@ export const EXPERIENCE: WorkEntry[] = [
     period: 'Jul 2020 – Sep 2022',
     current: false,
     description: {
-      en: 'Research engineer specialising in satellite signal modelling and simulation for the Galileo constellation, delivering high-precision analytical systems for ESA, the European Commission, and DLR.',
-      es: 'Ingeniero de investigación especializado en modelado y simulación de señales satelitales para la constelación Galileo, entregando sistemas analíticos de alta precisión para ESA, la Comisión Europea y DLR.',
+      en: 'I specialised in satellite signal modelling and simulation for the Galileo constellation, delivering high-precision analytical systems for ESA, the European Commission, and DLR.',
+      es: 'Me especialicé en modelado y simulación de señales satelitales para la constelación Galileo, entregando sistemas analíticos de alta precisión para ESA, la Comisión Europea y DLR.',
     },
     highlights: [
       {
@@ -370,6 +428,20 @@ export const EXPERIENCE: WorkEntry[] = [
       },
     ],
     tags: ['Python', 'GNSS', 'GIS', 'MATLAB', 'Signal Analysis', 'NumPy'],
+    narrative: [
+      {
+        en: "Working on the Galileo constellation was my first exposure to safety-critical engineering — where the quality bar is set by ESA audits, not internal code review. Every deliverable was validated against international aerospace standards, and errors had real consequences for the programme.",
+        es: "Trabajar en la constelación Galileo fue mi primera exposición a la ingeniería crítica de seguridad — donde el estándar de calidad lo fijan las auditorías de la ESA, no la revisión de código interna. Cada entregable se validaba contra estándares aeroespaciales internacionales, y los errores tenían consecuencias reales para el programa.",
+      },
+      {
+        en: "The solo Helgoland mission was one of the most formative experiences of my career. A hardware failure had cancelled the first expedition — I flew alone to a North Sea island, diagnosed the problem on-site, sourced materials locally, and had three triangulation stations operational in 72 hours, saving the ESA test window.",
+        es: "La misión en solitario en Helgoland fue una de las experiencias más formativas de mi carrera. Un fallo de hardware había cancelado la primera expedición — volé solo a una isla en el Mar del Norte, diagnostiqué el problema in situ, conseguí materiales localmente y tuve tres estaciones de triangulación operativas en 72 horas, salvando la ventana de prueba de la ESA.",
+      },
+    ],
+    impact: {
+      en: "10 high-level technical reports delivered to ESA and DLR; solo Helgoland field mission completed under 72 hours.",
+      es: "10 informes técnicos de alto nivel entregados a ESA y DLR; misión de campo en solitario en Helgoland completada en menos de 72 horas.",
+    },
   },
   {
     slug: 'research-purdue',
@@ -378,8 +450,8 @@ export const EXPERIENCE: WorkEntry[] = [
     period: 'Aug 2019 – Jul 2020',
     current: false,
     description: {
-      en: 'Graduate researcher at the School of Aeronautics and Astronautics modelling aerotaxi demand for Chicago in collaboration with NASA research lines — Big Data, ML, and multimodal optimisation.',
-      es: 'Investigador de posgrado en la Escuela de Aeronáutica y Astronáutica modelando la demanda de aerotaxis para Chicago en colaboración con líneas de investigación de la NASA — Big Data, ML y optimización multimodal.',
+      en: 'Graduate researcher at Purdue School of Aeronautics — I modelled aerotaxi demand for Chicago in collaboration with NASA research lines, using Big Data, ML, and multimodal optimisation.',
+      es: 'Investigador de posgrado en la Escuela de Aeronáutica de Purdue — modelé la demanda de aerotaxis para Chicago en colaboración con líneas de investigación de la NASA, usando Big Data, ML y optimización multimodal.',
     },
     highlights: [
       {
@@ -396,6 +468,20 @@ export const EXPERIENCE: WorkEntry[] = [
       },
     ],
     tags: ['Python', 'MATLAB', 'Machine Learning', 'Big Data', 'NASA', 'Research'],
+    narrative: [
+      {
+        en: "The research sat at the intersection of aerospace engineering and data science — modelling how air taxis could integrate with Chicago's transit network using mobility datasets and ML clustering to identify where vertiports made economic sense. It was my first large-scale ML project, and it shaped how I think about data-driven decision-making.",
+        es: "La investigación se situaba en la intersección entre la ingeniería aeroespacial y la ciencia de datos — modelando cómo los aerotaxis podrían integrarse en la red de transporte de Chicago usando datasets de movilidad y clustering ML para identificar dónde tendría sentido económico situar vertipuertos. Fue mi primer proyecto ML a gran escala, y marcó cómo pienso sobre la toma de decisiones basada en datos.",
+      },
+      {
+        en: "The findings were reviewed directly by NASA researchers in technical meetings and contributed to agency-level work on Urban Air Mobility — a field that has since become one of the most active areas of aerospace investment globally.",
+        es: "Los resultados fueron revisados directamente por investigadores de la NASA en reuniones técnicas y contribuyeron al trabajo de la agencia sobre Movilidad Aérea Urbana — un campo que desde entonces se ha convertido en una de las áreas de inversión aeroespacial más activas a nivel global.",
+      },
+    ],
+    impact: {
+      en: "GPA 4.0/4.0 — Dean's List & Semester Honors; research published at SciTech international conference.",
+      es: "GPA 4.0/4.0 — Dean's List y Semester Honors; investigación publicada en la conferencia internacional SciTech.",
+    },
   },
 ]
 

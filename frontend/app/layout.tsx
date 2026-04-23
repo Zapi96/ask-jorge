@@ -37,6 +37,7 @@ const BASE_URL = 'https://jorgezapico.dev'
 
 export const viewport: Viewport = {
   themeColor: '#F9F9F9', // updated dynamically by ThemeColorSync on client
+  viewportFit: 'cover',  // enables safe-area-inset-* on iOS notch/dynamic island
 }
 
 export const metadata: Metadata = {

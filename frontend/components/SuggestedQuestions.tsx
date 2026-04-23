@@ -3,21 +3,21 @@ import { motion } from 'framer-motion'
 import { useLang } from '@/lib/i18n'
 
 const QUESTIONS_EN = [
-  "What's Jorge's experience with Databricks and MLflow?",
-  "What ML projects has he led?",
-  "What's his main tech stack?",
-  "Does he have RAG (Retrieval-Augmented Generation) experience?",
-  "What's his background before MLOps?",
-  "What talks or workshops has he given?",
+  "What's your experience with Databricks and MLflow?",
+  "What ML projects have you led?",
+  "What's your main tech stack?",
+  "Do you have RAG (Retrieval-Augmented Generation) experience?",
+  "What's your background before MLOps?",
+  "What talks or workshops have you given?",
 ]
 
 const QUESTIONS_ES = [
-  '¿Cuál es la experiencia de Jorge con Databricks y MLflow?',
-  '¿Qué proyectos de ML ha liderado?',
-  '¿Cuál es su stack tecnológico principal?',
-  '¿Tiene experiencia con RAG (Retrieval-Augmented Generation)?',
-  '¿Cuál es su background antes del MLOps?',
-  '¿Qué charlas o talleres ha impartido?',
+  '¿Cuál es tu experiencia con Databricks y MLflow?',
+  '¿Qué proyectos de ML has liderado?',
+  '¿Cuál es tu stack tecnológico principal?',
+  '¿Tienes experiencia con RAG (Retrieval-Augmented Generation)?',
+  '¿Cuál es tu background antes del MLOps?',
+  '¿Qué charlas o talleres has impartido?',
 ]
 
 export const QUESTIONS = QUESTIONS_EN
