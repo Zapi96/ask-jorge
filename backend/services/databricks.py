@@ -63,9 +63,7 @@ def _extract_answer(data) -> str:
             return str(prediction[0])
         if isinstance(prediction, dict):
             return (
-                prediction.get("content")
-                or prediction.get("output")
-                or str(prediction)
+                prediction.get("content") or prediction.get("output") or str(prediction)
             )
         return str(prediction)
 
