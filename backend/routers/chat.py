@@ -37,7 +37,9 @@ async def chat(request: Request, body: ChatRequest, background_tasks: Background
     try:
         answer = await databricks.query_endpoint(body.question)
     except Exception:
-        _log.warning("QUESTION_ERROR | ip=%s | q=%r", request.client.host, body.question)
+        _log.warning(
+            "QUESTION_ERROR | ip=%s | q=%r", request.client.host, body.question
+        )
         raise HTTPException(
             status_code=504,
             detail="The assistant is not available right now. Please try again.",
