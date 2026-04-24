@@ -67,9 +67,9 @@ export default function ExperiencePage() {
                   {t(entry.description.en, entry.description.es)}
                 </p>
 
-                {/* Highlights */}
+                {/* Highlights — max 3 in list view, all 6 in detail page */}
                 <ul className="mb-5 space-y-2">
-                  {entry.highlights.map((h, i) => (
+                  {entry.highlights.slice(0, 3).map((h, i) => (
                     <li key={i} className="flex gap-2">
                       <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-p-secondary" />
                       <p className="font-inter text-sm text-p-on-surface-var">{t(h.en, h.es)}</p>
