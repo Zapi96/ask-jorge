@@ -366,8 +366,8 @@ export const EXPERIENCE: WorkEntry[] = [
         es: 'Prototipé pipelines de GenAI usando Azure OpenAI y Llama2 para extracción inteligente de documentos no estructurados.',
       },
       {
-        en: 'Resolved a critical Azure infrastructure incident (Private Endpoints failure) that impacted all Repsol AI services, forcing Microsoft to acknowledge a global availability zone issue.',
-        es: 'Resolví un incidente crítico de infraestructura Azure (fallo en Private Endpoints) que impactó a todos los servicios de AI de Repsol, forzando a Microsoft a reconocer un problema global de zona de disponibilidad.',
+        en: 'Resolved a critical Azure infrastructure incident (Private Endpoints failure) that impacted all Repsol AI services, forcing Microsoft to acknowledge a global availability zone issue (Service Health ID: XV64-R_0).',
+        es: 'Resolví un incidente crítico de infraestructura Azure (fallo en Private Endpoints) que impactó a todos los servicios de AI de Repsol, forzando a Microsoft a reconocer un problema global de zona de disponibilidad (Service Health ID: XV64-R_0).',
       },
       {
         en: 'Deployed Kubernetes CronJobs on AKS for daily Azure AD identity sync and automatic orphan branch cleanup — reducing manual maintenance overhead.',
@@ -389,8 +389,8 @@ export const EXPERIENCE: WorkEntry[] = [
         es: "Esta fue mi entrada al MLOps empresarial a gran escala. Repsol opera docenas de modelos ML en refinerías, mesas de trading y unidades de exploración — mi trabajo era hacer que el lado operacional fuera invisible y fiable. Heredé un panorama fragmentado y construí el primer pipeline de despliegue estandarizado.",
       },
       {
-        en: "One of the biggest early challenges was a critical Azure Private Endpoints failure that took down all AI services across the organisation. I identified the root cause, coordinated the incident response, and escalated to Microsoft — ultimately forcing them to acknowledge a global availability zone issue affecting multiple enterprise clients.",
-        es: "Uno de los primeros grandes retos fue un fallo crítico en Azure Private Endpoints que bloqueó todos los servicios de AI de la organización. Identifiqué la causa raíz, coordiné la respuesta al incidente y escallé a Microsoft — forzándoles finalmente a reconocer un problema global de zona de disponibilidad que afectaba a varios clientes enterprise.",
+        en: "One of the biggest early challenges was a critical Azure Private Endpoints failure that took down all AI services across the organisation. I identified the root cause, coordinated the incident response, and escalated to Microsoft — ultimately forcing them to acknowledge a global availability zone issue affecting multiple enterprise clients (Service Health ID: XV64-R_0).",
+        es: "Uno de los primeros grandes retos fue un fallo crítico en Azure Private Endpoints que bloqueó todos los servicios de AI de la organización. Identifiqué la causa raíz, coordiné la respuesta al incidente y escallé a Microsoft — forzándoles finalmente a reconocer un problema global de zona de disponibilidad que afectaba a varios clientes enterprise (Service Health ID: XV64-R_0).",
       },
     ],
     impact: {
