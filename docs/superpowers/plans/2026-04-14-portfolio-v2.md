@@ -228,24 +228,24 @@ export const CERTIFICATIONS: Certification[] = [
   {
     title: 'Azure Solutions Architect Expert',
     issuer: 'Microsoft',
-    year: '2023',
+    year: '2026',
     featured: true,
   },
   {
     title: 'Azure Administrator Associate',
     issuer: 'Microsoft',
-    year: '2023',
+    year: '2026',
   },
   {
     title: 'Databricks Certified Machine Learning Professional',
     issuer: 'Databricks',
-    year: '2024',
+    year: '2025',
     featured: true,
   },
   {
     title: 'Databricks Certified Machine Learning Associate',
     issuer: 'Databricks',
-    year: '2023',
+    year: '2024',
   },
   {
     title: 'Azure AI Fundamentals',
