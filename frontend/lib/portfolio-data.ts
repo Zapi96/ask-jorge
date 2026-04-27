@@ -561,7 +561,7 @@ export const CERTIFICATIONS: Certification[] = [
   {
     title: 'Azure Solutions Architect Expert',
     issuer: 'Microsoft',
-    year: '2023',
+    year: '2026',
     logo: '/logos/azure.svg',
     url: 'https://learn.microsoft.com/api/credentials/share/es-es/JorgeMartinezZapico-3570/D3312CF4172E2FDB?sharingId',
     description: {
@@ -573,7 +573,7 @@ export const CERTIFICATIONS: Certification[] = [
   {
     title: 'Databricks Certified Machine Learning Professional',
     issuer: 'Databricks',
-    year: '2024',
+    year: '2025',
     logo: '/logos/databricks.svg',
     url: 'https://credentials.databricks.com/4175116c-b6f8-48ae-8048-f934c17dc182',
     description: {
@@ -585,7 +585,7 @@ export const CERTIFICATIONS: Certification[] = [
   {
     title: 'Azure Administrator Associate',
     issuer: 'Microsoft',
-    year: '2023',
+    year: '2026',
     logo: '/logos/azure.svg',
     url: 'https://learn.microsoft.com/api/credentials/share/en-us/JorgeMartinezZapico-3570/A5522241800AECEB?sharingId',
     description: {
@@ -596,7 +596,7 @@ export const CERTIFICATIONS: Certification[] = [
   {
     title: 'Databricks Certified Machine Learning Associate',
     issuer: 'Databricks',
-    year: '2023',
+    year: '2024',
     logo: '/logos/databricks.svg',
     url: 'https://credentials.databricks.com/2adae64d-f829-41ee-bb37-358601b9c324',
     description: {
